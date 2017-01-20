@@ -16,9 +16,7 @@
 </head>
 <body ng-app="SiispApp" ng-cloak>
 
-<div header></div>
-<div content></div>
-<div footer></div>
+<div ui-view></div>
 
 <!-- External Libraries -->
 <!-- libs:js -->
@@ -40,8 +38,17 @@
 
 <!-- Application -->
 <!-- app:js -->
+<script src="login/login.js"></script>
+<script src="login/loginCtrl.js"></script>
+<script src="layout/layout.js"></script>
+<script src="investigadores/investigadores.js"></script>
+<script src="investigadores/investigadorService.js"></script>
+<script src="investigadores/investigadorCtrl.js"></script>
+<script src="core/core.js"></script>
+<script src="core/userService.js"></script>
+<script src="core/dataService.js"></script>
+<script src="core/authenticationService.js"></script>
 <script src="app.js"></script>
-<script src="login"></script>
 <!-- endinject -->
 </body>
 </html>

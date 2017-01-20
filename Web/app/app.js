@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('SiispApp', ['Core', 'Login'])
+angular.module('SiispApp', ['Core', 'Login', 'Layout'])
     .config(function($mdThemingProvider, $stateProvider, $urlRouterProvider) {
 
         $mdThemingProvider.theme('docs-dark', 'default')
