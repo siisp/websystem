@@ -1,3 +1,5 @@
-/**
- * Created by agustin on 20/01/2017.
- */
+'use strict';
+
+angular.module('Researchers')
+    .controller('researchersCtrl', ['$scope', function($scope){
+    }]);
