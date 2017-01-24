@@ -9,3 +9,13 @@
 .tabsdemoDynamicHeight md-content h1:first-child {
     margin-top: 0; }
 
+/*botones*/
+
+
+.buttondemoBasicUsage md-content {
+    margin-right: 7px; }
+
+.buttondemoBasicUsage section .md-button {
+    margin-top: 16px;
+    margin-bottom: 16px; }
+

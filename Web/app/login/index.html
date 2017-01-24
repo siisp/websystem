@@ -12,7 +12,7 @@
             <span ng-show="form.password.$dirty && form.password.$error.required">Password is required</span>
         </div>
         <div>
-            <button type="submit" ng-disabled="form.$invalid || dataLoading">Login</button>
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="form.$invalid || dataLoading">Login</md-button>
         </div>
         <span ng-show="loginFailed">Email and/or Password are invalid</span>
     </form>
