@@ -16,7 +16,7 @@ angular.module('Login').controller('loginCtrl', ['$scope', '$state', 'authentica
 
         var onLogin = function(){
             authenticationService.setCredentials($scope.email, $scope.password);
-            $state.go('researchers.new');
+            $state.go('researchers');
             $scope.$apply();
         };
 
