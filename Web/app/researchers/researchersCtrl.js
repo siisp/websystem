@@ -1,5 +1,11 @@
 'use strict';
 
 angular.module('Researchers')
-    .controller('researchersCtrl', ['$scope', function($scope){
-    }]);
+    .controller('researchers.new', ['$scope', '$controller',
+        function($scope, $controller){
+            //public
+            $state.go('/researchers/edit.html');
+
+            $controller('researchersCtrl', { $scope: $scope });
+        }
+    ]);
