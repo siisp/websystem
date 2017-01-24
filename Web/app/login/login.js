@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Login', ['Core', 'Layout'])
+angular.module('Login', ['Core', 'Layout', 'Researchers'])
     .config(function($stateProvider) {
         $stateProvider
             .state('login', {
