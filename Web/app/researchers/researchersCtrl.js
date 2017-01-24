@@ -54,3 +54,10 @@ angular.module('Researchers')
             }}
 
     ]);
+
+/*limitador de caracteres
+angular.module('ngMaxlengthExample', [])
+    .controller('ExampleController', ['$scope', function($scope) {
+        $scope.maxlength = 5;
+    }]);
+ */
