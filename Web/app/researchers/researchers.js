@@ -11,4 +11,12 @@ angular.module('Researchers', ['Core'])
     });
 
 
-angular.module('MyApp',['ngMaterial', 'ngMessages', 'material.svgAssetsCache']);
+angular.module('Button',['ngMaterial', 'ngMessages', 'material.svgAssetsCache']);
+
+angular.module('Input',['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
+    .controller('InputCtrl', function($scope) {
+        $scope.project = {
+            description: 'Nuclear Missile Defense System',
+            rate: 500
+        };
+    });

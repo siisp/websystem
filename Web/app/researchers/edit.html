@@ -1,22 +1,15 @@
 <div>
-    <div ng-cloak="" class="tabsdemoDynamicHeight" ng-app="MyApp">
+    <div ng-cloak="" class="tabsdemoDynamicHeight" ng-app="Button">
         <md-content>
             <md-tabs md-dynamic-height="" md-border-bottom="">
                 <md-tab label="Datos Personales">
-                    <md-content class="md-padding">
-                        <div ng-include src="'researchers/personalData.html'" ng-controller="researchersCtrl"></div>
-                    </md-content>
+                    <div ng-include src="'researchers/personalData.html'" ng-controller="researchers.personalData"></div>
                 </md-tab>
-
                 <md-tab label="Datos Undav">
-                    <md-content class="md-padding"></md-content>
+                    <div ng-include src="'researchers/undavData.html'" ng-controller="researchers.undavData"></div>
                 </md-tab>
-
                 <md-tab label="Datos Académicos">
-                    <md-content class="md-padding">
-                        <h1 class="md-display-2">Tab Three</h1>
-                        <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
-                    </md-content>
+                    <div ng-include src="'researchers/academicData.html'" ng-controller="researchers.academicData"></div>
                 </md-tab>
             </md-tabs>
         </md-content>
