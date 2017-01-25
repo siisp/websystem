@@ -58,12 +58,17 @@
 
 
                 <div  layout="row">
-                    <md-input-container flex="4">
-                        <label>Rango edad</label>
-                        <input required="" type="number" ng-maxlength="2" name="rangoEdad" ng-model="project.rangoEdad">
-                        <div ng-messages="projectForm.rangoEdad.$error">
-                            <div ng-message="required">This is required.</div>
-                        </div>
+                    <label>Rango edad</label>
+                    <br>
+                    <md-input-container flex="5">
+                        <br>
+                        <label>de</label>
+                        <input  type="number" ng-maxlength="5" name="ageRangeA" ng-model="project.ageRangeA">
+                    </md-input-container>
+                    <md-input-container flex="5">
+                        <br>
+                        <label>hasta</label>
+                        <input type="number" ng-maxlength="5" name="ageRangeB" ng-model="project.ageRangeB">
                     </md-input-container>
                 </div>
 
@@ -75,3 +80,4 @@
         </form>
     </div>
 </div>
+
