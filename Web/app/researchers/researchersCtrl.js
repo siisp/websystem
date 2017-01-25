@@ -45,7 +45,28 @@ angular.module('Researchers')
     ]);
 
 angular.module('Researchers')
+    .controller('researchers.state', ['$scope', '$controller',
+        function ($scope, $controller) {
+
+            $scope.setup = function()
+            {
+                console.log('se carga el formulario');
+            }}
+    ]);
+
+angular.module('Researchers')
     .controller('InputCtrl', ['$scope', '$controller',
+        function ($scope, $controller) {
+
+            $scope.setup = function()
+            {
+                console.log('se carga el formulario');
+            }}
+
+    ]);
+
+angular.module('Researchers')
+    .controller('dateCtrl', ['$scope', '$controller',
         function ($scope, $controller) {
 
             $scope.setup = function()
