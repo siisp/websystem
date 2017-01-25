@@ -32,7 +32,7 @@
 
             <div layout="row">
                 <md-input-container flex="9">
-                    <label>Dni</label>
+                    <label>DNI</label>
                     <input required="" type="number" ng-maxlength="8"  name="dni" ng-model="project.dni">
                     <div ng-messages="projectForm.dni.$error">
                         <div ng-message="required">Ha excedido el limite.</div>
@@ -44,6 +44,14 @@
                     <input required="" type="number" ng-maxlength="11"  name="cuilCuit" ng-model="project.cuilCuit">
                     <div ng-messages="projectForm.cuilCuit.$error">
                         <div ng-message="required">Ha excedido el limite.</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container flex="30">
+                    <label>Dni</label>
+                    <input type="email" class="form-control" placeholder="example@email.com" name="email" ng-model="project.email" required>
+                    <div ng-messages="projectForm.dni.$error">
+                        <div ng-message="required">Error de ingreso.</div>
                     </div>
                 </md-input-container>
             </div>
