@@ -21,7 +21,7 @@ angular.module('Input',['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
         };
     });
 
-angular.module('Date',['ngMaterial', 'ngMessages', 'material.svgAssetsCache']).controller('AppCtrl', function($scope) {
+angular.module('Date',['ngMaterial', 'ngMessages', 'material.svgAssetsCache']).controller('dateCtrl', function($scope) {
     $scope.myDate = new Date();
 
     $scope.minDate = new Date(
