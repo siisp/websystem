@@ -1,23 +1,15 @@
-<div>
-    <div ng-cloak="" class="tabsdemoDynamicHeight" ng-app="Button">
-        <md-content>
-            <md-tabs md-dynamic-height="" md-border-bottom="">
-                <md-tab label="Datos Personales">
-                    <div ng-include src="'researchers/personalData.html'" ng-controller="researchers.personalData"></div>
-                </md-tab>
-                <md-tab label="Datos Undav">
-                    <div ng-include src="'researchers/undavData.html'" ng-controller="researchers.undavData"></div>
-                </md-tab>
-                <md-tab label="Datos Académicos">
-                    <div ng-include src="'researchers/academicData.html'" ng-controller="researchers.academicData"></div>
-                </md-tab>
-                <md-tab label="Investigación">
-                    <div ng-include src="'researchers/research.html'" ng-controller="researchers.research"></div>
-                </md-tab>
-                <md-tab label="Estado">
-                    <div ng-include src="'researchers/state.html'" ng-controller="researchers.state"></div>
-                </md-tab>
-            </md-tabs>
-        </md-content>
+<div ng-init="setup()">
+    <div ng-cloak="" class="tabsdemoDynamicHeight">
+        <form name="researcherForm">
+            <md-content>
+                <md-tabs md-dynamic-height="" md-border-bottom="">
+                    <md-tab label="Datos Personales">
+                        <div ng-include src="'researchers/personalData.html'" ></div>
+                    </md-tab>
+                </md-tabs>
+                <md-button ng-show="!readOnly" class="md-raised md-primary" ng-disabled="researcherForm.$invalid || dataLoading" ng-click="save()">Guardar</md-button>
+                <label ng-show="researcherSaved">Guardado!</label>
+            </md-content>
+        </form>
     </div>
 </div>
