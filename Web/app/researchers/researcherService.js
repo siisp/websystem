@@ -3,6 +3,9 @@ angular.module('Researchers').factory('researcherService', ['dataService',
         return {
             save: function(researcher, onSaved) {
                 dataService.saveObject('researchers', researcher, onSaved);
+            },
+            getParametrics: function(callback) {
+                dataService.getData('parametrics', callback);
             }
         };
     }

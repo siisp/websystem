@@ -1,0 +1,24 @@
+<div ng-init="setup()">
+    <div layout="column" ng-cloak="" class="inputdemoErrors">
+        <md-content class="md-padding">
+            <div layout="row">
+                <md-input-container>
+                    <md-select ng-model="researcherEditing.degreeArea" placeholder="Título de Grado">
+                        <md-option ng-value="degreeArea.id" ng-repeat="degreeArea in degreeAreas">{{ degreeArea.name }}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container>
+                    <md-select ng-model="researcherEditing.academicDegree" placeholder="Máximo título académico">
+                        <md-option ng-value="academicDegree.id" ng-repeat="academicDegree in academicDegrees">{{ academicDegree.name }}</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex="20">
+                    <label>Formación en curso, grado y posgrado<md-tooltip md-direction="top">
+                        (indicar en cada caso Carrera e Institución)
+                    </md-tooltip></label>
+                    <input name="" ng-model="researcherEditing.currentStudies">
+                </md-input-container>
+            </div>
+        </md-content>
+    </div>
+</div>
