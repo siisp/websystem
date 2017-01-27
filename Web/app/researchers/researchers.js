@@ -23,3 +23,6 @@ angular.module('Input',['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
     .controller('InputCtrl', function($scope) {
     });
 
+angular.config(function($mdIconProvider) {
+    $mdIconProvider.fontSet('md', 'material-icons');
+});
