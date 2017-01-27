@@ -39,14 +39,12 @@ angular.module('Researchers')
 
 
 angular.module('Researchers')
-    .controller('researcher.listA', ['$scope', 'researcherService',
+    .controller('researcher.list', ['$scope', 'researcherService',
         function ($scope, researcherService){
             var arrayResearchers = researcherService.getResearchers();
-            var researchers=[];
 
-            for(var key in arrayResearchers)
-            {
-                researchers[key]=arrayResearchers[key].name;
-                }
+            $scope.todos=[];
+
+            for(var key in arrayResearchers) { }
 
         }]);

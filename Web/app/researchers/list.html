@@ -1,5 +1,6 @@
-<div>
-    <tr ng-repeat="researchers in researchers" ng-controller="researchers.list">
-        <td>{{researcher.name}}</td>
+<div ng-controller="researchers.list">
+    <tr ng-repeat="todo in todos">
+        <td>{{todo.nombre}}</td>
+        <td>{{todo.apellido}}</td>
     </tr>
 </div>
