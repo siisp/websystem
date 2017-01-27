@@ -27,19 +27,26 @@ angular.module('Researchers')
         function ($scope, researcherService) {
             $scope.setup = function()
             {
-                console.log('Setup education')
                 researcherService.getParametrics(refreshEducationParametrics)
-
             }
-
             var refreshEducationParametrics = function(parametrics)
             {
                 $scope.degreeAreas = parametrics.degreeArea;
                 $scope.academicDegrees = parametrics.academicDegree;
-
-                console.log('Got parametrics')
             }
-
         }
-
     ]);
+
+
+angular.module('Researchers')
+    .controller('researcher.listA', ['$scope', 'researcherService',
+        function ($scope, researcherService){
+            var arrayResearchers = researcherService.getResearchers();
+            var researchers=[];
+
+            for(var key in arrayResearchers)
+            {
+                researchers[key]=arrayResearchers[key].name;
+                }
+
+        }]);

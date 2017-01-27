@@ -6,6 +6,9 @@ angular.module('Researchers').factory('researcherService', ['dataService',
             },
             getParametrics: function(callback) {
                 dataService.getData('parametrics', callback);
+            },
+            getResearchers: function(callback){
+                dataService.getData('researchers', callback);
             }
         };
     }
