@@ -3,9 +3,17 @@
         <table ng-show="researchers.length > 0" style="border: 2px">
             <tr>
                 <th>Nombre</th>
+                <th>Apellido</th>
+                <th>E-mail</th>
+                <th>DNI</th>
+                <th>Género</th>
             </tr>
             <tr ng-repeat="researcher in researchers">
                 <td>{{researcher.name}}</td>
+                <td>{{researcher.surname}}</td>
+                <td>{{researcher.email}}</td>
+                <td>{{researcher.dni}}</td>
+                <td>{{researcher.gender}}</td>
                 <td style="text-align: right">{{researcher.order}}</td>
             </tr>
         </table>
