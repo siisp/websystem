@@ -39,7 +39,7 @@ angular.module('Researchers')
 
 
 angular.module('Researchers')
-    .controller('researcher.list', ['$scope', '$state', 'brandService', '$mdDialog', function($scope, $state, brandService, $mdDialog) {
+    .controller('researchers.list', ['$scope', '$state', 'researcherService', '$mdDialog', function($scope, $state, researcherService, $mdDialog) {
         $scope.setup = function () {
             $scope.researchers = new Array();
             $scope.firstTime = true;
