@@ -1,2 +1,13 @@
 <div>
+    <div>
+        <table ng-show="researchers.length > 0" style="border: 2px">
+            <tr>
+                <th>Nombre</th>
+            </tr>
+            <tr ng-repeat="researcher in researchers">
+                <td>{{researcher.name}}</td>
+                <td style="text-align: right">{{researcher.order}}</td>
+            </tr>
+        </table>
+    </div>
 </div>

@@ -5,7 +5,7 @@ angular.module('Researchers', ['Core'])
         $stateProvider
             .state('researchers.list', {
                 url: "/",
-                templateUrl: "researchers/list.html",
+                templateUrl: "researchers/index.html",
                 controller: 'researchers.list'
             })
             .state('researchers', {
@@ -23,6 +23,4 @@ angular.module('Input',['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
     .controller('InputCtrl', function($scope) {
     });
 
-angular.config(function($mdIconProvider) {
-    $mdIconProvider.fontSet('md', 'material-icons');
-});
+

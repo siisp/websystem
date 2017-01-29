@@ -39,12 +39,39 @@ angular.module('Researchers')
 
 
 angular.module('Researchers')
-    .controller('researcher.list', ['$scope', 'researcherService',
-        function ($scope, researcherService){
-            var arrayResearchers = researcherService.getResearchers();
+    .controller('researcher.list', ['$scope', '$state', 'brandService', '$mdDialog', function($scope, $state, brandService, $mdDialog) {
+        $scope.setup = function () {
+            $scope.researchers = new Array();
+            $scope.firstTime = true;
+            loadResearchers();
+        };
 
-            $scope.todos=[];
+        var getOrderedResearchers = function(researchers) {
+                if (researchers != null) {
+                    var researchersToOrder = new Array;
+                    for (var key in researchers) {
+                        researchersToOrder.push(researchers[key]);
+                    }
 
-            for(var key in arrayResearchers) { }
+                    researchersToOrder.sort(function (researcherA, researcherB) {
+                        return researcherA.order - researcherB.order
+                    });
+                    return researchersToOrder;
+                }
+            },
 
-        }]);
+            loadResearchers = function () {
+            researcherService.getResearchers(refreshResearchers);
+        },
+
+            refreshResearchers = function(researchers){
+            $scope.researchers = getOrderedResearchers(researchers);
+            if($scope.firstTime)
+            {
+                $scope.$apply();
+                $scope.firstTime = false;
+            }
+        }
+    }
+        ]);
+
