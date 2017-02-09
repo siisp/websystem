@@ -45,7 +45,6 @@ angular.module('Researchers')
             $scope.firstTime = true;
             loadResearchers();
         };
-
         var getOrderedResearchers = function(researchers) {
                 if (researchers != null) {
                     var researchersToOrder = new Array;
@@ -59,7 +58,6 @@ angular.module('Researchers')
                     return researchersToOrder;
                 }
             },
-
             loadResearchers = function () {
             researcherService.getResearchers(refreshResearchers);
         },
@@ -74,4 +72,38 @@ angular.module('Researchers')
         }
     }
         ]);
+
+angular.module('Researchers')
+    .controller('researchers.edit', ['$scope', '$stateParams', 'researcherService',
+        function($scope, $stateParams, mechanicService){
+            //public
+            var loadResearchersForEdition;
+            $scope.setup = function(){
+                $scope.readOnly = false;
+                researcherService.getResearcher($stateParams.id, $scope.refreshResearcher);
+            };
+            $scope.refreshResearcher = function (researcher) {
+                refreshEditingModel(researcher);
+            };
+            var loadEditingResearcher = function(editingResearcher, researchers)
+            {
+                if(researchers)
+                {
+                    for(var key in researchers)
+                    {
+                        editingResearcher.push(researchers[key]);
+                    }
+                }
+            }
+            loadResearchersForEdition = function (researcher, editingModel) {
+                editingModel.researcherData = new Array;
+                loadEditingResearcher(editingModel.researcherData, researcher);
+            }
+            var refreshEditingModel = function(researcher){
+                $scope.editing = {};
+                loadResearchersForEdition(researcher, $scope.editing);
+                $scope.researcherEditing = researcher;
+            }
+        }
+    ]);
 
