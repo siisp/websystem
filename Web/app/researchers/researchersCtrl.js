@@ -1,11 +1,16 @@
 'use strict';
 
 angular.module('Researchers')
-    .controller('researchers.new', ['$scope', 'researcherService',
-        function ($scope, researcherService) {
+    .controller('researchers.new', ['$scope', '$stateParams', 'researcherService',
+        function ($scope, $stateParams, researcherService) {
             $scope.setup = function()
             {
-                $scope.researcherEditing = {};
+                var isNew=$stateParams.id==undefined;
+                if(!isNew){
+                    researcherService.getResearcher($stateParams.id, setResearchersToEdit);
+                }else{
+                    $scope.researcherEditing = {};
+                }
                 $scope.researcherSaved = false;
                 $scope.cuilRegExpr = '^\\d{2}-\\d{8}-\\d{1}$';
             }
@@ -18,6 +23,9 @@ angular.module('Researchers')
             {
                 $scope.researcherSaved = true;
                 $scope.$apply();
+            }
+            var setResearchersToEdit = function(researcher){
+                $scope.researcherEditing = researcher;
             }
         }
     ]);
@@ -72,38 +80,4 @@ angular.module('Researchers')
         }
     }
         ]);
-
-angular.module('Researchers')
-    .controller('researchers.edit', ['$scope', '$stateParams', 'researcherService',
-        function($scope, $stateParams, mechanicService){
-            //public
-            var loadResearchersForEdition;
-            $scope.setup = function(){
-                $scope.readOnly = false;
-                researcherService.getResearcher($stateParams.id, $scope.refreshResearcher);
-            };
-            $scope.refreshResearcher = function (researcher) {
-                refreshEditingModel(researcher);
-            };
-            var loadEditingResearcher = function(editingResearcher, researchers)
-            {
-                if(researchers)
-                {
-                    for(var key in researchers)
-                    {
-                        editingResearcher.push(researchers[key]);
-                    }
-                }
-            }
-            loadResearchersForEdition = function (researcher, editingModel) {
-                editingModel.researcherData = new Array;
-                loadEditingResearcher(editingModel.researcherData, researcher);
-            }
-            var refreshEditingModel = function(researcher){
-                $scope.editing = {};
-                loadResearchersForEdition(researcher, $scope.editing);
-                $scope.researcherEditing = researcher;
-            }
-        }
-    ]);
 

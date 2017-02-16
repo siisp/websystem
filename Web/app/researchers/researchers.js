@@ -16,7 +16,7 @@ angular.module('Researchers', ['Core'])
             .state('researchers.edit', {
                 url: "/edit/{id}",
                 templateUrl: "researchers/edit.html",
-                controller: 'researchers.edit'
+                controller: 'researchers.new'
             })
     });
 
