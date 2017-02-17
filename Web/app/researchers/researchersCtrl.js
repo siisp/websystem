@@ -32,7 +32,7 @@ angular.module('Researchers')
 
 
 angular.module('Researchers')
-    .controller('researcher.education', ['$scope', 'researcherService',
+    .controller('researchers.education', ['$scope', 'researcherService',
         function ($scope, researcherService) {
             $scope.setup = function()
             {

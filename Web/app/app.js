@@ -2,13 +2,10 @@
 
 angular.module('SiispApp', ['Core', 'Login', 'Layout', 'Researchers'])
     .config(function($mdThemingProvider, $stateProvider, $urlRouterProvider) {
-
         $mdThemingProvider.theme('docs-dark', 'default')
             .primaryPalette('yellow')
             .dark();
-
         $urlRouterProvider.otherwise("/login");
-
         $stateProvider
             .state('home', {
                 url: "/",
@@ -24,7 +21,6 @@ angular.module('SiispApp', ['Core', 'Login', 'Layout', 'Researchers'])
             if ($rootScope.globals.currentUser) {
                 $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
             }
-
             $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams, options) {
                 var restrictedPage = toState.name != 'login';
                 var loggedIn = $rootScope.globals.currentUser;

@@ -7,7 +7,7 @@
                         <div ng-include src="'researchers/personalData.html'" ></div>
                     </md-tab>
                     <md-tab label="Formaciòn">
-                        <div ng-include src="'researchers/education.html'" ng-controller="researcher.education" ></div>
+                        <div ng-include src="'researchers/education.html'" ng-controller="researchers.education" ></div>
                     </md-tab>
                 </md-tabs>
                 <md-button ng-show="!readOnly" class="md-raised md-primary" ng-disabled="researcherForm.$invalid || dataLoading" ng-click="save()">Guardar</md-button>
