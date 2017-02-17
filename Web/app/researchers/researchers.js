@@ -10,8 +10,7 @@ angular.module('Researchers', ['Core'])
             })
             .state('researchers.list', {
                 url: "/",
-                templateUrl: "researchers/index.html",
-                controller: 'researchers.list'
+                templateUrl: "researchers/index.html"
             })
             .state('researchers.new', {
                 url: "/new",

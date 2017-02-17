@@ -1,19 +1,19 @@
-<div>
+<div ng-controller="researchers.list" ng-init="setup()">
     <div>
-        <table ng-show="researchers.length > 0" style="border: 2px">
+        <table ng-show="researchers!=null" style="border: 2px">
             <tr>
                 <th>Apellido</th>
                 <th>Nombre</th>
                 <th>DNI</th>
                 <th>E-mail</th>
             </tr>
-            <tr ng-repeat="researcher in researchers">
+            <tr ng-repeat="researcher in researchers | toArray | orderBy:'surname'">
                 <td>{{researcher.surname}}</td>
                 <td>{{researcher.name}}</td>
                 <td>{{researcher.dni}}</td>
                 <td>{{researcher.email}}</td>
                 <td><md-button class="md-raised md-primary" ui-sref="researchers.edit({id:researcher.id})">Editar</md-button></td>
-            <tr><label ng-show="withoutResearchers">No hay investigadores.</label></tr>
+            <tr><label ng-show="researchers==null">No hay investigadores.</label></tr>
         </table>
     </div>
 </div>

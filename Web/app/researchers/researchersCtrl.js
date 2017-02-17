@@ -5,6 +5,7 @@ angular.module('Researchers')
         function ($scope, $stateParams, researcherService) {
             $scope.setup = function()
             {
+                console.log("invesestigadores");
                 var isNew=$stateParams.id==undefined;
                 if(!isNew){
                     researcherService.getResearcher($stateParams.id, setResearchersToEdit);
@@ -27,6 +28,7 @@ angular.module('Researchers')
             var setResearchersToEdit = function(researcher) {
                 $scope.researcherEditing = researcher;
             }
+        $scope.setup();
         }
     ]);
 
@@ -48,39 +50,27 @@ angular.module('Researchers')
 
 
 angular.module('Researchers')
-    .controller('researchers.list', ['$scope', '$state', 'researcherService', '$mdDialog', function($scope, $state, researcherService, $mdDialog) {
+    .controller('researchers.list', ['$scope', 'researcherService', function($scope, researcherService) {
         $scope.setup = function () {
-            $scope.researchers = new Array();
             $scope.firstTime = true;
             loadResearchers();
+            console.log("setup");
         };
-        var getOrderedResearchers = function(researchers) {
-                if (researchers != null) {
-                    $scope.withoutResearchers=false;
-                    var researchersToOrder = new Array;
-                    for (var key in researchers) {
-                        researchersToOrder.push(researchers[key]);
-                    }
-
-                    researchersToOrder.sort(function (researcherA, researcherB) {
-                        return researcherA.order - researcherB.order
-                    });
-                    return researchersToOrder;
-                }else{
-                    $scope.withoutResearchers=true;
-                }
-            },
-            loadResearchers = function () {
+        var loadResearchers = function () {
             researcherService.getResearchers(refreshResearchers);
         },
-
-            refreshResearchers = function(researchers){
-            $scope.researchers = getOrderedResearchers(researchers);
-            if($scope.firstTime)
-            {
-                $scope.$apply();
-                $scope.firstTime = false;
-            }
+        refreshResearchers = function(researchers){
+           if(Object.keys(researchers).length==0){
+               $scope.researchers = null;
+           }else{
+               $scope.researchers = researchers;
+               if($scope.firstTime)
+               {
+                   console.log($scope.researchers)
+                   $scope.$apply();
+                   $scope.firstTime = false;
+               }
+           }
         }
     }
         ]);
