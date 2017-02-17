@@ -24,11 +24,12 @@ angular.module('Researchers')
                 $scope.researcherSaved = true;
                 $scope.$apply();
             }
-            var setResearchersToEdit = function(researcher){
+            var setResearchersToEdit = function(researcher) {
                 $scope.researcherEditing = researcher;
             }
         }
     ]);
+
 
 angular.module('Researchers')
     .controller('researcher.education', ['$scope', 'researcherService',
