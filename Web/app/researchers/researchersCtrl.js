@@ -5,7 +5,6 @@ angular.module('Researchers')
         function ($scope, $stateParams, researcherService) {
             $scope.setup = function()
             {
-                console.log("invesestigadores");
                 var isNew=$stateParams.id==undefined;
                 if(!isNew){
                     researcherService.getResearcher($stateParams.id, setResearchersToEdit);
@@ -54,7 +53,6 @@ angular.module('Researchers')
         $scope.setup = function () {
             $scope.firstTime = true;
             loadResearchers();
-            console.log("setup");
         };
         var loadResearchers = function () {
             researcherService.getResearchers(refreshResearchers);
@@ -66,7 +64,6 @@ angular.module('Researchers')
                $scope.researchers = researchers;
                if($scope.firstTime)
                {
-                   console.log($scope.researchers)
                    $scope.$apply();
                    $scope.firstTime = false;
                }
