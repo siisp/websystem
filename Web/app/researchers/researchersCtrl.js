@@ -56,6 +56,7 @@ angular.module('Researchers')
         };
         var getOrderedResearchers = function(researchers) {
                 if (researchers != null) {
+                    $scope.withoutResearchers=false;
                     var researchersToOrder = new Array;
                     for (var key in researchers) {
                         researchersToOrder.push(researchers[key]);
@@ -65,6 +66,8 @@ angular.module('Researchers')
                         return researcherA.order - researcherB.order
                     });
                     return researchersToOrder;
+                }else{
+                    $scope.withoutResearchers=true;
                 }
             },
             loadResearchers = function () {
