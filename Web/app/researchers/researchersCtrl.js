@@ -37,7 +37,7 @@ angular.module('Researchers')
         function ($scope, researcherService) {
             $scope.setup = function()
             {
-                researcherService.getParametrics(refreshEducationParametrics)
+                researcherService.getParametrics(refreshEducationParametrics);
             }
             var refreshEducationParametrics = function(parametrics)
             {
@@ -47,6 +47,21 @@ angular.module('Researchers')
         }
     ]);
 
+angular.module('Researchers')
+    .controller('researchers.undavData', ['$scope', 'researcherService',
+        function ($scope, researcherService) {
+            $scope.setup = function()
+            {
+                researcherService.getParametrics(refreshEducationParametrics);
+            }
+            var refreshEducationParametrics = function(parametrics)
+            {
+                $scope.positionTypes = parametrics.positionType;
+                $scope.modalities = parametrics.modality;
+                $scope.idDedications = parametrics.idDedication;
+            }
+        }
+    ]);
 
 angular.module('Researchers')
     .controller('researchers.list', ['$scope', 'researcherService', function($scope, researcherService) {

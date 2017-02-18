@@ -9,6 +9,9 @@
                     <md-tab label="Formaciòn">
                         <div ng-include src="'researchers/education.html'" ng-controller="researchers.education" ></div>
                     </md-tab>
+                    <md-tab label="Datos UNDAV">
+                        <div ng-include src="'researchers/undavData.html'" ng-controller="researchers.undavData" ></div>
+                    </md-tab>
                 </md-tabs>
                 <md-button ng-show="!readOnly" class="md-raised md-primary" ng-disabled="researcherForm.$invalid || dataLoading" ng-click="save()">Guardar</md-button>
                 <label ng-show="researcherSaved">Guardado!</label>
