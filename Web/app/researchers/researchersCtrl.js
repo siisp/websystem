@@ -64,6 +64,43 @@ angular.module('Researchers')
     ]);
 
 angular.module('Researchers')
+    .controller('researchers.academicData', ['$scope', 'researcherService',
+        function ($scope, researcherService) {
+            $scope.setup = function()
+            {
+                researcherService.getParametrics(refreshEducationParametrics);
+            }
+            var refreshEducationParametrics = function(parametrics)
+            {
+                $scope.memberQualities = parametrics.memberQuality;
+                $scope.scholarshipInstitutions = parametrics.scholarshipInstitution;
+                $scope.workplaceProjects = parametrics.workplaceProject;
+                $scope.secretaryshipDepartments = parametrics.secretaryshipDepartment;
+                $scope.careers = parametrics.career;
+                $scope.subjects = parametrics.subject;
+            }
+        }
+    ]);
+
+angular.module('Researchers')
+    .controller('researchers.investigation', ['$scope', 'researcherService',
+        function ($scope, researcherService) {
+            $scope.setup = function()
+            {
+                researcherService.getParametrics(refreshEducationParametrics);
+            }
+            var refreshEducationParametrics = function(parametrics)
+            {
+                $scope.categoryIncentivePrograms = parametrics.categoryIncentiveProgram;
+                $scope.universityCategorizations = parametrics.universityCategorization;
+                $scope.categorizationYears = parametrics.categorizationYear;
+                $scope.conicetCareers = parametrics.conicetCareer;
+                $scope.conicetCategories = parametrics.conicetCategory;
+            }
+        }
+    ]);
+
+angular.module('Researchers')
     .controller('researchers.list', ['$scope', 'researcherService', function($scope, researcherService) {
         $scope.setup = function () {
             $scope.firstTime = true;
