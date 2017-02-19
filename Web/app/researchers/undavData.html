@@ -19,19 +19,28 @@
                 </md-input-container>
             </div>
             <div layout="row">
-                <md-input-container flex="12">
-                    <label>Alta en la Institución</label>
-                    <input required=""  ng-pattern="fechaRegExpr" placeholder="dd-mm-yyyy"  name="highInTheInstitution" ng-model="researcherEditing.highInTheInstitution">
-                    <div ng-messages="researcherForm.highInTheInstitution.$error">
-                        <div ng-message="pattern">Formato esperado: dd-mm-yyyy.</div>
-                    </div>
                 </md-input-container>
                 <md-input-container flex="12">
-                    <label>Baja en la institución</label>
-                    <input required=""  ng-pattern="fechaRegExpr" placeholder="dd-mm-yyyy "  name="lowInTheInstitution" ng-model="researcherEditing.lowInTheInstitution">
-                    <div ng-messages="researcherForm.lowInTheInstitution.$error">
-                        <div ng-message="pattern">Formato esperado: dd-mm-yyyy.</div>
-                    </div>
+                    <datepicker date-format="dd/MM/yyyy" selector="form-control">
+                        <div class="input-group">
+                            <label>Alta en la Institución</label>
+                            <input class="form-control" name="highInTheInstitution" ng-model="researcherEditing.highInTheInstitution"/>
+                            <span class="input-group-addon" style="cursor: pointer">
+                                <i class="fa fa-lg fa-calendar"></i>
+                            </span>
+                        </div>
+                    </datepicker>
+                </md-input-container>
+                <md-input-container flex="12">
+                    <datepicker date-format="dd/MM/yyyy"  selector="form-control">
+                        <div class="input-group">
+                            <label>Baja en la institución</label>
+                            <input class="form-control" name="lowInTheInstitution" ng-model="researcherEditing.lowInTheInstitution"/>
+                            <span class="input-group-addon" style="cursor: pointer">
+                                <i class="fa fa-lg fa-calendar"></i>
+                            </span>
+                        </div>
+                    </datepicker>
                 </md-input-container>
             </div>
         </md-content>
