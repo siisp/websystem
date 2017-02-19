@@ -33,11 +33,11 @@ angular.module('Researchers')
 
 
 angular.module('Researchers')
-    .controller('researchers.education', ['$scope', 'researcherService',
-        function ($scope, researcherService) {
+    .controller('researchers.education', ['$scope', 'parametricService',
+        function ($scope, parametricService) {
             $scope.setup = function()
             {
-                researcherService.getParametrics(refreshEducationParametrics);
+                parametricService.getParametrics(refreshEducationParametrics);
             }
             var refreshEducationParametrics = function(parametrics)
             {
@@ -48,11 +48,11 @@ angular.module('Researchers')
     ]);
 
 angular.module('Researchers')
-    .controller('researchers.undavData', ['$scope', 'researcherService',
-        function ($scope, researcherService) {
+    .controller('researchers.undavData', ['$scope', 'parametricService',
+        function ($scope, parametricService) {
             $scope.setup = function()
             {
-                researcherService.getParametrics(refreshEducationParametrics);
+                parametricService.getParametrics(refreshEducationParametrics);
             }
             var refreshEducationParametrics = function(parametrics)
             {
@@ -64,11 +64,11 @@ angular.module('Researchers')
     ]);
 
 angular.module('Researchers')
-    .controller('researchers.academicData', ['$scope', 'researcherService',
-        function ($scope, researcherService) {
+    .controller('researchers.academicData', ['$scope', 'parametricService',
+        function ($scope, parametricService) {
             $scope.setup = function()
             {
-                researcherService.getParametrics(refreshEducationParametrics);
+                parametricService.getParametrics(refreshEducationParametrics);
             }
             var refreshEducationParametrics = function(parametrics)
             {
@@ -83,11 +83,11 @@ angular.module('Researchers')
     ]);
 
 angular.module('Researchers')
-    .controller('researchers.investigation', ['$scope', 'researcherService',
-        function ($scope, researcherService) {
+    .controller('researchers.investigation', ['$scope', 'parametricService',
+        function ($scope, parametricService) {
             $scope.setup = function()
             {
-                researcherService.getParametrics(refreshEducationParametrics);
+                parametricService.getParametrics(refreshEducationParametrics);
             }
             var refreshEducationParametrics = function(parametrics)
             {

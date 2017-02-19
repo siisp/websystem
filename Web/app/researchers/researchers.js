@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Researchers', ['Core'])
+angular.module('Researchers', ['Core', 'Parametrics'])
     .config(function($stateProvider) {
         $stateProvider
             .state('researchers', {
