@@ -1,21 +1,20 @@
 /*tabs dinamicas*/
-.tabsdemoDynamicHeight md-content {
+.tabsForm md-content {
     background-color: transparent !important; }
-.tabsdemoDynamicHeight md-content md-tabs {
+.tabsForm md-content md-tabs {
     background: #f6f6f6;
     border: 1px solid #e1e1e1; }
-.tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
+.tabsForm md-content md-tabs md-tabs-wrapper {
     background: white; }
-.tabsdemoDynamicHeight md-content h1:first-child {
+.tabsForm md-content h1:first-child {
     margin-top: 0; }
 
 /*botones*/
 
-
-.buttondemoBasicUsage md-content {
+.buttonShape md-content {
     margin-right: 7px; }
 
-.buttondemoBasicUsage section .md-button {
+.buttonShape section .md-button {
     margin-top: 16px;
     margin-bottom: 16px; }
 
@@ -29,16 +28,6 @@
     text-align: left;
     width: 100%; }
 
-/*datePicker*/
-
-.datepickerdemoBasicUsage {
-    /** Demo styles for mdCalendar. */ }
-.datepickerdemoBasicUsage md-content {
-    padding-bottom: 200px; }
-.datepickerdemoBasicUsage .validation-messages {
-    font-size: 12px;
-    color: #dd2c00;
-    margin-left: 15px; }
 
 /*login*/
 

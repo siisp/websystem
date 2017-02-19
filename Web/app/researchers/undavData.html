@@ -18,6 +18,22 @@
                     </md-select>
                 </md-input-container>
             </div>
+            <div layout="row">
+                <md-input-container flex="12">
+                    <label>Alta en la Institución</label>
+                    <input required=""  ng-pattern="fechaRegExpr" placeholder="dd-mm-yyyy"  name="highInTheInstitution" ng-model="researcherEditing.highInTheInstitution">
+                    <div ng-messages="researcherForm.highInTheInstitution.$error">
+                        <div ng-message="pattern">Formato esperado: dd-mm-yyyy.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex="12">
+                    <label>Baja en la institución</label>
+                    <input required=""  ng-pattern="fechaRegExpr" placeholder="dd-mm-yyyy "  name="lowInTheInstitution" ng-model="researcherEditing.lowInTheInstitution">
+                    <div ng-messages="researcherForm.lowInTheInstitution.$error">
+                        <div ng-message="pattern">Formato esperado: dd-mm-yyyy.</div>
+                    </div>
+                </md-input-container>
+            </div>
         </md-content>
     </div>
 </div>

@@ -53,6 +53,7 @@ angular.module('Researchers')
             $scope.setup = function()
             {
                 parametricService.getParametrics(refreshEducationParametrics);
+                $scope.fechaRegExpr = '^\\d{1,2}-\\d{1,2}-\\d{4}$';
             }
             var refreshEducationParametrics = function(parametrics)
             {
