@@ -1,6 +1,11 @@
 <div ng-controller="researchers.list" ng-init="setup()">
     <div>
-        <table ng-show="researchers!=null" style="border: 2px">
+        <div layout="row" ng-show="researchers === undefined" layout-sm="column" layout-align="left">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+            </br>
+        </div>
+        <label ng-show="researchers===null">No hay investigadores.</label>
+        <table ng-show="researchers!=null">
             <tr>
                 <th>Apellido</th>
                 <th>Nombre</th>
@@ -12,8 +17,7 @@
                 <td>{{researcher.name}}</td>
                 <td>{{researcher.dni}}</td>
                 <td>{{researcher.email}}</td>
-                <td><md-button class="md-raised md-primary" ui-sref="researchers.edit({id:researcher.id})">Editar</md-button></td>
-            <tr><label ng-show="researchers==null">No hay investigadores.</label></tr>
+                <td><md-button class="md-primary md-hue-1 md-button md-ink-ripple" ui-sref="researchers.edit({id:researcher.id})">Editar</md-button></td>
         </table>
     </div>
 </div>
