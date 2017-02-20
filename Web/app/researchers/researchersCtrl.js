@@ -111,17 +111,18 @@ angular.module('Researchers')
             researcherService.getResearchers(refreshResearchers);
         },
         refreshResearchers = function(researchers){
-           if(Object.keys(researchers).length==0){
+           if(researchers == null || Object.keys(researchers).length==0){
+               console.log(researchers);
                $scope.researchers = null;
            }else{
                $scope.researchers = researchers;
-               if($scope.firstTime)
-               {
-                   $scope.$apply();
-                   $scope.firstTime = false;
-               }
+           }
+           if($scope.firstTime)
+           {
+               $scope.$apply();
+               $scope.firstTime = false;
            }
         }
     }
-        ]);
+]);
 
