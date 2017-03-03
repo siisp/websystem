@@ -9,6 +9,20 @@ angular.module('Researchers').factory('researcherService', ['dataService',
             },
             getResearchers: function(callback){
                 dataService.getData('researchers', callback);
+            },
+            setProfilePhoto: function (researcher, file, progressIndicator, onProfilePhotoUpdated, onError) {
+                if (researcher.id == null)
+                    return;
+                var fileName = getProfilePhotoFileName(file.name);
+                var referenceName = 'researchers/' + researcher.id + '/' + fileName;
+                dataService.uploadFile(referenceName, file, function (snapshot) {
+                    onFileUploading(snapshot, progressIndicator);
+                }, onError, function (downloadURL) {
+                    mechanic.profilePhoto = downloadURL;
+                    dataService.saveObject('researchers', researcher);
+                    progressIndicator.completed = true;
+                    onProfilePhotoUpdated();
+                });
             }
         };
     }

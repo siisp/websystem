@@ -16,8 +16,8 @@ angular.module('Researchers')
             }
             $scope.save = function()
             {
-                $scope.researcherSaved = false;
-                researcherService.save($scope.researcherEditing, onResearcherSaved);
+                    $scope.researcherSaved = false;
+                    researcherService.save($scope.researcherEditing, onResearcherSaved);
             }
             var onResearcherSaved = function()
             {
@@ -33,6 +33,51 @@ angular.module('Researchers')
 
 
 angular.module('Researchers')
+    .controller('researchers.personalData', ['$scope', 'researcherService',
+        function ($scope,  researcherService) {
+            $scope.setup = function () {
+                $scope.uploadProfilePhotoIndicator = {percentageCompleted: 0, completed: true};
+                $scope.isNewDni = true;
+                $scope.researchersList = {};
+                loadResearchers();
+            }
+            var loadResearchers = function () {
+                researcherService.getResearchers(refreshResearchers);
+            },
+                refreshResearchers = function (researchers) {
+                    if (researchers == null || Object.keys(researchers).length == 0) {
+                        $scope.researchersList = null;
+                    } else {
+                        $scope.researchersList = researchers;
+                    }
+                };
+
+           $scope.dniValidation = function(dni){
+                $scope.isNewDni = true;
+                for (var key in $scope.researchersList) {
+                    if($scope.researchersList[key].dni == dni){
+                        $scope.isNewDni = false;
+                    }
+                }
+            }
+            $scope.setProfilePhoto = function (file) {
+                if (file) {
+                    $scope.uploadProfilePhotoIndicator.completed = false;
+                    researcherService.setProfilePhoto($scope.researcherEditing, file, $scope.uploadProfilePhotoIndicator,
+                        onProfilePhotoUpdated, onUploadingProfilePhotoError);
+                }
+            }
+            var onProfilePhotoUpdated = function () {
+                $scope.uploadProfilePhotoIndicator = {percentageCompleted: 0, completed: true};
+                $scope.$apply();
+            },
+                onUploadingProfilePhotoError = function (error) {
+                    console.log(error);
+                };
+        }
+    ]);
+
+angular.module('Researchers')
     .controller('researchers.education', ['$scope', 'parametricService',
         function ($scope, parametricService) {
             $scope.setup = function()
@@ -43,6 +88,7 @@ angular.module('Researchers')
             {
                 $scope.degreeAreas = parametrics.degreeArea;
                 $scope.academicDegrees = parametrics.academicDegree;
+                $scope.studiesStates = parametrics.studiesState;
             }
         }
     ]);
@@ -112,7 +158,6 @@ angular.module('Researchers')
         },
         refreshResearchers = function(researchers){
            if(researchers == null || Object.keys(researchers).length==0){
-               console.log(researchers);
                $scope.researchers = null;
            }else{
                $scope.researchers = researchers;

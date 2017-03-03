@@ -3,13 +3,21 @@
         <md-content class="md-padding">
             <div layout="row">
                 <md-input-container>
-                    <md-select ng-model="researcherEditing.degreeArea" placeholder="Título de Grado">
-                        <md-option ng-value="degreeArea.id" ng-repeat="degreeArea in degreeAreas">{{ degreeArea.name }}</md-option>
+                    <md-select ng-model="researcherEditing.degreeArea" placeholder="Disciplina" multiple="">
+                        <md-optgroup>
+                            <md-option ng-value="degreeArea.id" ng-repeat="degreeArea in degreeAreas">
+                                {{ degreeArea.name }}
+                            </md-option>
+                        </md-optgroup>
                     </md-select>
                 </md-input-container>
                 <md-input-container>
-                    <md-select ng-model="researcherEditing.academicDegree" placeholder="Máximo título académico">
-                        <md-option ng-value="academicDegree.id" ng-repeat="academicDegree in academicDegrees">{{ academicDegree.name }}</md-option>
+                    <md-select ng-model="researcherEditing.academicDegree" placeholder="Máximo título académico" multiple="">
+                        <md-optgroup>
+                            <md-option ng-value="academicDegree.id" ng-repeat="academicDegree in academicDegrees">
+                                {{ academicDegree.name }}
+                            </md-option>
+                        </md-optgroup>
                     </md-select>
                 </md-input-container>
                 <md-input-container flex="20">
@@ -17,6 +25,15 @@
                         (indicar en cada caso Carrera e Institución)
                     </md-tooltip></label>
                     <input name="" ng-model="researcherEditing.currentStudies">
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <md-input-container flex="10">
+                    <md-select ng-model="researcherEditing.studiesState" placeholder="Estado">
+                        <md-option ng-value="studiesState.id" ng-repeat="studiesState in studiesStates">
+                            {{ studiesState.name }}
+                        </md-option>
+                    </md-select>
                 </md-input-container>
             </div>
         </md-content>

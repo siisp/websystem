@@ -1,4 +1,4 @@
-<div>
+<div ng-init="setup()">
     <div layout="column" ng-cloak="" class="dataInputErrors">
         <md-content class="md-padding">
             <div layout="row">
@@ -32,11 +32,40 @@
             <div layout="row">
                 <md-input-container flex="9">
                     <label>DNI</label>
-                    <input required="" type="number" ng-maxlength="8"  name="dni" ng-model="researcherEditing.dni">
+                    <input required="" type="number" ng-maxlength="8"  name="dni" ng-model="researcherEditing.dni" ng-change="dniValidation(researcherEditing.dni)">
                     <div ng-messages="researcherForm.dni.$error">
                         <div ng-message="required">Campo requerido.</div>
                     </div>
+                    <div>
+                        <div ng-show="!isNewDni" >Ya existe.</div>
+                    </div>
                 </md-input-container>
+                <md-input-container flex="12">
+                    <datepicker date-format="dd/MM/yyyy" selector="form-control">
+                        <div class="input-group">
+                            <label>Fecha de Nacimiento</label>
+                            <input class="form-control" name="birthday" ng-model="researcherEditing.birthday"/>
+                            <span class="input-group-addon" style="cursor: pointer">
+                                <i class="fa fa-lg fa-calendar"></i>
+                            </span>
+                        </div>
+                    </datepicker>
+                </md-input-container>
+
+                <md-card-title-media>
+                    <div class="md-media-lg card-media">
+                        <img ng-show="researcherEditing.profilePhoto" ng-src="{{researcherEditing.profilePhoto}}" class="md-card-image" ngf-select="setProfilePhoto($file)" alt="foto de  perfil">
+                        <img ng-show="!researcherEditing.profilePhoto"  src="../assets/img/profile.png" class="md-card-image" ngf-select="setProfilePhoto($file)" alt="foto de  perfil">
+                    </div>
+                </md-card-title-media>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button ng-show="researcherEditing.profilePhoto == null && !isNew"><div class="button" >Seleccionar foto de perfil</div>
+                    </md-button>
+                    <md-button ng-show="researcherEditing.profilePhoto != null && !isNew"><div class="button" >Cambiar foto de perfil</div>
+                    </md-button>
+                </md-card-actions>
+            </div>
+            <div layout="row">
                 <md-input-container flex="12">
                     <label>Cuil/Cuit</label>
                     <input required=""  ng-pattern="cuilRegExpr" placeholder="##-########-#"  name="cuilCuit" ng-model="researcherEditing.cuilCuit">
@@ -54,6 +83,6 @@
                     </div>
                 </md-input-container>
             </div>
-        </md-content>
     </div>
 </div>
+

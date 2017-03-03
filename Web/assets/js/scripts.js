@@ -64,3 +64,15 @@ var Base64 = {
         return output;
     }
 };
+
+var getFileExt = function(fileName){
+    var regx = /(?:\.([^.]+))?$/;
+    var ext = regx.exec(fileName)[1];
+    return ext;
+}
+
+// getProfilePhotoFileName used by mechanicService
+var getProfilePhotoFileName = function (fileName) {
+    var ext = getFileExt(fileName);
+    return "profile." + ext;
+};
