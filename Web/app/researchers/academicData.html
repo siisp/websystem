@@ -2,39 +2,42 @@
     <div layout="column" ng-cloak="" class="dataInputErrors">
         <md-content class="md-padding">
             <div layout="row">
-                <md-input-container>
-                    <md-select ng-model="researcherEditing.memberQuality" placeholder="Calidad de Integrante">
-                        <md-option ng-value="memberQuality.id" ng-repeat="memberQuality in  memberQualities">{{  memberQuality.name }}</md-option>
-                    </md-select>
-                </md-input-container>
-                <md-input-container>
-                    <md-select ng-model="researcherEditing.scholarshipInstitution" placeholder="Beca/Intitución">
-                        <md-option ng-value="scholarshipInstitution.id" ng-repeat="scholarshipInstitution in  scholarshipInstitutions">{{  scholarshipInstitution.name }}</md-option>
-                    </md-select>
-                </md-input-container>
-                <md-input-container>
-                    <md-select ng-model="researcherEditing.workplaceProject" placeholder="Lugar de trabajo en el marco Proyecto/Beca">
-                        <md-option ng-value="workplaceProject.id" ng-repeat="workplaceProject in  workplaceProjects">{{  workplaceProject.name }}</md-option>
-                    </md-select>
-                </md-input-container>
             </div>
-            <div layout="row">
-                <md-input-container>
-                    <md-select ng-model="researcherEditing.secretaryshipDepartment" placeholder="Secretaría/Departamento">
-                        <md-option ng-value="secretaryshipDepartment.id" ng-repeat="secretaryshipDepartment in  secretaryshipDepartments">{{  secretaryshipDepartment.name }}</md-option>
-                    </md-select>
-                </md-input-container>
-                <md-input-container>
-                    <md-select ng-model="researcherEditing.career" placeholder="Carrera">
-                        <md-option ng-value="career.id" ng-repeat="career in  careers">{{  career.name }}</md-option>
-                    </md-select>
-                </md-input-container>
-                <md-input-container>
-                    <md-select ng-model="researcherEditing.subject" placeholder="Asignatura">
-                        <md-option ng-value="subject.id" ng-repeat="subject in  subjects">{{  subject.name }}</md-option>
-                    </md-select>
-                </md-input-container>
-            </div>
+           <div>
+               <div layout="row">
+                   <md-input-container>
+                       <md-select ng-model="radicationEditing.secretaryshipDepartment" placeholder="Secretaría/Departamento">
+                           <md-option ng-value="secretaryshipDepartment.id" ng-repeat="secretaryshipDepartment in  secretaryshipDepartments">{{  secretaryshipDepartment.name }}</md-option>
+                       </md-select>
+                   </md-input-container>
+                   <md-input-container>
+                       <md-select ng-model="radicationEditing.career" placeholder="Carrera">
+                           <md-option ng-value="career.id" ng-repeat="career in  careers">{{  career.name }}</md-option>
+                       </md-select>
+                   </md-input-container>
+                   <md-input-container>
+                       <md-select ng-model="radicationEditing.subject" placeholder="Asignatura">
+                           <md-option ng-value="subject.id" ng-repeat="subject in  subjects">{{  subject.name }}</md-option>
+                       </md-select>
+                   </md-input-container>
+               </div>
+               <md-button class="md-raised md-primary" ng-click="addNewRadication()">Agregar Radicación</md-button>
+           </div>
         </md-content>
+        <div layout="row" ng-show="researcherEditing.radications.length!=0">
+            <table>
+                <tr>
+                    <th>Radicación</th>
+                </tr>
+                <tr ng-repeat="radication in researcherEditing.radications">
+                    <td>{{radication.secretaryshipDepartment.name}}, {{radication.career.name}}, {{radication.subject.name}}</td>
+                </tr>
+            </table>
+        </div>
+        <div layout="row" ng-show="researcherEditing.radications.length!=0">
+            <md-button  class="md-raised md-primary" ">
+            <div class="button" ng-click="editNewRadication()">Agregar un Nueva Radicación</div>
+            </md-button>
+        </div>
     </div>
 </div>

@@ -66,8 +66,10 @@
                 </tr>
             </table>
         </div>
-        <md-button  class="md-raised md-primary" ">
+        <div layout="row" ng-show="researcherEditing.formations.length!=0">
+            <md-button  class="md-raised md-primary" ">
             <div class="button" ng-click="editNewFormation()">Agregar un Nueva Formación</div>
-        </md-button>
+            </md-button>
+        </div>
     </div>
 </div>

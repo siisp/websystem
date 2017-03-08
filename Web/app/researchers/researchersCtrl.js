@@ -12,7 +12,8 @@ angular.module('Researchers')
                     $scope.researcherEditing = {
                         id: null,
                         profilePhoto: null,
-                        formations: new Array()
+                        formations: new Array(),
+                        radications: new Array()
                     };
                 }
                 $scope.researcherSaved = false;
@@ -134,17 +135,22 @@ angular.module('Researchers')
         function ($scope, parametricService) {
             $scope.setup = function()
             {
+                $scope.radicationEditing = {}
                 parametricService.getParametrics(refreshEducationParametrics);
             }
             var refreshEducationParametrics = function(parametrics)
             {
-                $scope.memberQualities = parametrics.memberQuality;
-                $scope.scholarshipInstitutions = parametrics.scholarshipInstitution;
-                $scope.workplaceProjects = parametrics.workplaceProject;
                 $scope.secretaryshipDepartments = parametrics.secretaryshipDepartment;
                 $scope.careers = parametrics.career;
                 $scope.subjects = parametrics.subject;
             }
+            $scope.editNewRadication = function () {
+                $scope.radicationEditing = {id: null};
+            };
+
+            $scope.addNewRadication = function () {
+                $scope.researcherEditing.radications.push($scope.radicationEditing);
+            };
         }
     ]);
 
