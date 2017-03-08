@@ -9,10 +9,15 @@ angular.module('Researchers')
                 if(!isNew){
                     researcherService.getResearcher($stateParams.id, setResearchersToEdit);
                 }else{
-                    $scope.researcherEditing = {};
+                    $scope.researcherEditing = {
+                        id: null,
+                        profilePhoto: null,
+                        formations: new Array()
+                    };
                 }
                 $scope.researcherSaved = false;
                 $scope.cuilRegExpr = '^\\d{2}-\\d{8}-\\d{1}$';
+                $scope.newReasearcher = isNew;
             }
             $scope.save = function()
             {
@@ -37,8 +42,8 @@ angular.module('Researchers')
         function ($scope,  researcherService) {
             $scope.setup = function () {
                 $scope.uploadProfilePhotoIndicator = {percentageCompleted: 0, completed: true};
-                $scope.isNewDni = true;
                 $scope.researchersList = {};
+                $scope.isNewDni = true;
                 loadResearchers();
             }
             var loadResearchers = function () {
@@ -58,9 +63,11 @@ angular.module('Researchers')
                     if($scope.researchersList[key].dni == dni){
                         $scope.isNewDni = false;
                     }
+                    console.log($scope.isNewDni);
                 }
             }
             $scope.setProfilePhoto = function (file) {
+                console.log(file);
                 if (file) {
                     $scope.uploadProfilePhotoIndicator.completed = false;
                     researcherService.setProfilePhoto($scope.researcherEditing, file, $scope.uploadProfilePhotoIndicator,
@@ -82,6 +89,7 @@ angular.module('Researchers')
         function ($scope, parametricService) {
             $scope.setup = function()
             {
+                $scope.formationEditing = {};
                 parametricService.getParametrics(refreshEducationParametrics);
             }
             var refreshEducationParametrics = function(parametrics)
@@ -89,7 +97,18 @@ angular.module('Researchers')
                 $scope.degreeAreas = parametrics.degreeArea;
                 $scope.academicDegrees = parametrics.academicDegree;
                 $scope.studiesStates = parametrics.studiesState;
+                $scope.educationTypes = parametrics.educationType;
+                $scope.scolarshipTypes = parametrics.scolarshipType;
+                $scope.scolarshipNames = parametrics.scolarshipName;
             }
+
+            $scope.editNewFormation = function () {
+                $scope.formationEditing = {id: null};
+            };
+
+            $scope.addNewFormation = function () {
+                $scope.researcherEditing.formations.push($scope.formationEditing);
+            };
         }
     ]);
 
