@@ -76,3 +76,13 @@ var getProfilePhotoFileName = function (fileName) {
     var ext = getFileExt(fileName);
     return "profile." + ext;
 };
+
+var onFileUploading = function (snapshot, progressIndicator) {
+    progressIndicator.percentageCompleted = (snapshot.bytesTransferred / snapshot.totalBytes);
+    switch (snapshot.state) {
+        case firebase.storage.TaskState.PAUSED: // or 'paused'
+            break;
+        case firebase.storage.TaskState.RUNNING: // or 'running'
+            break;
+    }
+};

@@ -1,4 +1,30 @@
 <div ng-init="setup()">
+    <md-content class="md-padding" layout-xs="column" layout="row">
+        <div flex-xs flex-gt-xs="50" layout="column">
+            <md-card  ng-show="researcherEditing.id!=null" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{researcherEditing.name}} {{researcherEditing.surname}}</span>
+                        <span class="md-subhead">{{researcherEditing.dni}}</span>
+                        <span class="md-subhead">{{researcherEditing.email}}</span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <div class="md-media-lg card-media">
+                            <img ng-show="researcherEditing.profilePhoto && uploadProfilePhotoIndicator.completed" ng-src="{{researcherEditing.profilePhoto}}" class="md-card-image" alt="foto de  perfil">
+                            <img ng-show="!researcherEditing.profilePhoto && uploadProfilePhotoIndicator.completed"  src="../assets/img/profile.png" class="md-card-image" alt="foto de  perfil">
+                            <md-progress-circular ng-show="!uploadProfilePhotoIndicator.completed" md-mode="indeterminate"></md-progress-circular>
+                        </div>
+                    </md-card-title-media>
+                </md-card-title>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button ng-show="researcherEditing.profilePhoto == null"><div class="button"  ngf-select="setProfilePhoto($file)">Seleccionar foto de perfil</div>
+                    </md-button>
+                    <md-button ng-show="researcherEditing.profilePhoto != null"><div class="button"  ngf-select="setProfilePhoto($file)">Cambiar foto de perfil</div>
+                    </md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </md-content>
     <div layout="column" ng-cloak="" class="dataInputErrors">
         <md-content class="md-padding">
             <div layout="row">
@@ -49,18 +75,6 @@
                         </div>
                     </datepicker>
                 </md-input-container>
-                <md-card-title-media>
-                    <div class="md-media-lg card-media">
-                        <img ng-show="researcherEditing.profilePhoto && !isNew" ng-src="{{researcherEditing.profilePhoto}}" class="md-card-image" ngf-select="setProfilePhoto($file)" alt="foto de  perfil">
-                        <img ng-show="!researcherEditing.profilePhoto && !isNew"  src="../assets/img/profile.png" class="md-card-image" ngf-select="setProfilePhoto($file)" alt="foto de  perfil">
-                    </div>
-                </md-card-title-media>
-                <md-card-actions layout="row" layout-align="end center">
-                    <md-button ng-show="researcherEditing.profilePhoto == null && !isNew"><div class="button" >Seleccionar foto de perfil</div>
-                    </md-button>
-                    <md-button ng-show="researcherEditing.profilePhoto != null && !isNew"><div class="button" >Cambiar foto de perfil</div>
-                    </md-button>
-                </md-card-actions>
             </div>
             <div layout="row">
                 <md-input-container flex="12">
@@ -82,4 +96,3 @@
             </div>
     </div>
 </div>
-

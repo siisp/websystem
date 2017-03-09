@@ -47,8 +47,8 @@ angular.module('Researchers')
                 loadResearchers();
             }
             var loadResearchers = function () {
-                researcherService.getResearchers(refreshResearchers);
-            },
+                    researcherService.getResearchers(refreshResearchers);
+                },
                 refreshResearchers = function (researchers) {
                     if (researchers == null || Object.keys(researchers).length == 0) {
                         $scope.researchersList = null;
@@ -57,7 +57,7 @@ angular.module('Researchers')
                     }
                 };
 
-           $scope.dniValidation = function(dni){
+            $scope.dniValidation = function(dni){
                 $scope.isNewDni = true;
                 for (var key in $scope.researchersList) {
                     if($scope.researchersList[key].dni == dni){
@@ -67,7 +67,6 @@ angular.module('Researchers')
                 }
             }
             $scope.setProfilePhoto = function (file) {
-                console.log(file);
                 if (file) {
                     $scope.uploadProfilePhotoIndicator.completed = false;
                     researcherService.setProfilePhoto($scope.researcherEditing, file, $scope.uploadProfilePhotoIndicator,
@@ -75,9 +74,9 @@ angular.module('Researchers')
                 }
             }
             var onProfilePhotoUpdated = function () {
-                $scope.uploadProfilePhotoIndicator = {percentageCompleted: 0, completed: true};
-                $scope.$apply();
-            },
+                    $scope.uploadProfilePhotoIndicator = {percentageCompleted: 0, completed: true};
+                    $scope.$apply();
+                },
                 onUploadingProfilePhotoError = function (error) {
                     console.log(error);
                 };
