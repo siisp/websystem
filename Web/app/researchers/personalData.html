@@ -9,7 +9,6 @@
                         <div ng-message="required">Campo requerido.</div>
                     </div>
                 </md-input-container>
-
                 <md-input-container flex="20">
                     <label>Nombre</label>
                     <input required="" name="name" ng-model="researcherEditing.name">
@@ -17,7 +16,6 @@
                         <div ng-message="required">Campo requerido.</div>
                     </div>
                 </md-input-container>
-
                 <md-input-container flex="12">
                     <label>Género</label>
                     <md-select name="gender" ng-model="researcherEditing.gender" required="">
@@ -51,17 +49,16 @@
                         </div>
                     </datepicker>
                 </md-input-container>
-
                 <md-card-title-media>
                     <div class="md-media-lg card-media">
-                        <img ng-show="researcherEditing.profilePhoto" ng-src="{{researcherEditing.profilePhoto}}" class="md-card-image" ngf-select="setProfilePhoto($file)" alt="foto de  perfil">
-                        <img ng-show="!researcherEditing.profilePhoto"  src="../assets/img/profile.png" class="md-card-image" ngf-select="setProfilePhoto($file)" alt="foto de  perfil">
+                        <img ng-show="researcherEditing.profilePhoto && !isNew" ng-src="{{researcherEditing.profilePhoto}}" class="md-card-image" ngf-select="setProfilePhoto($file)" alt="foto de  perfil">
+                        <img ng-show="!researcherEditing.profilePhoto && !isNew"  src="../assets/img/profile.png" class="md-card-image" ngf-select="setProfilePhoto($file)" alt="foto de  perfil">
                     </div>
                 </md-card-title-media>
                 <md-card-actions layout="row" layout-align="end center">
-                    <md-button ng-show="researcherEditing.profilePhoto == null && !newReasearcher"><div class="button" >Seleccionar foto de perfil</div>
+                    <md-button ng-show="researcherEditing.profilePhoto == null && !isNew"><div class="button" >Seleccionar foto de perfil</div>
                     </md-button>
-                    <md-button ng-show="researcherEditing.profilePhoto != null && !newReasearcher"><div class="button" >Cambiar foto de perfil</div>
+                    <md-button ng-show="researcherEditing.profilePhoto != null && !isNew"><div class="button" >Cambiar foto de perfil</div>
                     </md-button>
                 </md-card-actions>
             </div>

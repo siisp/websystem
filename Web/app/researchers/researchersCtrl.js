@@ -5,20 +5,19 @@ angular.module('Researchers')
         function ($scope, $stateParams, researcherService) {
             $scope.setup = function()
             {
-                var isNew=$stateParams.id==undefined;
-                if(!isNew){
+                $scope.isNew=$stateParams.id==undefined;
+                if(!$scope.isNew){
                     researcherService.getResearcher($stateParams.id, setResearchersToEdit);
                 }else{
                     $scope.researcherEditing = {
                         id: null,
                         profilePhoto: null,
-                        formations: new Array(),
-                        radications: new Array()
+                        formations: [{id:null}],
+                        radications: [{id:null}]
                     };
                 }
                 $scope.researcherSaved = false;
                 $scope.cuilRegExpr = '^\\d{2}-\\d{8}-\\d{1}$';
-                $scope.newReasearcher = isNew;
             }
             $scope.save = function()
             {
@@ -90,15 +89,15 @@ angular.module('Researchers')
         function ($scope, parametricService) {
             $scope.setup = function()
             {
-                $scope.formationEditing = {};
+                $scope.studiesStates = [{id:"-A1", name:"En curso"},{id:"-A2", name:"Terminado"}];
+                $scope.educationTypes = [{id:"-A1", name:"Grado"},{id:"-A2", name:"Posgrado"}];
+                $scope.formationEditing = {id:null};
                 parametricService.getParametrics(refreshEducationParametrics);
             }
             var refreshEducationParametrics = function(parametrics)
             {
                 $scope.degreeAreas = parametrics.degreeArea;
                 $scope.academicDegrees = parametrics.academicDegree;
-                $scope.studiesStates = parametrics.studiesState;
-                $scope.educationTypes = parametrics.educationType;
                 $scope.scolarshipTypes = parametrics.scolarshipType;
                 $scope.scolarshipNames = parametrics.scolarshipName;
             }
