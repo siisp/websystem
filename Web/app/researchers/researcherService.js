@@ -29,6 +29,12 @@ angular.module('Researchers').factory('researcherService', ['dataService',
                     return;
                 var referenceName = 'researchers/' + researcher.id + '/formations';
                 dataService.saveObject(referenceName, formation, onFormationUpdated);
+            },
+            addRradication: function (researcher, radication, onRadicationUpdated) {
+                if (researcher.id == null)
+                    return;
+                var referenceName = 'researchers/' + researcher.id + '/radications';
+                dataService.saveObject(referenceName, radication, onRadicationUpdated);
             }
         };
     }

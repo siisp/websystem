@@ -129,26 +129,24 @@ angular.module('Researchers')
     ]);
 
 angular.module('Researchers')
-    .controller('researchers.academicData', ['$scope', 'parametricService',
-        function ($scope, parametricService) {
+    .controller('researchers.academicData', ['$scope', 'researcherService',
+        function ($scope, researcherService) {
             $scope.setup = function()
             {
-                $scope.radicationEditing = {}
-                parametricService.getParametrics(refreshEducationParametrics);
-            }
-            var refreshEducationParametrics = function(parametrics)
-            {
-                $scope.secretaryshipDepartments = parametrics.secretaryshipDepartment;
-                $scope.careers = parametrics.career;
-                $scope.subjects = parametrics.subject;
+                $scope.radicationEditing = {id: null};
+                $scope.radicationSaved = false;
             }
             $scope.editNewRadication = function () {
                 $scope.radicationEditing = {id: null};
+                $scope.radicationSaved = false;
             };
-
             $scope.addNewRadication = function () {
-                $scope.researcherEditing.radications.push($scope.radicationEditing);
+                researcherService.addRradication($scope.researcherEditing, $scope.radicationEditing, onRadicationUpdated);
             };
+            var onRadicationUpdated = function () {
+                $scope.radicationSaved = true;
+                $scope.$apply();
+            }
         }
     ]);
 
