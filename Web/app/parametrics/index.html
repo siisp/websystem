@@ -1,9 +1,59 @@
-<div>
+<div ng-init="setup" ng-controller="parametrics.index">
     <h3>Paramétricas</h3>
     <div>
         <div>
             <md-content>
-                <md-button ui-sref="parametrics.new" class="md-raised md-primary">Agregar Nueva</md-button>
+                <div layout="row">
+                    <md-input-container>
+                        <md-select ng-model="parametricTypeSelected" placeholder="Elije una Paramétrica">
+                            <md-option ng-repeat="parametricType in  parametricTypes" value="{{parametricType.type}}">{{  parametricType.name }}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div ng-show="parametricTypeSelected != null">
+                    <md-toolbar layout="row" class="md-raised md-primary">
+                        <div class="md-toolbar-tools">
+                            <span>Listado de {{parametricTypes[parametricTypeSelected].name}}</span>
+                        </div>
+                    </md-toolbar>
+                <table>
+                    <tr ng-repeat="parametric in parametrics[parametricTypeSelected] | toArray | orderBy:'name'">
+                        <td>
+                            <div ng-show="parametric.id != parametricEditingForm.parametricEditing.id">{{parametric.name}}</div>
+                            <div ng-show="parametric.id == parametricEditingForm.parametricEditing.id">
+                                <md-input-container flex="20">
+                                    <label>Nombre</label>
+                                    <input required="" name="name" ng-model="parametricEditingForm.parametricEditing.name">
+                                    <div ng-messages="parametricForm.name.$error">
+                                        <div ng-message="required">Campo requerido.</div>
+                                    </div>
+                                </md-input-container>
+                                <md-button ng-click="saveEditing()" class="md-raised md-primary">Confirmar</md-button>
+                                <md-button ng-click="cancelEditing()" class="md-raised md-primary">Cancelar</md-button>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td><md-button ng-show="parametric.id != parametricEditingForm.parametricEditing.id" class="md-primary md-hue-1 md-button md-ink-ripple" ng-click="edit(parametric)"">Editar</md-button></td>
+                </table>
+                </div>
+                <form ng-show="parametricTypeSelected != null" name="parametricForm">
+                 <div>
+                     <md-toolbar layout="row" class="md-raised md-primary">
+                         <div class="md-toolbar-tools">
+                             <span>Agregar {{parametricTypes[parametricTypeSelected].name}}</span>
+                         </div>
+                     </md-toolbar>
+                 </div>
+                 <md-input-container flex="20">
+                    <label>Nombre</label>
+                    <input required="" name="name" ng-model="parametricEditing.name">
+                    <div ng-messages="parametricForm.name.$error">
+                        <div ng-message="required">Campo requerido.</div>
+                    </div>
+                </md-input-container>
+                <md-button ng-click="save()" class="md-raised md-primary" ng-disabled="parametricForm.$invalid">Agregar</md-button>
+                    <label ng-show="parametricSaved">Guardado!</label>
+                </form>
             </md-content>
         </div>
     </div>

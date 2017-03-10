@@ -10,11 +10,7 @@ angular.module('Parametrics', ['Core'])
             })
             .state('parametrics.home', {
                 url: "/",
-                templateUrl: "parametrics/index.html"
-            })
-            .state('parametrics.new', {
-                url: "/new",
-                templateUrl: "parametrics/edit.html",
-                controller: 'parametrics.new'
+                templateUrl: "parametrics/index.html",
+                controller: "parametrics.index"
             })
     });
