@@ -57,22 +57,46 @@
                 </div>-->
                 <md-button class="md-raised md-primary" ng-click="addNewFormation()">Agregar Formación</md-button>
                 <label ng-show="formationSaved">Guardado!</label>
+
             </div>
         </md-content>
-        <div layout="row" ng-show="researcherEditing.formations!=null">
-            <table>
-                <tr>
-                    <th>Formación</th>
-                </tr>
-                <tr ng-repeat="formation in researcherEditing.formations">
-                    <td>{{formation.educationType}} - {{parametrics['degreeArea'][formation.degreeArea].name}}</td>
-                </tr>
-            </table>
+        <div ng-cloak ng-show="researcherEditing.formations!=null">
+
+            <md-toolbar class="md-theme-light">
+                <h2 class="md-toolbar-tools">
+                    <span>Formación</span>
+                </h2>
+            </md-toolbar>
+            <md-content>
+                <md-list>
+                    <md-list-item class="md-3-line" ng-repeat="formation in researcherEditing.formations">
+                        <div class="md-list-item-text">
+                            <h3>{{formation.educationType}} - {{parametrics['degreeArea'][formation.degreeArea].name}}</h3>
+                        </div>
+                        <md-divider ng-if="!$last"></md-divider>
+                    </md-list-item>
+                </md-list>
+            </md-content>
         </div>
-        <div layout="row" ng-show="researcherEditing.formations!=null">
+        <div layout="column" ng-show="researcherEditing.formations!=null">
             <md-button  class="md-raised md-primary" ">
             <div class="button" ng-click="editNewFormation()">Agregar un Nueva Formación</div>
             </md-button>
         </div>
     </div>
 </div>
+
+
+
+
+<!--
+<div layout="row" ng-show="researcherEditing.formations!=null">
+    <table>
+        <tr>
+            <th>Formación</th>
+        </tr>
+        <tr ng-repeat="formation in researcherEditing.formations">
+            <td>{{formation.educationType}} - {{parametrics['degreeArea'][formation.degreeArea].name}}</td>
+        </tr>
+    </table>
+</div> -->
