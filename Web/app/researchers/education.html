@@ -3,71 +3,73 @@
         <md-content class="md-padding">
             <div>
                 <div layout="row">
-                    <md-input-container flex="15">
+                    <md-input-container flex="25">
                         <md-select ng-model="formationEditing.educationType" placeholder="Tipo de Formación">
-                            <md-option ng-value="educationType.name" ng-repeat="educationType in educationTypes">
-                                {{ educationType.name }}
+                            <md-option ng-repeat="educationType in educationTypes" value="{{educationType}}" >
+                                {{ educationType}}
                             </md-option>
                         </md-select>
                     </md-input-container>
                     <md-input-container>
                         <md-select ng-model="formationEditing.degreeArea" placeholder="Disciplina">
-                                <md-option ng-value="degreeArea.id" ng-repeat="degreeArea in degreeAreas">
-                                    {{ degreeArea.name }}
-                                </md-option>
+                            <md-option value="{{degreeArea.id}}" ng-repeat="degreeArea in parametrics['degreeArea']">
+                                {{ degreeArea.name }}
+                            </md-option>
                         </md-select>
                     </md-input-container>
                     <md-input-container>
                         <md-select ng-model="formationEditing.academicDegree" placeholder="Máximo título académico">
-                                <md-option ng-value="academicDegree.id" ng-repeat="academicDegree in academicDegrees">
-                                    {{ academicDegree.name }}
-                                </md-option>
+                            <md-option value="{{academicDegree.id}}" ng-repeat="academicDegree in parametrics['academicDegree']">
+                                {{ academicDegree.name }}
+                            </md-option>
                         </md-select>
                     </md-input-container>
                     <md-input-container flex="12">
                         <md-select ng-model="formationEditing.studiesState" placeholder="Estado">
-                            <md-option ng-value="studiesState.name" ng-repeat="studiesState in studiesStates">
-                                {{ studiesState.name }}
+                            <md-option ng-repeat="studiesState in studiesStates"  value="{{studiesState}}">
+                                {{ studiesState }}
                             </md-option>
                         </md-select>
                     </md-input-container>
                 </div>
+                <!--
                 <div layout="row">
                     <md-input-container ng-show="formationEditing.studiesState=='En curso'">
                         <md-select  ng-model="formationEditing.scolarshipType" placeholder="Tipo de Beca">
-                            <md-option ng-value="scolarshipType.id" ng-repeat="scolarshipType in scolarshipTypes">
+                            <md-option ng-repeat="scolarshipType in parametrics['scolarshipType']" value="{{ scolarshipType.id }}">
                                 {{ scolarshipType.name }}
                             </md-option>
                         </md-select>
                     </md-input-container>
                     <md-input-container ng-show="formationEditing.studiesState=='En curso'">
                         <md-select  ng-model="formationEditing.scolarshipName" placeholder="Nombre de Beca">
-                            <md-option ng-value="scolarshipName.id" ng-repeat="scolarshipName in scolarshipNames">
+                            <md-option value="{{scolarshipName.id}}" ng-repeat="scolarshipName in parametrics['scolarshipName']">
                                 {{ scolarshipName.name }}
                             </md-option>
                         </md-select>
                     </md-input-container>
-                    <md-input-container ng-show="formationEditing.scolarshipType.name=='Otro'">
+
+                    <md-input-container ng-show="formationEditing.scolarshipName.name=='Otro'">
                         <label>Especificar Otro</label>
+                        {{formationEditing.scolarshipName}}
                         <input name="otro" ng-model="formationEditing.otherScolarhip">
                     </md-input-container>
-                </div>
+                </div>-->
                 <md-button class="md-raised md-primary" ng-click="addNewFormation()">Agregar Formación</md-button>
+                <label ng-show="formationSaved">Guardado!</label>
             </div>
         </md-content>
-        <div layout="row" ng-show="researcherEditing.formations.length!=0">
+        <div layout="row" ng-show="researcherEditing.formations!=null">
             <table>
                 <tr>
                     <th>Formación</th>
                 </tr>
-                {{formation.educationType}}
                 <tr ng-repeat="formation in researcherEditing.formations">
-                    <td ng-show="formation.educationType == 'Grado'">Grado, {{formation.degreeArea)}}</td>
-                    <td ng-show="formation.educationType == 'Posgrado'">Posgrado, {{formation.degreeArea}}</td>
+                    <td>{{formation.educationType}} - {{parametrics['degreeArea'][formation.degreeArea].name}}</td>
                 </tr>
             </table>
         </div>
-        <div layout="row" ng-show="researcherEditing.formations.length!=0">
+        <div layout="row" ng-show="researcherEditing.formations!=null">
             <md-button  class="md-raised md-primary" ">
             <div class="button" ng-click="editNewFormation()">Agregar un Nueva Formación</div>
             </md-button>

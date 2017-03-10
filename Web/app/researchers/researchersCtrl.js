@@ -1,38 +1,43 @@
 'use strict';
 
 angular.module('Researchers')
-    .controller('researchers.new', ['$scope', '$stateParams', 'researcherService',
-        function ($scope, $stateParams, researcherService) {
-            $scope.setup = function()
-            {
-                $scope.isNew=$stateParams.id==undefined;
-                if(!$scope.isNew){
+    .controller('researchers.new', ['$scope', '$stateParams', 'researcherService','parametricService',
+        function ($scope, $stateParams, researcherService, parametricService) {
+            $scope.setup = function () {
+                $scope.isNew = $stateParams.id == undefined;
+                if (!$scope.isNew) {
                     researcherService.getResearcher($stateParams.id, setResearchersToEdit);
-                }else{
+                } else {
                     $scope.researcherEditing = {
                         id: null,
                         profilePhoto: null,
-                        formations: [{id:null}],
-                        radications: [{id:null}]
+                        formations: [{id: null}],
+                        radications: [{id: null}]
                     };
                 }
                 $scope.researcherSaved = false;
                 $scope.cuilRegExpr = '^\\d{2}-\\d{8}-\\d{1}$';
+                loadParametrics();
             }
-            $scope.save = function()
-            {
-                    $scope.researcherSaved = false;
-                    researcherService.save($scope.researcherEditing, onResearcherSaved);
+            $scope.save = function () {
+                $scope.researcherSaved = false;
+                researcherService.save($scope.researcherEditing, onResearcherSaved);
             }
-            var onResearcherSaved = function()
-            {
+            var onResearcherSaved = function () {
                 $scope.researcherSaved = true;
                 $scope.$apply();
             }
-            var setResearchersToEdit = function(researcher) {
+            var setResearchersToEdit = function (researcher) {
                 $scope.researcherEditing = researcher;
             }
-        $scope.setup();
+
+            var loadParametrics = function () {
+                parametricService.getParametrics(refreshParametrics);
+            }
+            var refreshParametrics = function (parametrics) {
+                $scope.parametrics = parametrics;
+            }
+            $scope.setup();
         }
     ]);
 
@@ -56,7 +61,6 @@ angular.module('Researchers')
                         $scope.researchersList = researchers;
                     }
                 };
-
             $scope.dniValidation = function(dni){
                 $scope.isNewDni = true;
                 for (var key in $scope.researchersList) {
@@ -84,30 +88,26 @@ angular.module('Researchers')
     ]);
 
 angular.module('Researchers')
-    .controller('researchers.education', ['$scope', 'parametricService',
-        function ($scope, parametricService) {
+    .controller('researchers.education', ['$scope','researcherService',
+        function ($scope, researcherService) {
             $scope.setup = function()
             {
-                $scope.studiesStates = [{id:"-A1", name:"En curso"},{id:"-A2", name:"Terminado"}];
-                $scope.educationTypes = [{id:"-A1", name:"Grado"},{id:"-A2", name:"Posgrado"}];
-                $scope.formationEditing = {id:null};
-                parametricService.getParametrics(refreshEducationParametrics);
+                $scope.formationSaved = false;
+                $scope.educationTypes = ["Grado","Posgrado"];
+                $scope.studiesStates = ["En curso","Terminado"];
+                $scope.formationEditing = {id: null};
             }
-            var refreshEducationParametrics = function(parametrics)
-            {
-                $scope.degreeAreas = parametrics.degreeArea;
-                $scope.academicDegrees = parametrics.academicDegree;
-                $scope.scolarshipTypes = parametrics.scolarshipType;
-                $scope.scolarshipNames = parametrics.scolarshipName;
-            }
-
             $scope.editNewFormation = function () {
                 $scope.formationEditing = {id: null};
+                $scope.formationSaved = false;
             };
-
             $scope.addNewFormation = function () {
-                $scope.researcherEditing.formations.push($scope.formationEditing);
+                researcherService.addFormation($scope.researcherEditing, $scope.formationEditing, onFormationUpdated);
             };
+            var onFormationUpdated = function () {
+                $scope.formationSaved = true;
+                $scope.$apply();
+            }
         }
     ]);
 

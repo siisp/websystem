@@ -6,20 +6,20 @@
                     <md-tab label="Datos Personales">
                         <div ng-include src="'researchers/personalData.html'" ng-controller="researchers.personalData" ></div>
                     </md-tab>
-                    <md-tab label="Formación">
+                    <md-tab data-ng-if="researcherEditing.id!=null" label="Formación">
                         <div ng-include src="'researchers/education.html'" ng-controller="researchers.education" ></div>
                     </md-tab>
-                    <md-tab label="Datos UNDAV">
+                    <md-tab data-ng-if="researcherEditing.id!=null" label="Datos UNDAV">
                         <div ng-include src="'researchers/undavData.html'" ng-controller="researchers.undavData" ></div>
                     </md-tab>
-                    <md-tab label="Datos Académicos">
+                    <md-tab data-ng-if="researcherEditing.id!=null" label="Datos Académicos">
                         <div ng-include src="'researchers/academicData.html'" ng-controller="researchers.academicData" ></div>
                     </md-tab>
-                    <md-tab label="Investigación">
+                    <md-tab data-ng-if="researcherEditing.id!=null" label="Investigación">
                         <div ng-include src="'researchers/investigation.html'" ng-controller="researchers.investigation" ></div>
                     </md-tab>
                 </md-tabs>
-                <md-button ng-show="!readOnly" class="md-raised md-primary" ng-disabled="researcherForm.$invalid || dataLoading ng-click="save()">Guardar</md-button>
+                <md-button ng-show="!readOnly" class="md-raised md-primary" ng-disabled="researcherForm.$invalid || dataLoading" ng-click="save()">Guardar</md-button>
                 <label ng-show="researcherSaved">Guardado!</label>
             </md-content>
         </form>

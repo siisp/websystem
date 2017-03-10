@@ -18,11 +18,17 @@ angular.module('Researchers').factory('researcherService', ['dataService',
                 dataService.uploadFile(referenceName, file, function (snapshot) {
                     onFileUploading(snapshot, progressIndicator);
                 }, onError, function (downloadURL) {
-                    mechanic.profilePhoto = downloadURL;
+                    researcher.profilePhoto = downloadURL;
                     dataService.saveObject('researchers', researcher);
                     progressIndicator.completed = true;
                     onProfilePhotoUpdated();
                 });
+            },
+            addFormation: function (researcher, formation, onFormationUpdated) {
+                if (researcher.id == null)
+                    return;
+                var referenceName = 'researchers/' + researcher.id + '/formations';
+                dataService.saveObject(referenceName, formation, onFormationUpdated);
             }
         };
     }
