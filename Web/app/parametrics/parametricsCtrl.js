@@ -20,7 +20,6 @@ angular.module('Parametrics')
 
             $scope.saveEditing = function()
             {
-                console.log($scope.parametricEditingForm.parametricEditing);
                 parametricService.saveParametric($scope.parametricTypeSelected,$scope.parametricEditingForm.parametricEditing, onParametricEditUpdated);
             }
 
@@ -32,6 +31,9 @@ angular.module('Parametrics')
             $scope.edit = function(parametric)
             {
                 $scope.parametricEditingForm.parametricEditing = angular.copy(parametric);
+            }
+            $scope.deleteParametric = function (parametricType, parametric) {
+                parametricService.removeParametric(parametricType, parametric);
             }
 
             var onParametricSaved = function()

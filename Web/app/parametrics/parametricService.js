@@ -26,6 +26,12 @@ angular.module('Parametrics').factory('parametricService', ['dataService',
             },
             saveParametric: function(parametricType, parametric, onSaved){
                 dataService.saveObject('parametrics/'+ parametricType, parametric, onSaved);
+            },
+            removeParametric: function (parametricType, parametric) {
+                if (parametric.id == null)
+                    return;
+                var referenceName = 'parametrics/'+ parametricType;
+                dataService.deleteObject(referenceName, parametric);
             }
         };
     }

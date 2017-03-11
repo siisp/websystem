@@ -33,6 +33,7 @@
                             </div>
                         </td>
                         <td><md-button ng-show="parametric.id != parametricEditingForm.parametricEditing.id" class="md-primary md-hue-1 md-button md-ink-ripple" ng-click="edit(parametric)"">Editar</md-button></td>
+                        <td><md-button ng-show="parametric.id != parametricEditingForm.parametricEditing.id" class="md-primary md-hue-1 md-button md-ink-ripple" ng-click="deleteParametric(parametricTypes[parametricTypeSelected].type, parametric)"">Eliminar</md-button></td>
                 </table>
                 </div>
                 <form ng-show="parametricTypeSelected != null" name="parametricForm">
