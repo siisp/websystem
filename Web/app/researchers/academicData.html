@@ -47,7 +47,7 @@
                             <md-button class="md-raised md-primary" ng-click=" deleteRadication(radication)">Eliminar</md-button>
                         </div>
                         <div ng-show="radication.id == radicationEditingForm.radicationEditing.id">
-                            <md-input-container flex="20">
+                            <md-input-container>
                                 <label>Secretaria/Departamento</label>
                                 <md-select ng-model="radicationEditingForm.radicationEditing.secretaryshipDepartment" placeholder="Secretaría/Departamento">
                                     <md-option value="{{secretaryshipDepartment.id}}" ng-repeat="secretaryshipDepartment in  parametrics['secretaryshipDepartment']">

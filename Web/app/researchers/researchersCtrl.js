@@ -95,6 +95,7 @@ angular.module('Researchers')
                 $scope.educationTypes = ["Grado","Posgrado"];
                 $scope.studiesStates = ["En curso","Terminado"];
                 $scope.formationEditing = {id: null};
+                cleanFormationEditingForm();
             }
             $scope.editNewFormation = function () {
                 $scope.formationEditing = {id: null};
@@ -103,10 +104,33 @@ angular.module('Researchers')
             $scope.addNewFormation = function () {
                 researcherService.addFormation($scope.researcherEditing, $scope.formationEditing, onFormationUpdated);
             };
-            var onFormationUpdated = function () {
-                $scope.formationSaved = true;
-                $scope.$apply();
+            $scope.saveEditing = function()
+            {
+                researcherService.addFormation($scope.researcherEditing, $scope.formationEditingForm.formationEditing, onFormationEditUpdated);
             }
+            $scope.cancelEditing = function()
+            {
+                cleanFormationEditingForm();
+            }
+            $scope.edit = function(formation)
+            {
+                $scope.formationEditingForm.formationEditing = angular.copy(formation);
+            }
+            $scope.deleteFormation = function (formation) {
+                researcherService.removeFormation($scope.researcherEditing, formation);
+            }
+            var cleanFormationEditingForm = function(){
+                    $scope.formationEditingForm = {formationEditing : {id :null}};
+                },
+                onFormationEditUpdated = function()
+                {
+                    cleanFormationEditingForm();
+                    $scope.$apply();
+                },
+                onFormationUpdated = function () {
+                    $scope.formationSaved = true;
+                    $scope.$apply();
+                }
         }
     ]);
 

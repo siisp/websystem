@@ -36,6 +36,12 @@ angular.module('Researchers').factory('researcherService', ['dataService',
                 var referenceName = 'researchers/' + researcher.id + '/radications';
                 dataService.saveObject(referenceName, radication, onRadicationUpdated);
             },
+            removeFormation: function (researcher, formation) {
+                if (researcher.id == null || formation.id == null)
+                    return;
+                var referenceName = 'researchers/' + researcher.id + '/formations';
+                dataService.deleteObject(referenceName, formation);
+            },
             removeRadication: function (researcher, radication) {
                 if (researcher.id == null || radication.id == null)
                     return;
