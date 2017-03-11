@@ -20,6 +20,7 @@ angular.module('Parametrics')
 
             $scope.saveEditing = function()
             {
+                console.log($scope.parametricEditingForm.parametricEditing);
                 parametricService.saveParametric($scope.parametricTypeSelected,$scope.parametricEditingForm.parametricEditing, onParametricEditUpdated);
             }
 

@@ -57,9 +57,6 @@
                 <md-input-container flex="9">
                     <label>DNI</label>
                     <input required="" type="number" ng-maxlength="8"  name="dni" ng-model="researcherEditing.dni" ng-change="dniValidation(researcherEditing.dni)">
-                    <div ng-messages="researcherForm.dni.$error">
-                        <div ng-message="required">Campo requerido.</div>
-                    </div>
                     <div>
                         <div ng-show="!isNewDni" >Ya existe.</div>
                     </div>

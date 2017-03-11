@@ -23,25 +23,64 @@
                         </md-select>
                     </md-input-container>
                 </div>
-                <md-button class="md-raised md-primary" ng-click="addNewRadication()">Agregar Radicación</md-button>
+                <md-button class="md-raised md-primary" ng-disabled="radicationSaved || radicationEditing.secretaryshipDepartment==null || radicationEditing.career==null || radicationEditing.subject==null" ng-click="addNewRadication()">Agregar Radicación</md-button>
+                <label ng-show="radicationSaved">Guardado!</label>
+                <md-button  class="md-raised md-primary" ng-show="radicationSaved">
+                    <div class="button" ng-click="editNewRadication()">Agregar un Nueva Radicación</div>
+                </md-button>
             </div>
         </md-content>
-        <div layout="row" ng-show="researcherEditing.radications!=null">
-            <table>
-                <tr>
-                    <th>Radicación</th>
-                </tr>
-                <tr ng-repeat="radication in researcherEditing.radications">
-                    <td>{{parametrics['secretaryshipDepartment'][radication.secretaryshipDepartment].name}},
-                        {{parametrics['career'][radication.career].name}},
-                        {{parametrics['subject'][radication.subject].name}}</td>
-                </tr>
-            </table>
-        </div>
-        <div layout="row" ng-show="researcherEditing.radications!=null">
-            <md-button  class="md-raised md-primary" ">
-            <div class="button" ng-click="editNewRadication()">Agregar un Nueva Radicación</div>
-            </md-button>
+        <div ng-cloak ng-show="researcherEditing.radications!=null">
+            <md-toolbar class="md-theme-light">
+                <h2 class="md-toolbar-tools">
+                    <span>Radicación</span>
+                </h2>
+            </md-toolbar>
+            <md-content>
+                <md-list>
+                    <md-list-item class="md-3-line" ng-repeat="radication in researcherEditing.radications">
+                        <div class="md-list-item-text" ng-show="radication.id != radicationEditingForm.radicationEditing.id">
+                            <h3>{{parametrics['secretaryshipDepartment'][radication.secretaryshipDepartment].name}} -
+                                {{parametrics['career'][radication.career].name}} -
+                                {{parametrics['subject'][radication.subject].name}}</h3>
+                            <md-button  class="md-raised md-primary" ng-click="edit(radication)"">Editar</md-button>
+                            <md-button class="md-raised md-primary" ng-click=" deleteRadication(radication)">Eliminar</md-button>
+                        </div>
+                        <div ng-show="radication.id == radicationEditingForm.radicationEditing.id">
+                            <md-input-container flex="20">
+                                <label>Secretaria/Departamento</label>
+                                <md-select ng-model="radicationEditingForm.radicationEditing.secretaryshipDepartment" placeholder="Secretaría/Departamento">
+                                    <md-option value="{{secretaryshipDepartment.id}}" ng-repeat="secretaryshipDepartment in  parametrics['secretaryshipDepartment']">
+                                        {{  secretaryshipDepartment.name }}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Carrera</label>
+                                <md-select ng-model="radicationEditingForm.radicationEditing.career" placeholder="Carrera">
+                                    <md-option value="{{career.id}}" ng-repeat="career in  parametrics['career']">
+                                        {{ career.name }}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Asignatura</label>
+                                <md-select ng-model="radicationEditingForm.radicationEditing.subject" placeholder="Asignatura">
+                                    <md-option value="{{subject.id}}" ng-repeat="subject in  parametrics['subject']">
+                                        {{ subject.name }}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <div>
+                                <md-button ng-click="saveEditing()" class="md-raised md-primary">Confirmar</md-button>
+                                <md-button ng-click="cancelEditing()" class="md-raised md-primary">Cancelar</md-button>
+                            </div>
+                        </div>
+                        <md-divider ng-if="!$last"></md-divider>
+                    </md-list-item>
+                </md-list>
+            </md-content>
         </div>
     </div>
 </div>
+

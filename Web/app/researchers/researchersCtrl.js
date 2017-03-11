@@ -67,7 +67,6 @@ angular.module('Researchers')
                     if($scope.researchersList[key].dni == dni){
                         $scope.isNewDni = false;
                     }
-                    console.log($scope.isNewDni);
                 }
             }
             $scope.setProfilePhoto = function (file) {
@@ -135,18 +134,45 @@ angular.module('Researchers')
             {
                 $scope.radicationEditing = {id: null};
                 $scope.radicationSaved = false;
+                cleanRadicationEditingForm();
             }
             $scope.editNewRadication = function () {
                 $scope.radicationEditing = {id: null};
                 $scope.radicationSaved = false;
             };
             $scope.addNewRadication = function () {
-                researcherService.addRradication($scope.researcherEditing, $scope.radicationEditing, onRadicationUpdated);
+                researcherService.addRadication($scope.researcherEditing, $scope.radicationEditing, onRadicationUpdated);
             };
-            var onRadicationUpdated = function () {
-                $scope.radicationSaved = true;
-                $scope.$apply();
+
+            $scope.saveEditing = function()
+            {
+                researcherService.addRadication($scope.researcherEditing, $scope.radicationEditingForm.radicationEditing, onRadicationEditUpdated);
             }
+
+            $scope.cancelEditing = function()
+            {
+                cleanRadicationEditingForm();
+            }
+
+            $scope.edit = function(radication)
+            {
+                $scope.radicationEditingForm.radicationEditing = angular.copy(radication);
+            }
+            $scope.deleteRadication = function (radication) {
+                researcherService.removeRadication($scope.researcherEditing, radication);
+            }
+            var onRadicationUpdated = function () {
+                    $scope.radicationSaved = true;
+                    $scope.$apply();
+                },
+                onRadicationEditUpdated = function()
+                {
+                    cleanRadicationEditingForm();
+                    $scope.$apply();
+                },
+                cleanRadicationEditingForm = function(){
+                    $scope.radicationEditingForm = {radicationEditing : {id :null}};
+                }
         }
     ]);
 
