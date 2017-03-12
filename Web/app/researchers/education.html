@@ -32,7 +32,7 @@
                         </md-select>
                     </md-input-container>
                 </div>
-                <!--
+
                 <div layout="row">
                     <md-input-container ng-show="formationEditing.studiesState=='En curso'">
                         <md-select  ng-model="formationEditing.scolarshipType" placeholder="Tipo de Beca">
@@ -49,12 +49,11 @@
                         </md-select>
                     </md-input-container>
 
-                    <md-input-container ng-show="formationEditing.scolarshipName.name=='Otro'">
+                    <md-input-container ng-show="parametrics['scolarshipName'][formationEditing.scolarshipName].name=='Otro'">
                         <label>Especificar Otro</label>
-                        {{formationEditing.scolarshipName}}
                         <input name="otro" ng-model="formationEditing.otherScolarhip">
                     </md-input-container>
-                </div>-->
+            </div>
                 <md-button class="md-raised md-primary" ng-disabled="formationSaved || formationEditing.educationType==null || formationEditing.degreeArea==null || formationEditing.academicDegree==null ||  formationEditing.studiesState==null" ng-click="addNewFormation()">Agregar Formación</md-button>
                 <label ng-show="formationSaved">Guardado!</label>
                 <md-button  class="md-raised md-primary" ng-show="formationSaved">
