@@ -28,6 +28,5 @@ angular.module('Layout')
 angular.module('Layout')
     .controller('homeCtrl', ['$scope',
         function ($scope) {
-
         }
     ]);

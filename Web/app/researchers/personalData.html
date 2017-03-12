@@ -11,7 +11,8 @@
                     <md-card-title-media>
                         <div class="md-media-lg card-media">
                             <img ng-show="researcherEditing.profilePhoto && uploadProfilePhotoIndicator.completed" ng-src="{{researcherEditing.profilePhoto}}" class="md-card-image" alt="foto de  perfil">
-                            <img ng-show="!researcherEditing.profilePhoto && uploadProfilePhotoIndicator.completed"  src="../assets/img/profile.png" class="md-card-image" alt="foto de  perfil">
+                            <img ng-show="!researcherEditing.profilePhoto && uploadProfilePhotoIndicator.completed && researcherEditing.gender=='male'"  src="../assets/img/profile-male.png" class="md-card-image" alt="foto de  perfil">
+                            <img ng-show="!researcherEditing.profilePhoto && uploadProfilePhotoIndicator.completed && researcherEditing.gender=='female'"  src="../assets/img/profile-female.png" class="md-card-image" alt="foto de  perfil">
                             <md-progress-circular ng-show="!uploadProfilePhotoIndicator.completed" md-mode="indeterminate"></md-progress-circular>
                         </div>
                     </md-card-title-media>
