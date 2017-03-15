@@ -3,28 +3,31 @@
         <md-content class="md-padding">
             <div layout="row">
                 <md-input-container>
+                    <label>Categoría Programa de Incentivos</label>
                     <md-select ng-model="researcherEditing.categoryIncentiveProgram" placeholder="Categoría Programa de Incentivos">
                         <md-option ng-value="categoryIncentiveProgram.id" ng-repeat="categoryIncentiveProgram in  categoryIncentivePrograms">{{  categoryIncentiveProgram.name }}</md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container>
-                    <md-select ng-model="researcherEditing.universityCategorization" placeholder="Universidad de Categorización">
+                    <label>Universidad de Categorización</label>
+                    <md-select  ng-model="researcherEditing.universityCategorization" placeholder="Universidad de Categorización">
                         <md-option ng-value="universityCategorization.id" ng-repeat="universityCategorization in  universityCategorizations">{{  universityCategorization.name }}</md-option>
                     </md-select>
+                </md-input-container>
+                <md-input-container flex="20">
+                    <label>Año de Categorización</label>
+                    <input name="categorizationYear" ng-model="researcherEditing.categorizationYear">
                 </md-input-container>
             </div>
             <div layout="row">
                 <md-input-container>
-                    <md-select ng-model="researcherEditing.categorizationYear" placeholder="Año de Categorización">
-                        <md-option ng-value="categorizationYear.id" ng-repeat="categorizationYear in  categorizationYears">{{  categorizationYear.name }}</md-option>
-                    </md-select>
-                </md-input-container>
-                <md-input-container>
+                    <label>Carrera Conicet</label>
                     <md-select ng-model="researcherEditing.conicetCareer" placeholder="Carrera Conicet">
                         <md-option ng-value="conicetCareer.id" ng-repeat="conicetCareer in  conicetCareers">{{  conicetCareer.name }}</md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container>
+                    <label>Categoría Conicet</label>
                     <md-select ng-model="researcherEditing.conicetCategory" placeholder="Categoría Conicet ">
                         <md-option ng-value="conicetCategory.id" ng-repeat="conicetCategory in conicetCategories">{{  conicetCategory.name }}</md-option>
                     </md-select>
@@ -33,3 +36,5 @@
         </md-content>
     </div>
 </div>
+
+

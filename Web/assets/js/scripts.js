@@ -86,3 +86,4 @@ var onFileUploading = function (snapshot, progressIndicator) {
             break;
     }
 };
+

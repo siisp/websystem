@@ -11,8 +11,8 @@ angular.module('Researchers')
                     $scope.researcherEditing = {
                         id: null,
                         profilePhoto: null,
-                        formations: [{id: null}],
-                        radications: [{id: null}]
+                        formations: null,
+                        radications: null
                     };
                 }
                 $scope.researcherSaved = false;
