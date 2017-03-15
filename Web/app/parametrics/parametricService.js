@@ -11,7 +11,6 @@ angular.module('Parametrics').factory('parametricService', ['dataService',
                 return {
                     academicDegree : {type: 'academicDegree', name: 'Máximo título académico'},
                     career: {type: 'career', name: 'Carrera'},
-                    categorizationYear: {type: 'categorizationYear', name: 'Año de Categorización'},
                     categoryIncentiveProgram: {type: 'categoryIncentiveProgram', name: 'Categoría Programa de Incentivos'},
                     conicetCareer: {type: 'conicetCareer', name: 'Carrera Conicet'},
                     conicetCategory: {type: 'conicetCategory', name: 'Categoría Conicet'},
