@@ -17,11 +17,18 @@ angular.module('Researchers')
                 }
                 $scope.researcherSaved = false;
                 $scope.cuilRegExpr = '^\\d{2}-\\d{8}-\\d{1}$';
+                $scope.currentTabNeedSaveButton = true;
                 loadParametrics();
             }
             $scope.save = function () {
                 $scope.researcherSaved = false;
                 researcherService.save($scope.researcherEditing, onResearcherSaved);
+            }
+
+            $scope.showSaveButton = function(value)
+            {
+                console.log(value);
+                $scope.currentTabNeedSaveButton = value;
             }
             var onResearcherSaved = function () {
                 $scope.researcherSaved = true;
