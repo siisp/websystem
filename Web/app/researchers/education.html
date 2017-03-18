@@ -73,7 +73,7 @@
                         <div class="md-list-item-text" ng-show="formation.id != formationEditingForm.formationEditing.id">
                             <h3>{{formation.educationType}} -
                                 {{parametrics['degreeArea'][formation.degreeArea].name}} -
-                                {{parametrics['academicDegree'][formation.degreeArea].name}} -
+                                {{parametrics['academicDegree'][formation.academicDegree].name}} -
                                 {{formation.studiesState}}</h3>
                             <md-button  class="md-raised md-primary" ng-click="edit(formation)">Editar</md-button>
                             <md-button class="md-raised md-primary" ng-click=" deleteFormation(formation)">Eliminar</md-button>
