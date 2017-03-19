@@ -1,0 +1,21 @@
+<div>
+    <table>
+        <tr ng-repeat="parametric in parametrics[parametricTypeSelected] | toArray | orderBy:'name'">
+            <td>
+                <div ng-show="parametric.id != parametricEditingForm.parametricEditing.id">{{parametric.name}}</div>
+                <div ng-show="parametric.id == parametricEditingForm.parametricEditing.id">
+                    <md-input-container flex="20">
+                        <label>Nombre</label>
+                        <input required="" name="name" ng-model="parametricEditingForm.parametricEditing.name">
+                        <div ng-messages="parametricForm.name.$error">
+                            <div ng-message="required">Campo requerido.</div>
+                        </div>
+                    </md-input-container>
+                    <md-button ng-click="saveEditing()" class="md-raised md-primary">Confirmar</md-button>
+                    <md-button ng-click="cancelEditing()" class="md-raised md-primary">Cancelar</md-button>
+                </div>
+            </td>
+            <td><md-button ng-show="parametric.id != parametricEditingForm.parametricEditing.id" class="md-raised md-primary" ng-click="edit(parametric)"">Editar</md-button>
+                <md-button ng-show="parametric.id != parametricEditingForm.parametricEditing.id" class="md-raised md-primary" ng-click="deleteParametric(parametricTypes[parametricTypeSelected].type, parametric)"">Eliminar</md-button></td>
+    </table>
+</div>

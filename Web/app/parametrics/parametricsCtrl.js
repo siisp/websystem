@@ -7,22 +7,68 @@ angular.module('Parametrics')
             {
                 $scope.parametricTypeSelected = null;
                 $scope.parametricTypes = parametricService.getParametricTypes();
-                $scope.parametricEditing = {id:null};
+                parametricService.getParametrics(refreshParametrics);
+            }
+            var refreshParametrics = function(parametrics)
+                {
+                    $scope.parametrics = parametrics;
+                }
+
+            $scope.setup();
+        }
+    ]);
+
+angular.module('Parametrics')
+    .controller('parametrics.new', ['$scope', 'parametricService',
+        function ($scope, parametricService) {
+            $scope.setup = function()
+            {
+                $scope.parametricEditing = {};
                 $scope.parametricSaved = false;
-                cleanParametricEditingForm();
+                $scope.isNewParametric = true;
                 parametricService.getParametrics(refreshParametrics);
             }
             $scope.save = function()
             {
                 $scope.parametricSaved = false;
-                parametricService.saveParametric($scope.parametricTypeSelected,$scope.parametricEditing, onParametricSaved);
+                parametricService.save($scope.parametricEditing, onParametricSaved);
             }
+            $scope.parametricValidation = function(parametricType){
+                $scope.isNewParametric = true;
+                for (var key in $scope.parametrics[parametricType]) {
+                    if($scope.parametrics[parametricType][key].name == $scope.parametricEditing.name)
+                    {
+                        $scope.isNewParametric = false;
+                    }else{
+                        $scope.isNewParametric = true;
+                    }
+                }
+            }
+            var onParametricSaved = function()
+            {
+                $scope.parametricSaved = true;
+                $scope.$apply();
+            },
+                refreshParametrics = function(parametrics)
+                {
+                    $scope.parametrics = parametrics;
+                }
+            $scope.setup();
+        }
+    ]);
 
+angular.module('Parametrics')
+    .controller('parametrics.editInLine', ['$scope', 'parametricService',
+        function ($scope, parametricService) {
+            $scope.setup = function ()
+            {
+                $scope.parametricEditing = {id:null};
+                cleanParametricEditingForm();
+            }
             $scope.saveEditing = function()
             {
                 parametricService.saveParametric($scope.parametricTypeSelected,$scope.parametricEditingForm.parametricEditing, onParametricEditUpdated);
             }
-
             $scope.cancelEditing = function()
             {
                 cleanParametricEditingForm();
@@ -35,47 +81,13 @@ angular.module('Parametrics')
             $scope.deleteParametric = function (parametricType, parametric) {
                 parametricService.removeParametric(parametricType, parametric);
             }
-
-            var onParametricSaved = function()
-            {
-                $scope.parametricSaved = true;
-                $scope.parametricEditing = {id:null};
-                $scope.$apply();
-            },
-                refreshParametrics = function(parametrics)
-                {
-                    $scope.parametrics = parametrics;
-                },
-                cleanParametricEditingForm = function(){
-                    $scope.parametricEditingForm = {parametricEditing : {id :null}};
-                },
-                onParametricEditUpdated = function()
+            var onParametricEditUpdated = function()
                 {
                     cleanParametricEditingForm();
                     $scope.$apply();
+                },
+                cleanParametricEditingForm = function(){
+                    $scope.parametricEditingForm = {parametricEditing : {id :null}};
                 }
             $scope.setup();
-        }
-    ]);
-
-angular.module('Parametrics')
-    .controller('parametrics.new', ['$scope', 'parametricService',
-        function ($scope, parametricService) {
-            $scope.setup = function()
-            {
-                $scope.parametricEditing = {};
-            }
-            $scope.save = function()
-            {
-                $scope.parametricSaved = false;
-                parametricService.save($scope.parametricEditing, onParametricSaved);
-            }
-            var onParametricSaved = function()
-            {
-                $scope.parametricSaved = true;
-                $scope.$apply();
-            }
-            $scope.setup();
-        }
-    ]);
-
+        }]);
