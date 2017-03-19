@@ -27,7 +27,6 @@ angular.module('Researchers')
 
             $scope.showSaveButton = function(value)
             {
-                console.log(value);
                 $scope.currentTabNeedSaveButton = value;
             }
             var onResearcherSaved = function () {
@@ -100,7 +99,7 @@ angular.module('Researchers')
             {
                 $scope.formationSaved = false;
                 $scope.educationTypes = ["Grado","Posgrado"];
-                $scope.studiesStates = ["En curso","Terminado"];
+                $scope.studiesStates = [{type:'En curso', name:false},{type:'Terminado', name:true}];
                 $scope.formationEditing = {id: null};
                 cleanFormationEditingForm();
             }
