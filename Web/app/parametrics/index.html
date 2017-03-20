@@ -10,16 +10,12 @@
                         </md-select>
                     </md-input-container>
                 </div>
+                <md-divider ng-if="parametricTypeSelected"></md-divider>
                 <div ng-show="parametricTypeSelected != null">
-                    <md-toolbar layout="row" class="md-raised md-primary">
-                        <div class="md-toolbar-tools">
-                            <span>Listado de {{parametricTypes[parametricTypeSelected].name}}</span>
-                        </div>
-                    </md-toolbar>
-                <!-- editInLine.html -->
+                    <h4>{{parametricTypes[parametricTypeSelected].listTitle}}</h4>
                     <div ng-include src="'parametrics/editInLine.html'" ng-controller="parametrics.editInLine" ></div>
                 </div>
-               <!-- new.html -->
+                <md-divider ng-if="parametricTypeSelected"></md-divider>
                 <div ng-include src="'parametrics/new.html'" ng-controller="parametrics.new" ></div>
             </md-content>
         </div>

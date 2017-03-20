@@ -1,11 +1,7 @@
 <div>
     <form ng-show="parametricTypeSelected != null" name="parametricForm">
         <div>
-            <md-toolbar layout="row" class="md-raised md-primary">
-                <div class="md-toolbar-tools">
-                    <span>Agregar {{parametricTypes[parametricTypeSelected].name}}</span>
-                </div>
-            </md-toolbar>
+            <h4>{{parametricTypes[parametricTypeSelected].newTitle}}</h4>
         </div>
         <md-input-container flex="20">
             <label>Nombre</label>
