@@ -94,3 +94,10 @@ th {
     background-color: #0431B4;
     color: white;
 }
+
+/*Titles*/
+
+.titles{
+    font-family: Slabo;
+    font-size: 17px;
+}

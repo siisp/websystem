@@ -3,7 +3,7 @@
         <div>
             <md-toolbar layout="row" class="md-raised md-primary">
                 <div class="md-toolbar-tools">
-                    <span>Agregar {{parametricTypes[parametricTypeSelected].name}}</span>
+                    <span class="titles">Agregar {{parametricTypes[parametricTypeSelected].name}}</span>
                 </div>
             </md-toolbar>
         </div>
@@ -12,10 +12,13 @@
             <input required="" name="name" ng-change="parametricValidation(parametricTypes[parametricTypeSelected].type)" ng-model="parametricEditing.name">
             <div ng-messages="parametricForm.name.$error">
                 <div ng-message="required">Campo requerido.</div>
+                <div ng-show="!isNewParametric">Paramétrica Existente.</div>
             </div>
         </md-input-container>
-        <md-button ng-click="save()" class="md-raised md-primary" ng-disabled="parametricForm.$invalid || !isNewParametric">Agregar</md-button>
+        <md-button ng-click="save()" class="md-raised md-primary" ng-disabled="parametricForm.$invalid || !isNewParametric || parametricSaved">Agregar</md-button>
         <label ng-show="parametricSaved">Guardado!</label>
-        <label ng-show="!isNewParametric">Parametrica Existente.</label>
+        <md-button  class="md-raised md-primary" ng-show="parametricSaved">
+            <div class="button" ng-show="parametricSaved" ng-click="editNewParametric()">Agregar un Nueva {{parametricTypes[parametricTypeSelected].name}}</div>
+        </md-button>
     </form>
 </div>

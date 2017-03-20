@@ -26,12 +26,11 @@ angular.module('Parametrics')
                 $scope.parametricEditing = {};
                 $scope.parametricSaved = false;
                 $scope.isNewParametric = true;
-                parametricService.getParametrics(refreshParametrics);
             }
             $scope.save = function()
             {
                 $scope.parametricSaved = false;
-                parametricService.save($scope.parametricEditing, onParametricSaved);
+                parametricService.saveParametric($scope.parametricTypeSelected, $scope.parametricEditing, onParametricSaved);
             }
             $scope.parametricValidation = function(parametricType){
                 $scope.isNewParametric = true;
@@ -44,15 +43,15 @@ angular.module('Parametrics')
                     }
                 }
             }
+            $scope.editNewParametric = function () {
+                $scope.parametricEditing = {id: null};
+                $scope.parametricSaved = false;
+            };
             var onParametricSaved = function()
             {
                 $scope.parametricSaved = true;
                 $scope.$apply();
-            },
-                refreshParametrics = function(parametrics)
-                {
-                    $scope.parametrics = parametrics;
-                }
+            }
             $scope.setup();
         }
     ]);
