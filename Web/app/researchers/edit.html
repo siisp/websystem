@@ -15,9 +15,6 @@
                     <md-tab data-ng-if="researcherEditing.id!=null" md-on-select="showSaveButton(false)" label="Datos Académicos">
                         <div ng-include src="'researchers/academicData.html'" ng-controller="researchers.academicData" ></div>
                     </md-tab>
-                    <md-tab data-ng-if="researcherEditing.id!=null" md-on-select="showSaveButton(true)" label="Investigación">
-                        <div ng-include src="'researchers/investigation.html'" ng-controller="researchers.investigation" ></div>
-                    </md-tab>
                 </md-tabs>
                 <div ng-show="currentTabNeedSaveButton">
                     <md-button ng-show="!readOnly" class="md-raised md-primary" ng-disabled="researcherForm.$invalid || dataLoading" ng-click="save()">Guardar</md-button>

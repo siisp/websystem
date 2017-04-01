@@ -207,24 +207,6 @@ angular.module('Researchers')
     ]);
 
 angular.module('Researchers')
-    .controller('researchers.investigation', ['$scope', 'parametricService',
-        function ($scope, parametricService) {
-            $scope.setup = function()
-            {
-                parametricService.getParametrics(refreshEducationParametrics);
-            }
-            var refreshEducationParametrics = function(parametrics)
-            {
-                $scope.categoryIncentivePrograms = parametrics.categoryIncentiveProgram;
-                $scope.universityCategorizations = parametrics.universityCategorization;
-                $scope.categorizationYears = parametrics.categorizationYear;
-                $scope.conicetCareers = parametrics.conicetCareer;
-                $scope.conicetCategories = parametrics.conicetCategory;
-            }
-        }
-    ]);
-
-angular.module('Researchers')
     .controller('researchers.list', ['$scope', 'researcherService', function($scope, researcherService) {
         $scope.setup = function () {
             $scope.firstTime = true;
