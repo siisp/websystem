@@ -9,7 +9,7 @@ angular.module('Parametrics').factory('parametricService', ['dataService',
             getParametricTypes: function()
             {
                 return {
-                    academicDegree : {type: 'academicDegree', name: 'Título académico', listTitle: 'Títulos académicos disponibles', newTitle: 'Agregar nuevo título académico' },
+                    academicDegree : {type: 'academicDegree', name: 'Grado de Titulación', listTitle: 'Títulos académicos disponibles', newTitle: 'Agregar nuevo grado de titulación' },
                     career: {type: 'career', name: 'Carrera', listTitle: 'Carreras disponibles', newTitle: 'Agregar nueva carrera'},
                     categoryIncentiveProgram: {type: 'categoryIncentiveProgram', name: 'Categoría Programa de Incentivos', listTitle: 'Programas de incentivos disponibles', newTitle: 'Agregar nuevo programa de incentivo'},
                     conicetCareer: {type: 'conicetCareer', name: 'Carrera Conicet', listTitle: 'Carreras Conicet disponibles', newTitle: 'Agregar nueva carrera de conicet'},

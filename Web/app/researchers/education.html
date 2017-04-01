@@ -18,7 +18,7 @@
                         </md-select>
                     </md-input-container>
                     <md-input-container>
-                        <md-select ng-model="formationEditing.academicDegree" placeholder="Máximo título académico">
+                        <md-select ng-model="formationEditing.academicDegree" placeholder="Grado de Titulación">
                             <md-option value="{{academicDegree.id}}" ng-repeat="academicDegree in parametrics['academicDegree']">
                                 {{ academicDegree.name }}
                             </md-option>
@@ -96,8 +96,8 @@
                                 </md-select>
                             </md-input-container>
                             <md-input-container flex="">
-                                <label>Máximo título académico</label>
-                                <md-select ng-model="formationEditingForm.formationEditing.academicDegree" placeholder="Máximo título académico">
+                                <label>Grado de Titulación</label>
+                                <md-select ng-model="formationEditingForm.formationEditing.academicDegree" placeholder="Grado de Titulación">
                                     <md-option value="{{academicDegree.id}}" ng-repeat="academicDegree in  parametrics['academicDegree']">
                                         {{  academicDegree.name }}
                                     </md-option>
@@ -106,8 +106,8 @@
                             <md-input-container>
                                 <label>Estado</label>
                                 <md-select ng-model="formationEditingForm.formationEditing.studiesState" placeholder="Estado">
-                                    <md-option value="{{studiesState}}" ng-repeat="studiesState in studiesStates">
-                                        {{  studiesState }}
+                                    <md-option ng-repeat="studiesState in studiesStates"  value="{{studiesState.name}}">
+                                        {{ studiesState.type }}
                                     </md-option>
                                 </md-select>
                             </md-input-container>
