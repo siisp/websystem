@@ -30,7 +30,8 @@ angular.module('Parametrics')
             $scope.save = function()
             {
                 $scope.parametricSaved = false;
-                parametricService.saveParametric($scope. parametricTypeSelected,$scope.parametricEditing, onParametricSaved)
+                parametricService.saveParametric($scope. parametricTypeSelected,$scope.parametricEditing, onParametricSaved);
+                setNewParametric();
             }
             $scope.parametricValidation = function(parametricType){
                 $scope.isNewParametric = true;
@@ -47,8 +48,10 @@ angular.module('Parametrics')
             {
                 $scope.parametricSaved = true;
                 $scope.$apply();
-            }
-            
+            },
+                setNewParametric = function(){
+                    $scope.parametricEditing = {id :null};
+                }
             $scope.setup();
         }
     ]);
