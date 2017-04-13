@@ -3,17 +3,17 @@
         <md-content class="md-padding">
             <div layout="row">
                 <md-input-container>
-                    <md-select ng-model="radicationEditing.positionType" placeholder="Tipo de Cargo">
+                    <md-select ng-model="positionEditing.positionType" placeholder="Tipo de Cargo">
                         <md-option ng-value="positionType.id" ng-repeat="positionType in positionTypes">{{ positionType.name }}</md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container>
-                    <md-select ng-model="radicationEditing.modality" placeholder="Modalidad">
+                    <md-select ng-model="positionEditing.modality" placeholder="Modalidad">
                         <md-option ng-value="modality.id" ng-repeat="modality in modalities">{{ modality.name }}</md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container>
-                    <md-select ng-model="radicationEditing.idDedication" placeholder="Dedicación a I+D">
+                    <md-select ng-model="positionEditing.idDedication" placeholder="Dedicación a I+D">
                         <md-option ng-value="idDedication.id" ng-repeat="idDedication in idDedications">{{ idDedication.name }}</md-option>
                     </md-select>
                 </md-input-container>
@@ -24,18 +24,7 @@
                     <datepicker date-format="dd/MM/yyyy" selector="form-control">
                         <div class="input-group">
                             <label>Alta en la Institución</label>
-                            <input class="form-control" name="highInTheInstitution" ng-model="radicationEditing.highInTheInstitution"/>
-                            <span class="input-group-addon" style="cursor: pointer">
-                                <i class="fa fa-lg fa-calendar"></i>
-                            </span>
-                        </div>
-                    </datepicker>
-                </md-input-container>
-                <md-input-container flex="12">
-                    <datepicker date-format="dd/MM/yyyy"  selector="form-control">
-                        <div class="input-group">
-                            <label>Baja en la institución</label>
-                            <input class="form-control" name="lowInTheInstitution" ng-model="radicationEditing.lowInTheInstitution"/>
+                            <input class="form-control" name="highInTheInstitution" ng-model="positionEditing.highInTheInstitution"/>
                             <span class="input-group-addon" style="cursor: pointer">
                                 <i class="fa fa-lg fa-calendar"></i>
                             </span>
@@ -45,62 +34,62 @@
             </div>
             <div layout="row">
                 <md-input-container>
-                    <md-select ng-model="radicationEditing.secretaryshipDepartment" placeholder="Secretaría/Departamento">
+                    <md-select ng-model="positionEditing.secretaryshipDepartment" placeholder="Secretaría/Departamento">
                         <md-option value="{{secretaryshipDepartment.id}}" ng-repeat="secretaryshipDepartment in  parametrics['secretaryshipDepartment']">
                             {{  secretaryshipDepartment.name }}
                         </md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container>
-                    <md-select ng-model="radicationEditing.career" placeholder="Carrera">
+                    <md-select ng-model="positionEditing.career" placeholder="Carrera">
                         <md-option value="{{career.id}}" ng-repeat="career in  parametrics['career']">{{  career.name }}</md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container>
-                    <md-select ng-model="radicationEditing.subject" placeholder="Asignatura">
+                    <md-select ng-model="positionEditing.subject" placeholder="Asignatura">
                         <md-option value="{{subject.id}}" ng-repeat="subject in  parametrics['subject']">{{  subject.name }}</md-option>
                     </md-select>
                 </md-input-container>
             </div>
-            <md-button class="md-raised md-primary" ng-disabled="radicationSaved || radicationEditing.secretaryshipDepartment==null || radicationEditing.career==null || radicationEditing.subject==null" ng-click="addNewRadication()">Agregar Radicación</md-button>
-            <label ng-show="radicationSaved">Guardado!</label>
-            <md-button  class="md-raised md-primary" ng-show="radicationSaved">
-                <div class="button" ng-click="editNewRadication()">Agregar un Nueva Radicación</div>
+            <md-button class="md-raised md-primary" ng-disabled="positionSaved || positionEditing.secretaryshipDepartment==null || positionEditing.career==null || positionEditing.subject==null" ng-click="addNewPosition()">Agregar Radicación</md-button>
+            <label ng-show="positionSaved">Guardado!</label>
+            <md-button  class="md-raised md-primary" ng-show="positionSaved">
+                <div class="button" ng-click="editNewPosition()">Agregar un Nueva Radicación</div>
             </md-button>
         </md-content>
-        <div ng-cloak ng-show="researcherEditing.radications!=null">
+        <div ng-cloak ng-show="researcherEditing.positions!=null">
             <md-toolbar class="md-theme-light">
                 <h2 class="md-toolbar-tools">
-                    <span class="titles">Radicación</span>
+                    <span class="titles">Cargo</span>
                 </h2>
             </md-toolbar>
             <md-content>
                 <md-list>
-                    <md-list-item class="md-3-line" ng-repeat="radication in researcherEditing.radications">
-                        <div class="md-list-item-text" ng-show="radication.id != radicationEditingForm.radicationEditing.id">
-                            <h3>{{parametrics['secretaryshipDepartment'][radication.secretaryshipDepartment].name}} -
-                                {{parametrics['career'][radication.career].name}} -
-                                {{parametrics['subject'][radication.subject].name}}</h3>
-                            <md-button  class="md-raised md-primary" ng-click="edit(radication)"">Editar</md-button>
-                            <md-button class="md-raised md-primary" ng-click=" deleteRadication(radication)">Eliminar</md-button>
+                    <md-list-item class="md-3-line" ng-repeat="position in researcherEditing.positions">
+                        <div class="md-list-item-text" ng-show="position.id != positionEditingForm.positionEditing.id">
+                            <h3>{{parametrics['secretaryshipDepartment'][position.secretaryshipDepartment].name}} -
+                                {{parametrics['career'][position.career].name}} -
+                                {{parametrics['subject'][position.subject].name}}</h3>
+                            <md-button  class="md-raised md-primary" ng-click="edit(position)"">Editar</md-button>
+                            <md-button class="md-raised md-primary" ng-click=" deletePosition(position)">Eliminar</md-button>
                         </div>
-                        <div ng-show="radication.id == radicationEditingForm.radicationEditing.id">
+                        <div ng-show="position.id == positionEditingForm.positionEditing.id">
                             <div layout="row">
                                 <md-input-container>
                                     <label>Tipo de Cargo</label>
-                                    <md-select ng-model="radicationEditing.positionType" placeholder="Tipo de Cargo">
+                                    <md-select ng-model="positionEditingForm.positionEditing.positionType" placeholder="Tipo de Cargo">
                                         <md-option ng-value="positionType.id" ng-repeat="positionType in positionTypes">{{ positionType.name }}</md-option>
                                     </md-select>
                                 </md-input-container>
                                 <md-input-container>
                                     <label>Modalidad</label>
-                                    <md-select ng-model="radicationEditing.modality" placeholder="Modalidad">
+                                    <md-select ng-model="positionEditingForm.positionEditing.modality" placeholder="Modalidad">
                                         <md-option ng-value="modality.id" ng-repeat="modality in modalities">{{ modality.name }}</md-option>
                                     </md-select>
                                 </md-input-container>
                                 <md-input-container>
                                     <label>Dedicación a I+D</label>
-                                    <md-select ng-model="radicationEditing.idDedication" placeholder="Dedicación a I+D">
+                                    <md-select ng-model="positionEditingForm.positionEditing.idDedication" placeholder="Dedicación a I+D">
                                         <md-option ng-value="idDedication.id" ng-repeat="idDedication in idDedications">{{ idDedication.name }}</md-option>
                                     </md-select>
                                 </md-input-container>
@@ -108,7 +97,7 @@
                             <div layout="row">
                                 <md-input-container>
                                     <label>Secretaria/Departamento</label>
-                                    <md-select ng-model="radicationEditingForm.radicationEditing.secretaryshipDepartment" placeholder="Secretaría/Departamento">
+                                    <md-select ng-model="positionEditingForm.positionEditing.secretaryshipDepartment" placeholder="Secretaría/Departamento">
                                         <md-option value="{{secretaryshipDepartment.id}}" ng-repeat="secretaryshipDepartment in  parametrics['secretaryshipDepartment']">
                                             {{  secretaryshipDepartment.name }}
                                         </md-option>
@@ -116,7 +105,7 @@
                                 </md-input-container>
                                 <md-input-container>
                                     <label>Carrera</label>
-                                    <md-select ng-model="radicationEditingForm.radicationEditing.career" placeholder="Carrera">
+                                    <md-select ng-model="positionEditingForm.positionEditing.career" placeholder="Carrera">
                                         <md-option value="{{career.id}}" ng-repeat="career in  parametrics['career']">
                                             {{ career.name }}
                                         </md-option>
@@ -124,11 +113,25 @@
                                 </md-input-container>
                                 <md-input-container>
                                     <label>Asignatura</label>
-                                    <md-select ng-model="radicationEditingForm.radicationEditing.subject" placeholder="Asignatura">
+                                    <md-select ng-model="positionEditingForm.positionEditing.subject" placeholder="Asignatura">
                                         <md-option value="{{subject.id}}" ng-repeat="subject in  parametrics['subject']">
                                             {{ subject.name }}
                                         </md-option>
                                     </md-select>
+                                </md-input-container>
+                                </md-input-container>
+                            </div>
+                            <div layout="row">
+                                <md-input-container flex="12">
+                                    <datepicker date-format="dd/MM/yyyy" selector="form-control">
+                                        <div class="input-group">
+                                            <label>Alta en la Institución</label>
+                                            <input class="form-control" name="highInTheInstitution" ng-model="positionEditingForm.highInTheInstitution"/>
+                                            <span class="input-group-addon" style="cursor: pointer">
+                                                <i class="fa fa-lg fa-calendar"></i>
+                                            </span>
+                                        </div>
+                                    </datepicker>
                                 </md-input-container>
                             </div>
                             <div>

@@ -12,7 +12,7 @@ angular.module('Researchers')
                         id: null,
                         profilePhoto: null,
                         formations: null,
-                        radications: null
+                        positions: null
                     };
                 }
                 $scope.researcherSaved = false;
@@ -147,46 +147,46 @@ angular.module('Researchers')
             {
                 parametricService.getParametrics(refreshEducationParametrics);
                 $scope.fechaRegExpr = '^\\d{1,2}-\\d{1,2}-\\d{4}$';
-                $scope.radicationEditing = {id: null};
-                $scope.radicationSaved = false;
-                cleanRadicationEditingForm();
+                $scope.positionEditing = {id: null};
+                $scope.positionSaved = false;
+                cleanPositionEditingForm();
             }
-            $scope.editNewRadication = function () {
-                $scope.radicationEditing = {id: null};
-                $scope.radicationSaved = false;
+            $scope.editNewPosition = function () {
+                $scope.positionEditing = {id: null};
+                $scope.positionSaved = false;
             };
-            $scope.addNewRadication = function () {
-                researcherService.addRadication($scope.researcherEditing, $scope.radicationEditing, onRadicationUpdated);
+            $scope.addNewPosition = function () {
+                researcherService.addPosition($scope.researcherEditing, $scope.positionEditing, onPositionUpdated);
             };
 
             $scope.saveEditing = function()
             {
-                researcherService.addRadication($scope.researcherEditing, $scope.radicationEditingForm.radicationEditing, onRadicationEditUpdated);
+                researcherService.addPosition($scope.researcherEditing, $scope.positionEditingForm.positionEditing, onPositionEditUpdated);
             }
 
             $scope.cancelEditing = function()
             {
-                cleanRadicationEditingForm();
+                cleanPositionEditingForm();
             }
 
-            $scope.edit = function(radication)
+            $scope.edit = function(position)
             {
-                $scope.radicationEditingForm.radicationEditing = angular.copy(radication);
+                $scope.positionEditingForm.positionEditing = angular.copy(position);
             }
-            $scope.deleteRadication = function (radication) {
-                researcherService.removeRadication($scope.researcherEditing, radication);
+            $scope.deletePosition = function (position) {
+                researcherService.removePosition($scope.researcherEditing, position);
             }
-            var onRadicationUpdated = function () {
-                    $scope.radicationSaved = true;
+            var onPositionUpdated = function () {
+                    $scope.positionSaved = true;
                     $scope.$apply();
                 },
-                onRadicationEditUpdated = function()
+                onPositionEditUpdated = function()
                 {
-                    cleanRadicationEditingForm();
+                    cleanPositionEditingForm();
                     $scope.$apply();
                 },
-                cleanRadicationEditingForm = function(){
-                    $scope.radicationEditingForm = {radicationEditing : {id :null}};
+                cleanPositionEditingForm = function(){
+                    $scope.positionEditingForm = {positionEditing : {id :null}};
                 },
                 refreshEducationParametrics = function(parametrics)
                 {
