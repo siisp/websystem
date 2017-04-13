@@ -141,27 +141,12 @@ angular.module('Researchers')
     ]);
 
 angular.module('Researchers')
-    .controller('researchers.undavData', ['$scope', 'parametricService',
-        function ($scope, parametricService) {
+    .controller('researchers.idUndav', ['$scope', 'researcherService', 'parametricService',
+        function ($scope, researcherService, parametricService) {
             $scope.setup = function()
             {
                 parametricService.getParametrics(refreshEducationParametrics);
                 $scope.fechaRegExpr = '^\\d{1,2}-\\d{1,2}-\\d{4}$';
-            }
-            var refreshEducationParametrics = function(parametrics)
-            {
-                $scope.positionTypes = parametrics.positionType;
-                $scope.modalities = parametrics.modality;
-                $scope.idDedications = parametrics.idDedication;
-            }
-        }
-    ]);
-
-angular.module('Researchers')
-    .controller('researchers.academicData', ['$scope', 'researcherService',
-        function ($scope, researcherService) {
-            $scope.setup = function()
-            {
                 $scope.radicationEditing = {id: null};
                 $scope.radicationSaved = false;
                 cleanRadicationEditingForm();
@@ -202,6 +187,12 @@ angular.module('Researchers')
                 },
                 cleanRadicationEditingForm = function(){
                     $scope.radicationEditingForm = {radicationEditing : {id :null}};
+                },
+                refreshEducationParametrics = function(parametrics)
+                {
+                    $scope.positionTypes = parametrics.positionType;
+                    $scope.modalities = parametrics.modality;
+                    $scope.idDedications = parametrics.idDedication;
                 }
         }
     ]);

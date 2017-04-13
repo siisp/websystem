@@ -9,11 +9,8 @@
                     <md-tab data-ng-if="researcherEditing.id!=null" md-on-select="showSaveButton(false)" label="Formación">
                         <div ng-include src="'researchers/education.html'" ng-controller="researchers.education" ></div>
                     </md-tab>
-                    <md-tab data-ng-if="researcherEditing.id!=null" md-on-select="showSaveButton(true)" label="Datos UNDAV">
-                        <div ng-include src="'researchers/undavData.html'" ng-controller="researchers.undavData" ></div>
-                    </md-tab>
-                    <md-tab data-ng-if="researcherEditing.id!=null" md-on-select="showSaveButton(false)" label="Datos Académicos">
-                        <div ng-include src="'researchers/academicData.html'" ng-controller="researchers.academicData" ></div>
+                    <md-tab data-ng-if="researcherEditing.id!=null" md-on-select="showSaveButton(true)" label="I+D Undav">
+                        <div ng-include src="'researchers/i+dUndav.html'" ng-controller="researchers.idUndav" ></div>
                     </md-tab>
                 </md-tabs>
                 <div ng-show="currentTabNeedSaveButton">
