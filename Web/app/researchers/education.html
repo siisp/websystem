@@ -65,11 +65,8 @@
                         <input name="otro" ng-model="formationEditing.otherScolarhip">
                     </md-input-container>
             </div>
-                <md-button class="md-raised md-primary" ng-disabled="formationSaved || formationEditing.educationType==null || formationEditing.degreeArea==null || formationEditing.academicDegree==null ||  formationEditing.studiesState==null" ng-click="addNewFormation()">Agregar Formación</md-button>
+                <md-button class="md-raised md-primary" ng-disabled="formationEditing.educationType==null || formationEditing.degreeArea==null || formationEditing.academicDegree==null ||  formationEditing.studiesState==null" ng-click="addNewFormation()">Agregar Formación</md-button>
                 <label ng-show="formationSaved">Guardado!</label>
-                <md-button  class="md-raised md-primary" ng-show="formationSaved">
-                    <div class="button" ng-click="editNewFormation()">Agregar un Nueva Formación</div>
-                </md-button>
             </div>
         </md-content>
         <div ng-cloak ng-show="researcherEditing.formations!=null">

@@ -103,12 +103,10 @@ angular.module('Researchers')
                 $scope.formationEditing = {id: null};
                 cleanFormationEditingForm();
             }
-            $scope.editNewFormation = function () {
-                $scope.formationEditing = {id: null};
-                $scope.formationSaved = false;
-            };
             $scope.addNewFormation = function () {
                 researcherService.addFormation($scope.researcherEditing, $scope.formationEditing, onFormationUpdated);
+                $scope.formationEditing = {id: null};
+                $scope.formationSaved = false;
             };
             $scope.saveEditing = function()
             {

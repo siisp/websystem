@@ -3,13 +3,13 @@
         <form name="researcherForm">
             <md-content>
                 <md-tabs md-dynamic-height="" md-border-bottom="">
-                    <md-tab label="Datos Personales" ng-clik="showSaveButton(true)">
+                    <md-tab label="Datos Personales" md-on-select="showSaveButton(true)">
                         <div ng-include src="'researchers/personalData.html'" ng-controller="researchers.personalData" ></div>
                     </md-tab>
                     <md-tab data-ng-if="researcherEditing.id!=null" md-on-select="showSaveButton(false)" label="Formación">
                         <div ng-include src="'researchers/education.html'" ng-controller="researchers.education" ></div>
                     </md-tab>
-                    <md-tab data-ng-if="researcherEditing.id!=null" md-on-select="showSaveButton(true)" label="I+D Undav">
+                    <md-tab data-ng-if="researcherEditing.id!=null" md-on-select="showSaveButton(false)" label="I+D Undav">
                         <div ng-include src="'researchers/i+dUndav.html'" ng-controller="researchers.idUndav" ></div>
                     </md-tab>
                 </md-tabs>
