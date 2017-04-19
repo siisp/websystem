@@ -3,15 +3,32 @@
         <div>
             <h4>{{parametricTypes[parametricTypeSelected].newTitle}}</h4>
         </div>
-        <md-input-container flex="20">
-            <label>Nombre</label>
-            <input required="" name="name" ng-change="parametricValidation(parametricTypes[parametricTypeSelected].type)" ng-model="parametricEditing.name">
-            <div ng-messages="parametricForm.name.$error">
-                <div ng-message="required">Campo requerido.</div>
-                <div ng-show="!isNewParametric">Parametrica Existente.</div>
-            </div>
-        </md-input-container>
-        <md-button ng-click="save()" class="md-raised md-primary" ng-disabled="parametricForm.$invalid || !isNewParametric">Agregar</md-button>
-        <label ng-show="parametricSaved">Guardado!</label>
+        <div layout="row" ng-show="parametricTypeSelected=='career'">
+            <md-input-container>
+                <md-select ng-model="composedParametricEditing.secretaryshipDepartment" placeholder="Elije un Departamento/Secretaria">
+                    <md-option ng-repeat="secretaryshipDepartment in  parametrics['secretaryshipDepartment']" value="{{ secretaryshipDepartment.type}}">
+                        {{   secretaryshipDepartment.name }}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container ng-show="composedParametricEditing.secretaryshipDepartment!=null">
+                <label>Carrera</label>
+                <input name="career" ng-model="composedParametricEditing.career">
+            </md-input-container>
+            <md-button ng-click="save()" class="md-raised md-primary" ng-disabled="composedParametricEditing.career==null">Agregar</md-button>
+            <label ng-show="parametricSaved">Guardado!</label>
+        </div>
+        <div  ng-show="parametricTypeSelected!='career'">
+            <md-input-container flex="20">
+                <label>Nombre</label>
+                <input required="" name="name" ng-change="parametricValidation(parametricTypes[parametricTypeSelected].type)" ng-model="parametricEditing.name">
+                <div ng-messages="parametricForm.name.$error">
+                    <div ng-message="required">Campo requerido.</div>
+                    <div ng-show="!isNewParametric">Parametrica Existente.</div>
+                </div>
+            </md-input-container>
+            <md-button ng-click="save()" class="md-raised md-primary" ng-disabled="parametricForm.$invalid || !isNewParametric">Agregar</md-button>
+            <label ng-show="parametricSaved">Guardado!</label>
+        </div>
     </form>
 </div>

@@ -24,14 +24,18 @@ angular.module('Parametrics')
             $scope.setup = function()
             {
                 $scope.parametricEditing = {};
+                $scope.composedParametricEditing = {};
                 $scope.parametricSaved = false;
                 $scope.isNewParametric = true;
             }
             $scope.save = function()
             {
-                $scope.parametricSaved = false;
-                parametricService.saveParametric($scope. parametricTypeSelected,$scope.parametricEditing, onParametricSaved);
-                setNewParametric();
+                if($scope.parametricTypeSelected=='career'){
+                }else{
+                    $scope.parametricSaved = false;
+                    parametricService.saveParametric($scope.parametricTypeSelected ,$scope.parametricEditing, onParametricSaved);
+                    setNewParametric();
+                }
             }
             $scope.parametricValidation = function(parametricType){
                 $scope.isNewParametric = true;
