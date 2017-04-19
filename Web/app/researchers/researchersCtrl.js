@@ -149,6 +149,7 @@ angular.module('Researchers')
                 $scope.fechaRegExpr = '^\\d{1,2}-\\d{1,2}-\\d{4}$';
                 $scope.positionEditing = {id: null};
                 $scope.positionSaved = false;
+                $scope.licenses = [{type:'Si', name:true},{type:'No', name:false}];
                 cleanPositionEditingForm();
             }
             $scope.editNewPosition = function () {

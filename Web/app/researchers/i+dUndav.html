@@ -3,22 +3,23 @@
         <md-content class="md-padding">
             <div layout="row">
                 <md-input-container>
+                    <label>Tipo de Cargo</label>
                     <md-select ng-model="positionEditing.positionType" placeholder="Tipo de Cargo">
                         <md-option ng-value="positionType.id" ng-repeat="positionType in positionTypes">{{ positionType.name }}</md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container>
+                    <label>Modalidad</label>
                     <md-select ng-model="positionEditing.modality" placeholder="Modalidad">
                         <md-option ng-value="modality.id" ng-repeat="modality in modalities">{{ modality.name }}</md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container>
+                    <label>Dedicación a I+D</label>
                     <md-select ng-model="positionEditing.idDedication" placeholder="Dedicación a I+D">
                         <md-option ng-value="idDedication.id" ng-repeat="idDedication in idDedications">{{ idDedication.name }}</md-option>
                     </md-select>
                 </md-input-container>
-            </div>
-            <div layout="row">
                 </md-input-container>
                 <md-input-container flex="12">
                     <datepicker date-format="dd/MM/yyyy" selector="form-control">
@@ -33,7 +34,33 @@
                 </md-input-container>
             </div>
             <div layout="row">
+                <md-input-container flex="12">
+                    <label>Licencia</label>
+                    <md-select ng-model="formationEditing.license" placeholder="Licencia">
+                        <md-option ng-repeat="license in licenses"  value="{{license.name}}">
+                            {{ license.type }}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container flex="12" ng-show="formationEditing.license=='true'">
+                    <datepicker date-format="dd/MM/yyyy" selector="form-control">
+                        <div class="input-group">
+                            <label>Inicio de Licencia</label>
+                            <input class="form-control" name="licenseDate" ng-model="formationEditing.licenseDate"/>
+                            <span class="input-group-addon" style="cursor: pointer">
+                                <i class="fa fa-lg fa-calendar"></i>
+                            </span>
+                        </div>
+                    </datepicker>
+                </md-input-container>
+                <md-input-container ng-show="formationEditing.licenseDate!=null">
+                    <label>Resolución</label>
+                    <input name="resolution" ng-model="formationEditing.resolution">
+                </md-input-container>
+            </div>
+            <div layout="row">
                 <md-input-container>
+                    <label>Secretaría/Departamento</label>
                     <md-select ng-model="positionEditing.secretaryshipDepartment" placeholder="Secretaría/Departamento">
                         <md-option value="{{secretaryshipDepartment.id}}" ng-repeat="secretaryshipDepartment in  parametrics['secretaryshipDepartment']">
                             {{  secretaryshipDepartment.name }}
@@ -41,20 +68,22 @@
                     </md-select>
                 </md-input-container>
                 <md-input-container>
+                    <label>Carrera</label>
                     <md-select ng-model="positionEditing.career" placeholder="Carrera">
                         <md-option value="{{career.id}}" ng-repeat="career in  parametrics['career']">{{  career.name }}</md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container>
+                    <label>Asignatura</label>
                     <md-select ng-model="positionEditing.subject" placeholder="Asignatura">
                         <md-option value="{{subject.id}}" ng-repeat="subject in  parametrics['subject']">{{  subject.name }}</md-option>
                     </md-select>
                 </md-input-container>
             </div>
-            <md-button class="md-raised md-primary" ng-disabled="positionSaved || positionEditing.secretaryshipDepartment==null || positionEditing.career==null || positionEditing.subject==null" ng-click="addNewPosition()">Agregar Radicación</md-button>
+            <md-button class="md-raised md-primary" ng-disabled="positionSaved || positionEditing.secretaryshipDepartment==null || positionEditing.career==null || positionEditing.subject==null" ng-click="addNewPosition()">Agregar Cargo</md-button>
             <label ng-show="positionSaved">Guardado!</label>
             <md-button  class="md-raised md-primary" ng-show="positionSaved">
-                <div class="button" ng-click="editNewPosition()">Agregar un Nueva Radicación</div>
+                <div class="button" ng-click="editNewPosition()">Agregar un Nuevo Cargo</div>
             </md-button>
         </md-content>
         <div ng-cloak ng-show="researcherEditing.positions!=null">
