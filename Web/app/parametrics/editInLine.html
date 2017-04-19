@@ -1,6 +1,6 @@
 <div>
-    <table ng-show="(parametrics[parametricTypeSelected] | toArray).length > 0">
-        <tr ng-repeat="parametric in parametrics[parametricTypeSelected] | toArray | orderBy:'name'">
+    <table ng-show="(parametricsSelectedToEdit | toArray).length > 0">
+        <tr ng-repeat="parametric in parametricsSelectedToEdit | toArray | orderBy:'name'">
             <td>
                 <div ng-show="parametric.id != parametricEditingForm.parametricEditing.id">{{parametric.name}}</div>
                 <div ng-show="parametric.id == parametricEditingForm.parametricEditing.id">
@@ -16,7 +16,7 @@
                 </div>
             </td>
             <td><md-button ng-show="parametric.id != parametricEditingForm.parametricEditing.id" class="md-raised md-primary" ng-click="edit(parametric)"">Editar</md-button>
-                <md-button ng-show="parametric.id != parametricEditingForm.parametricEditing.id" class="md-raised md-primary" ng-click="deleteParametric(parametricTypes[parametricTypeSelected].type, parametric)"">Eliminar</md-button></td>
+                <md-button ng-show="parametric.id != parametricEditingForm.parametricEditing.id" class="md-raised md-primary" ng-click="deleteParametric(parametric)"">Eliminar</md-button></td>
     </table>
-    <div ng-show="(parametrics[parametricTypeSelected] | toArray).length == 0"><i>Ninguno...</i></br></br></div>
+    <div ng-show="(parametricsSelectedToEdit | toArray).length == 0"><i>Ninguno...</i></br></br></div>
 </div>

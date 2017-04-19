@@ -5,14 +5,22 @@
             <md-content>
                 <div layout="row">
                     <md-input-container>
-                        <md-select ng-model="parametricTypeSelected" placeholder="Elije una Paramétrica">
-                            <md-option ng-repeat="parametricType in  parametricTypes" value="{{parametricType.type}}">{{  parametricType.name }}</md-option>
+                        <md-select ng-model="parametricTypeSelected" ng-change="changeParametricsToEdit()" placeholder="Elije una Paramétrica">
+                            <md-option ng-repeat="parametricType in  parametricTypes | toArray" value="{{parametricType.type}}">{{  parametricType.name }}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div layout="row" ng-show="parametricTypeSelected == 'career'">
+                    <md-input-container>
+                        <md-select ng-model="secretaryshipDepartmentSelected" ng-change="secretaryshipDepartmentChanged()" placeholder="Secretaria/Departamento">
+                            <md-option ng-repeat="secretaryshipDepartment in  parametrics['secretaryshipDepartment'] | toArray" value="{{secretaryshipDepartment.id}}">{{  secretaryshipDepartment.name }}</md-option>
                         </md-select>
                     </md-input-container>
                 </div>
                 <md-divider ng-if="parametricTypeSelected"></md-divider>
                 <div ng-show="parametricTypeSelected != null">
-                    <h4>{{parametricTypes[parametricTypeSelected].listTitle}}</h4>
+                    <h4 ng-show="parametricTypeSelected != 'career' || secretaryshipDepartmentSelected == null">{{parametricTypes[parametricTypeSelected].listTitle}}</h4>
+                    <h4 ng-show="parametricTypeSelected == 'career' && secretaryshipDepartmentSelected != null">{{parametricTypes[parametricTypeSelected].listTitle + ' en ' + parametrics['secretaryshipDepartment'][secretaryshipDepartmentSelected].name}}</h4>
                     <div ng-include src="'parametrics/editInLine.html'" ng-controller="parametrics.editInLine" ></div>
                 </div>
                 <md-divider ng-if="parametricTypeSelected"></md-divider>

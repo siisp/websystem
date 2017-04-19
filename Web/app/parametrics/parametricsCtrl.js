@@ -6,13 +6,46 @@ angular.module('Parametrics')
             $scope.setup = function()
             {
                 $scope.parametricTypeSelected = null;
+                $scope.parametricsSelectedToEdit = {};
                 $scope.parametricTypes = parametricService.getParametricTypes();
+                $scope.secretaryshipDepartmentSelected=null;
                 parametricService.getParametrics(refreshParametrics);
             }
-            var refreshParametrics = function(parametrics)
+            
+            $scope.changeParametricsToEdit = function()
+            {
+                if ($scope.parametricTypeSelected == null || $scope.parametricTypeSelected == 'career')
                 {
-                    $scope.parametrics = parametrics;
+                    $scope.parametricsSelectedToEdit = {};
+                }else 
+                {
+                    $scope.parametricsSelectedToEdit = $scope.parametrics[$scope.parametricTypeSelected];
                 }
+            }
+
+            $scope.secretaryshipDepartmentChanged=function()
+            {
+                $scope.parametricsSelectedToEdit = $scope.parametrics['secretaryshipDepartment'][$scope.secretaryshipDepartmentSelected].careers;
+            }
+
+            $scope.getParametricPathReference = function(){
+                var pathReference = $scope.parametricTypeSelected;
+                if($scope.parametricTypeSelected == 'career')
+                {
+                    pathReference = 'secretaryshipDepartment/'+$scope.secretaryshipDepartmentSelected+'/careers';
+                }
+
+                return pathReference;
+            }
+            var refreshParametrics = function(parametrics)
+            {
+                $scope.parametrics = parametrics;
+                $scope.changeParametricsToEdit();
+                if($scope.parametricTypeSelected == 'career')
+                {
+                    $scope.secretaryshipDepartmentChanged();
+                }
+            }
 
             $scope.setup();
         }
@@ -30,12 +63,8 @@ angular.module('Parametrics')
             }
             $scope.save = function()
             {
-                if($scope.parametricTypeSelected=='career'){
-                }else{
-                    $scope.parametricSaved = false;
-                    parametricService.saveParametric($scope.parametricTypeSelected ,$scope.parametricEditing, onParametricSaved);
-                    setNewParametric();
-                }
+                $scope.parametricSaved = false;
+                parametricService.saveParametric($scope.getParametricPathReference(),$scope.parametricEditing, onParametricSaved);
             }
             $scope.parametricValidation = function(parametricType){
                 $scope.isNewParametric = true;
@@ -51,10 +80,11 @@ angular.module('Parametrics')
             var onParametricSaved = function()
             {
                 $scope.parametricSaved = true;
+                setNewParametric();
                 $scope.$apply();
             },
                 setNewParametric = function(){
-                    $scope.parametricEditing = {id :null};
+                    $scope.parametricEditing = {};
                 }
             $scope.setup();
         }
@@ -70,7 +100,7 @@ angular.module('Parametrics')
             }
             $scope.saveEditing = function()
             {
-                parametricService.saveParametric($scope.parametricTypeSelected,$scope.parametricEditingForm.parametricEditing, onParametricEditUpdated);
+                parametricService.saveParametric($scope.getParametricPathReference(),$scope.parametricEditingForm.parametricEditing, onParametricEditUpdated);
             }
             $scope.cancelEditing = function()
             {
@@ -81,8 +111,14 @@ angular.module('Parametrics')
             {
                 $scope.parametricEditingForm.parametricEditing = angular.copy(parametric);
             }
-            $scope.deleteParametric = function (parametricType, parametric) {
-                parametricService.removeParametric(parametricType, parametric);
+            $scope.deleteParametric = function (parametric) {
+                var pathReference = $scope.parametricTypeSelected;
+                if($scope.parametricTypeSelected == 'career')
+                {
+                    pathReference = 'secretaryshipDepartment/'+$scope.secretaryshipDepartmentSelected+'/careers';
+                }
+
+                parametricService.removeParametric(pathReference, parametric);
             }
             var onParametricEditUpdated = function()
                 {
