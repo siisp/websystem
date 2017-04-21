@@ -1,5 +1,5 @@
 <div>
-    <table ng-show="(parametricsSelectedToEdit | toArray).length > 0 && careerSelected != null">
+    <table ng-show="(parametricsSelectedToEdit | toArray).length > 0">
         <tr ng-repeat="parametric in parametricsSelectedToEdit | toArray | orderBy:'name'">
             <td>
                 <div ng-show="parametric.id != parametricEditingForm.parametricEditing.id">{{parametric.name}}</div>
@@ -18,5 +18,5 @@
             <td><md-button ng-show="parametric.id != parametricEditingForm.parametricEditing.id" class="md-raised md-primary" ng-click="edit(parametric)"">Editar</md-button>
                 <md-button ng-show="parametric.id != parametricEditingForm.parametricEditing.id" class="md-raised md-primary" ng-click="deleteParametric(parametric)"">Eliminar</md-button></td>
     </table>
-    <div ng-show="(parametricsSelectedToEdit | toArray).length == 0 && careerSelected != null"><i>Ninguno...</i></br></br></div>
+    <div ng-show="(parametricsSelectedToEdit | toArray).length == 0"><i>Ninguno...</i></br></br></div>
 </div>

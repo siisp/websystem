@@ -87,3 +87,8 @@ var onFileUploading = function (snapshot, progressIndicator) {
     }
 };
 
+var isNullOrUndefined = function(value)
+{
+    return value === undefined || value === null; 
+}
+

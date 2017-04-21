@@ -10,27 +10,41 @@ angular.module('Parametrics')
                 $scope.parametricTypes = parametricService.getParametricTypes();
                 $scope.secretaryshipDepartmentSelected=null;
                 $scope.careerSelected=null;
+                $scope.parametricsSelectedToEditReady = false;
                 parametricService.getParametrics(refreshParametrics);
             }
             
             $scope.changeParametricsToEdit = function()
             {
-                if ($scope.parametricTypeSelected == null || $scope.parametricTypeSelected == 'career')
+                if ($scope.parametricTypeSelected == null || $scope.parametricTypeSelected == 'career' || $scope.parametricTypeSelected == 'subject')
                 {
                     $scope.parametricsSelectedToEdit = {};
+                    $scope.parametricsSelectedToEditReady = false;
                 }else 
                 {
-                    $scope.parametricsSelectedToEdit = $scope.parametrics[$scope.parametricTypeSelected];
+                    $scope.parametricsSelectedToEdit = isNullOrUndefined($scope.parametrics) ? {} : $scope.parametrics[$scope.parametricTypeSelected];
+                    $scope.parametricsSelectedToEditReady = true;
                 }
             }
 
             $scope.secretaryshipDepartmentChanged=function()
             {
-                $scope.parametricsSelectedToEdit = $scope.parametrics['secretaryshipDepartment'][$scope.secretaryshipDepartmentSelected].careers;
+                if($scope.parametricTypeSelected == 'career' )
+                {
+                    $scope.parametricsSelectedToEdit = $scope.parametrics['secretaryshipDepartment'][$scope.secretaryshipDepartmentSelected].careers;
+                    $scope.parametricsSelectedToEditReady = true;
+                }
+
+                if($scope.parametricTypeSelected == 'subject')
+                {
+                    $scope.parametricsSelectedToEditReady = false;
+                }
             }
+
             $scope.careerChanged=function()
             {
                 $scope.parametricsSelectedToEdit = $scope.parametrics['secretaryshipDepartment'][$scope.secretaryshipDepartmentSelected].careers[$scope.careerSelected].subjects;
+                $scope.parametricsSelectedToEditReady = true;
             }
 
             $scope.getParametricPathReference = function(){
