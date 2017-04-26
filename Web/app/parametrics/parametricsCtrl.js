@@ -9,14 +9,15 @@ angular.module('Parametrics')
                 $scope.parametricsSelectedToEdit = {};
                 $scope.parametricTypes = parametricService.getParametricTypes();
                 $scope.secretaryshipDepartmentSelected=null;
-                $scope.careerSelected=null;
+                $scope.degreeAreaSelected=null;
+                $scope.undavCareerSelected=null;
                 $scope.parametricsSelectedToEditReady = false;
                 parametricService.getParametrics(refreshParametrics);
             }
             
             $scope.changeParametricsToEdit = function()
             {
-                if ($scope.parametricTypeSelected == null || $scope.parametricTypeSelected == 'career' || $scope.parametricTypeSelected == 'subject')
+                if ($scope.parametricTypeSelected == null || $scope.parametricTypeSelected == 'undavCareer' || $scope.parametricTypeSelected == 'subject' || $scope.parametricTypeSelected == 'career')
                 {
                     $scope.parametricsSelectedToEdit = {};
                     $scope.parametricsSelectedToEditReady = false;
@@ -29,7 +30,7 @@ angular.module('Parametrics')
 
             $scope.secretaryshipDepartmentChanged=function()
             {
-                if($scope.parametricTypeSelected == 'career' )
+                if($scope.parametricTypeSelected == 'undavCareer' )
                 {
                     $scope.parametricsSelectedToEdit = $scope.parametrics['secretaryshipDepartment'][$scope.secretaryshipDepartmentSelected].careers;
                     $scope.parametricsSelectedToEditReady = true;
@@ -43,19 +44,30 @@ angular.module('Parametrics')
 
             $scope.careerChanged=function()
             {
-                $scope.parametricsSelectedToEdit = $scope.parametrics['secretaryshipDepartment'][$scope.secretaryshipDepartmentSelected].careers[$scope.careerSelected].subjects;
+                $scope.parametricsSelectedToEdit = $scope.parametrics['secretaryshipDepartment'][$scope.secretaryshipDepartmentSelected].careers[$scope.undavCareerSelected].subjects;
                 $scope.parametricsSelectedToEditReady = true;
+            }
+            $scope.degreeAreaChanged = function(){
+                if($scope.parametricTypeSelected == 'career')
+                {
+                    $scope.parametricsSelectedToEdit = $scope.parametrics['degreeArea'][$scope.degreeAreaSelected].careers;
+                    $scope.parametricsSelectedToEditReady = false;
+                }
             }
 
             $scope.getParametricPathReference = function(){
                 var pathReference = $scope.parametricTypeSelected;
-                if($scope.parametricTypeSelected == 'career')
+                if($scope.parametricTypeSelected == 'undavCareer')
                 {
                     pathReference = 'secretaryshipDepartment/'+$scope.secretaryshipDepartmentSelected+'/careers';
                 }
                 if($scope.parametricTypeSelected == 'subject')
                 {
-                    pathReference = 'secretaryshipDepartment/'+$scope.secretaryshipDepartmentSelected+'/careers/'+$scope.careerSelected+'/subjects';
+                    pathReference = 'secretaryshipDepartment/'+$scope.secretaryshipDepartmentSelected+'/careers/'+$scope.undavCareerSelected+'/subjects';
+                }
+                if($scope.parametricTypeSelected == 'career')
+                {
+                    pathReference = 'degreeArea/'+$scope.degreeAreaSelected+'/careers';
                 }
                 return pathReference;
             }
@@ -63,7 +75,7 @@ angular.module('Parametrics')
             {
                 $scope.parametrics = parametrics;
                 $scope.changeParametricsToEdit();
-                if($scope.parametricTypeSelected == 'career')
+                if($scope.parametricTypeSelected == 'undavCareer')
                 {
                     $scope.secretaryshipDepartmentChanged();
                 }
@@ -139,13 +151,17 @@ angular.module('Parametrics')
             }
             $scope.deleteParametric = function (parametric) {
                 var pathReference = $scope.parametricTypeSelected;
-                if($scope.parametricTypeSelected == 'career')
+                if($scope.parametricTypeSelected == 'undavCareer')
                 {
                     pathReference = 'secretaryshipDepartment/'+$scope.secretaryshipDepartmentSelected+'/careers';
                 }
                 if($scope.parametricTypeSelected == 'subject')
                 {
-                    pathReference = 'secretaryshipDepartment/'+$scope.secretaryshipDepartmentSelected+'/careers/'+$scope.careerSelected+'/subjects';
+                    pathReference = 'secretaryshipDepartment/'+$scope.secretaryshipDepartmentSelected+'/careers/'+$scope.undavCareerSelected+'/subjects';
+                }
+                if($scope.parametricTypeSelected == 'career')
+                {
+                    pathReference = 'degreeArea/'+$scope.degreeAreaSelected+'/careers';
                 }
 
                 parametricService.removeParametric(pathReference, parametric);

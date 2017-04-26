@@ -11,6 +11,7 @@ angular.module('Parametrics').factory('parametricService', ['dataService',
                 return {
                     academicDegree : {type: 'academicDegree', parametricType:'simple',name: 'Grado de Titulación', listTitle: 'Títulos académicos disponibles', newTitle: 'Agregar nuevo grado de titulación' },
                     career: {type: 'career', parametricType:'composed', name: 'Carrera', listTitle: 'Carreras disponibles', newTitle: 'Agregar nueva carrera'},
+                    undavCareer: {type: 'undavCareer', parametricType:'composed', name: 'Carrera de UNDAV', listTitle: 'Carreras disponibles', newTitle: 'Agregar nueva carrera'},
                     categoryIncentiveProgram: {type: 'categoryIncentiveProgram', parametricType:'simple', name: 'Categoría Programa de Incentivos', listTitle: 'Programas de incentivos disponibles', newTitle: 'Agregar nuevo programa de incentivo'},
                     degreeArea: {type: 'degreeArea', parametricType:'simple', name: 'Gran Area de Conocimiento', listTitle: 'Grandes Areas de Conocimiento disponibles', newTitle: 'Agregar nueva gran area de conocimiento disponible'},
                     idDedication: {type: 'idDedication', parametricType:'simple', name: 'Dedicación a I+D', listTitle: 'Dedicaciones I+D disponibles', newTitle: 'Agregar nueva dedicacion I+D'},

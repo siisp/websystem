@@ -1,8 +1,8 @@
 <div>
     <form ng-show="parametricTypeSelected != null" name="parametricForm">
         <div>
-            <h4 ng-show="parametricTypeSelected != 'career' || secretaryshipDepartmentSelected == null">{{parametricTypes[parametricTypeSelected].newTitle}}</h4>
-            <h4 ng-show="parametricTypeSelected == 'career' && secretaryshipDepartmentSelected != null">{{parametricTypes[parametricTypeSelected].newTitle + ' en ' + parametrics['secretaryshipDepartment'][secretaryshipDepartmentSelected].name}}</h4>
+            <h4 ng-show="parametricTypeSelected != 'undavCareer' || secretaryshipDepartmentSelected == null">{{parametricTypes[parametricTypeSelected].newTitle}}</h4>
+            <h4 ng-show="parametricTypeSelected == 'undavCareer' && secretaryshipDepartmentSelected != null">{{parametricTypes[parametricTypeSelected].newTitle + ' en ' + parametrics['secretaryshipDepartment'][secretaryshipDepartmentSelected].name}}</h4>
         </div>
         <div>
             <md-input-container flex="20">
