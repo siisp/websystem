@@ -1,23 +1,23 @@
 <div>
     <div ng-cloak="" class="tabsForm">
-        <form name="researcherForm">
             <md-content>
                 <md-tabs md-dynamic-height md-border-bottom>
                     <md-tab label="Datos Personales" md-on-select="showSaveButton(true)">
-                        <div ng-include src="'researchers/personalData.html'" ng-controller="researchers.personalData" ></div>
+                        <md-content class="md-padding">
+                            <div ng-include src="'researchers/personalData.html'" ng-controller="researchers.personalData" ></div>
+                        </md-content>
                     </md-tab>
                     <md-tab data-ng-if="researcherEditing.id!=null" md-on-select="showSaveButton(false)" label="Formación">
-                        <div ng-include src="'researchers/education.html'" ng-controller="researchers.education" ></div>
+                        <md-content class="md-padding">
+                            <div ng-include src="'researchers/education.html'" ng-controller="researchers.education" ></div>
+                        </md-content>
                     </md-tab>
                     <md-tab data-ng-if="researcherEditing.id!=null" md-on-select="showSaveButton(false)" label="I+D Undav">
-                        <div ng-include src="'researchers/i+dUndav.html'" ng-controller="researchers.idUndav" ></div>
+                        <md-content class="md-padding">
+                            <div ng-include src="'researchers/i+dUndav.html'" ng-controller="researchers.idUndav" ></div>
+                        </md-content>
                     </md-tab>
                 </md-tabs>
-                <div ng-show="currentTabNeedSaveButton">
-                    <md-button ng-show="!readOnly" class="md-raised md-primary" ng-disabled="researcherForm.$invalid || dataLoading" ng-click="save()">Guardar</md-button>
-                    <label ng-show="researcherSaved">Guardado!</label>
-                </div>
             </md-content>
-        </form>
     </div>
 </div>

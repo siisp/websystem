@@ -1,6 +1,5 @@
 <div ng-init="setup()">
-    <md-content class="md-padding" layout-xs="column" layout="row">
-        <div flex-xs flex-gt-xs="50" layout="column">
+    <div flex-xs flex-gt-xs="50">
             <md-card  ng-show="researcherEditing.id!=null" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
                 <md-card-title>
                     <md-card-title-text>
@@ -24,10 +23,8 @@
                     </md-button>
                 </md-card-actions>
             </md-card>
-        </div>
-    </md-content>
-    <div layout="column" ng-cloak="" class="dataInputErrors">
-        <md-content class="md-padding">
+    </div>
+    <form name="researcherForm">
             <div layout="row">
                 <md-input-container flex="20">
                 <label>Apellido</label>
@@ -92,5 +89,9 @@
                     </div>
                 </md-input-container>
             </div>
-    </div>
+        <div ng-show="currentTabNeedSaveButton">
+            <md-button ng-show="!readOnly" class="md-raised md-primary" ng-disabled="researcherForm.$invalid || dataLoading" ng-click="save()">Guardar</md-button>
+            <label ng-show="researcherSaved">Guardado!</label>
+        </div>
+    </form>
 </div>

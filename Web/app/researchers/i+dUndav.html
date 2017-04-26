@@ -1,7 +1,5 @@
 <div ng-init="setup()">
-    <div layout="column" ng-cloak="" class="dataInputErrors">
-        <md-content class="md-padding">
-            <div layout="row">
+    <div layout="row">
                 <md-input-container>
                     <label>Tipo de Cargo</label>
                     <md-select ng-model="positionEditing.positionType" placeholder="Tipo de Cargo">
@@ -44,7 +42,7 @@
                     <input name="resolution" ng-model="positionEditing.resolution">
                 </md-input-container>
             </div>
-            <div layout="row">
+    <div layout="row">
                 <md-input-container>
                     <label>Secretaría/Departamento</label>
                     <md-select ng-model="positionEditing.secretaryshipDepartment" ng-change="secretaryshipDepartmentChanged()" placeholder="Secretaría/Departamento">
@@ -66,9 +64,9 @@
                     </md-select>
                 </md-input-container>
             </div>
-            <div layout="row">
-            </div>
-            <div layout="row">
+    <div layout="row">
+    </div>
+    <div layout="row">
                 <md-input-container flex="12">
                     <datepicker date-format="dd/MM/yyyy" selector="form-control">
                         <div class="input-group">
@@ -81,17 +79,16 @@
                     </datepicker>
                 </md-input-container>
             </div>
-            <md-button class="md-raised md-primary" ng-disabled="positionSaved || positionEditing.secretaryshipDepartment==null || positionEditing.career==null || positionEditing.subject==null" ng-click="addNewPosition()">{{ editingExisting ? 'Actualizar cargo' : 'Agregar nuevo cargo'}}</md-button>
-            <md-button ng-show="editingExisting" class="md-raised md-primary" ng-click="cancelEdition()">Cancelar</md-button>
-            <label ng-show="positionSaved">Guardado!</label>
-        </md-content>
-        <div ng-cloak ng-show="researcherEditing.positions!=null">
+    <md-button class="md-raised md-primary" ng-disabled="positionSaved || positionEditing.secretaryshipDepartment==null || positionEditing.career==null || positionEditing.subject==null" ng-click="addNewPosition()">{{ editingExisting ? 'Actualizar cargo' : 'Agregar nuevo cargo'}}</md-button>
+    <md-button ng-show="editingExisting" class="md-raised md-primary" ng-click="cancelEdition()">Cancelar</md-button>
+    <label ng-show="positionSaved">Guardado!</label>
+    <div ng-show="researcherEditing.positions!=null">
             <md-toolbar class="md-theme-light">
                 <h2 class="md-toolbar-tools">
                     <span class="titles">Cargos de {{researcherEditing.name + " " + researcherEditing.surname}}</span>
                 </h2>
             </md-toolbar>
-            <md-content>
+            <div>
                 <table>
                     <tr>
                         <th>Tipo</th>
@@ -117,7 +114,6 @@
                             <md-button class="md-raised md-primary" ng-click=" deletePosition(position)">Eliminar</md-button></td>
                 </table>
 
-            </md-content>
+            </div>
         </div>
-    </div>
 </div>
