@@ -51,7 +51,7 @@ angular.module('Parametrics')
                 if($scope.parametricTypeSelected == 'career')
                 {
                     $scope.parametricsSelectedToEdit = $scope.parametrics['degreeArea'][$scope.degreeAreaSelected].careers;
-                    $scope.parametricsSelectedToEditReady = false;
+                    $scope.parametricsSelectedToEditReady = true;
                 }
             }
 
@@ -82,6 +82,10 @@ angular.module('Parametrics')
                 if($scope.parametricTypeSelected == 'subject')
                 {
                     $scope.careerChanged();
+                }
+                if($scope.parametricTypeSelected == 'career')
+                {
+                    $scope.degreeAreaChanged();
                 }
             }
 

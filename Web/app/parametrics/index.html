@@ -26,7 +26,6 @@
                             </md-select>
                         </md-input-container>
                 </div>
-                <!-- carrera -->
                 <div layout="row" ng-show="parametricTypeSelected == 'career'">
                     <md-input-container>
                         <md-select ng-model="degreeAreaSelected" ng-change="degreeAreaChanged()" placeholder="Gran Area de Conocimiento">
@@ -39,7 +38,7 @@
                     <div ng-show="parametricTypeSelected != null">
                         <h4 ng-show="parametricTypeSelected != 'undavCareer' && parametricTypeSelected != 'subject' && parametricTypeSelected != 'career'">{{parametricTypes[parametricTypeSelected].listTitle}}</h4>
                         <h4 ng-show="parametricTypeSelected == 'undavCareer' && secretaryshipDepartmentSelected != null">{{parametricTypes[parametricTypeSelected].listTitle + ' en ' + parametrics['secretaryshipDepartment'][secretaryshipDepartmentSelected].name}}</h4>
-                        <h4 ng-show="parametricTypeSelected == 'career' && degreeAreaSelected != null">{{parametricTypes[parametricTypeSelected].listTitle + ' en ' + parametrics['degreeArea'][degreeAreaSelected].name}}</h4>
+                        <h4 ng-show="parametricTypeSelected == 'career'">{{parametricTypes[parametricTypeSelected].listTitle + ' en ' + parametrics['degreeArea'][degreeAreaSelected].name}}</h4>
                         <h4 ng-show="parametricTypeSelected == 'subject' && undavCareerSelected != null">{{parametricTypes[parametricTypeSelected].listTitle + ' en ' + parametrics['secretaryshipDepartment'][secretaryshipDepartmentSelected].careers[undavCareerSelected].name}}</h4>
                         <div ng-include src="'parametrics/editInLine.html'" ng-controller="parametrics.editInLine" ></div>
                     </div>
