@@ -61,7 +61,7 @@
             <div layout="row">
                 <md-input-container>
                     <label>Secretaría/Departamento</label>
-                    <md-select ng-model="positionEditing.secretaryshipDepartment" placeholder="Secretaría/Departamento">
+                    <md-select ng-model="positionEditing.secretaryshipDepartment" ng-change="secretaryshipDepartmentChanged()" placeholder="Secretaría/Departamento">
                         <md-option value="{{secretaryshipDepartment.id}}" ng-repeat="secretaryshipDepartment in  parametrics['secretaryshipDepartment']">
                             {{  secretaryshipDepartment.name }}
                         </md-option>
@@ -69,27 +69,24 @@
                 </md-input-container>
                 <md-input-container>
                     <label>Carrera</label>
-                    <md-select ng-model="positionEditing.career" placeholder="Carrera">
-                        <md-option value="{{career.id}}" ng-repeat="career in  parametrics['career']">{{  career.name }}</md-option>
+                    <md-select ng-model="positionEditing.career" ng-change="careerChanged()" placeholder="Carrera">
+                        <md-option value="{{career.id}}" ng-repeat="career in  parametrics['secretaryshipDepartment'][positionEditing.secretaryshipDepartment].careers">{{  career.name }}</md-option>
                     </md-select>
                 </md-input-container>
                 <md-input-container>
                     <label>Asignatura</label>
                     <md-select ng-model="positionEditing.subject" placeholder="Asignatura">
-                        <md-option value="{{subject.id}}" ng-repeat="subject in  parametrics['subject']">{{  subject.name }}</md-option>
+                        <md-option value="{{subject.id}}" ng-repeat="subject in  parametrics['secretaryshipDepartment'][positionEditing.secretaryshipDepartment].careers[positionEditing.career].subjects">{{  subject.name }}</md-option>
                     </md-select>
                 </md-input-container>
             </div>
             <md-button class="md-raised md-primary" ng-disabled="positionSaved || positionEditing.secretaryshipDepartment==null || positionEditing.career==null || positionEditing.subject==null" ng-click="addNewPosition()">Agregar Cargo</md-button>
             <label ng-show="positionSaved">Guardado!</label>
-            <md-button  class="md-raised md-primary" ng-show="positionSaved">
-                <div class="button" ng-click="editNewPosition()">Agregar un Nuevo Cargo</div>
-            </md-button>
         </md-content>
         <div ng-cloak ng-show="researcherEditing.positions!=null">
             <md-toolbar class="md-theme-light">
                 <h2 class="md-toolbar-tools">
-                    <span class="titles">Cargo</span>
+                    <span class="titles">Cargos</span>
                 </h2>
             </md-toolbar>
             <md-content>
@@ -97,8 +94,8 @@
                     <md-list-item class="md-3-line" ng-repeat="position in researcherEditing.positions">
                         <div class="md-list-item-text" ng-show="position.id != positionEditingForm.positionEditing.id">
                             <h3>{{parametrics['secretaryshipDepartment'][position.secretaryshipDepartment].name}} -
-                                {{parametrics['career'][position.career].name}} -
-                                {{parametrics['subject'][position.subject].name}}</h3>
+                                {{parametrics['secretaryshipDepartment'][position.secretaryshipDepartment].careers[position.career].name}} -
+                                {{parametrics['secretaryshipDepartment'][position.secretaryshipDepartment].careers[position.career].subjects[position.subject].name}}</h3>
                             <md-button  class="md-raised md-primary" ng-click="edit(position)"">Editar</md-button>
                             <md-button class="md-raised md-primary" ng-click=" deletePosition(position)">Eliminar</md-button>
                         </div>
@@ -135,7 +132,7 @@
                                 <md-input-container>
                                     <label>Carrera</label>
                                     <md-select ng-model="positionEditingForm.positionEditing.career" placeholder="Carrera">
-                                        <md-option value="{{career.id}}" ng-repeat="career in  parametrics['career']">
+                                        <md-option value="{{career.id}}" ng-repeat="career in parametrics['secretaryshipDepartment'][positionEditingForm.positionEditing.secretaryshipDepartment].careers">
                                             {{ career.name }}
                                         </md-option>
                                     </md-select>
@@ -143,7 +140,7 @@
                                 <md-input-container>
                                     <label>Asignatura</label>
                                     <md-select ng-model="positionEditingForm.positionEditing.subject" placeholder="Asignatura">
-                                        <md-option value="{{subject.id}}" ng-repeat="subject in  parametrics['subject']">
+                                        <md-option value="{{subject.id}}" ng-repeat="subject in  parametrics['secretaryshipDepartment'][positionEditingForm.positionEditing.secretaryshipDepartment].careers[positionEditingForm.positionEditing.career].subjects">
                                             {{ subject.name }}
                                         </md-option>
                                     </md-select>
@@ -155,7 +152,7 @@
                                     <datepicker date-format="dd/MM/yyyy" selector="form-control">
                                         <div class="input-group">
                                             <label>Alta en la Institución</label>
-                                            <input class="form-control" name="highInTheInstitution" ng-model="positionEditingForm.highInTheInstitution"/>
+                                            <input class="form-control" name="highInTheInstitution" ng-model="positionEditingForm.positionEditing.highInTheInstitution"/>
                                             <span class="input-group-addon" style="cursor: pointer">
                                                 <i class="fa fa-lg fa-calendar"></i>
                                             </span>

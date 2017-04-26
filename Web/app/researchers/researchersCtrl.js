@@ -29,6 +29,18 @@ angular.module('Researchers')
             {
                 $scope.currentTabNeedSaveButton = value;
             }
+
+            $scope.secretaryshipDepartmentChanged = function()
+            {
+                $scope.positionEditing.career = null;
+                $scope.positionEditing.subject = null;
+            }
+
+            $scope.careerChanged = function()
+            {
+                $scope.positionEditing.subject = null;
+            }
+
             var onResearcherSaved = function () {
                 $scope.researcherSaved = true;
                 $scope.$apply();
@@ -177,6 +189,7 @@ angular.module('Researchers')
             }
             var onPositionUpdated = function () {
                     $scope.positionSaved = true;
+                    $scope.positionEditing = {id: null};
                     $scope.$apply();
                 },
                 onPositionEditUpdated = function()
