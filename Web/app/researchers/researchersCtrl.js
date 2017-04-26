@@ -159,46 +159,38 @@ angular.module('Researchers')
                 $scope.fechaRegExpr = '^\\d{1,2}-\\d{1,2}-\\d{4}$';
                 $scope.positionEditing = {id: null};
                 $scope.positionSaved = false;
-                $scope.licenses = [{type:'Si', name:true},{type:'No', name:false}];
-                cleanPositionEditingForm();
+                $scope.licenses = [{name:'Si', value:true},{name:'No', value:false}];
+                $scope.editingExisting = false;
             }
-            $scope.editNewPosition = function () {
+            $scope.cancelEdition = function () {
+                $scope.editingExisting = false;
                 $scope.positionEditing = {id: null};
-                $scope.positionSaved = false;
             };
             $scope.addNewPosition = function () {
+                if($scope.positionEditing.license == 'false')
+                {
+                    $scope.positionEditing.licenseDate = null;
+                    $scope.positionEditing.resolution = null;
+                }
+
                 researcherService.addPosition($scope.researcherEditing, $scope.positionEditing, onPositionUpdated);
             };
 
-            $scope.saveEditing = function()
-            {
-                researcherService.addPosition($scope.researcherEditing, $scope.positionEditingForm.positionEditing, onPositionEditUpdated);
-            }
-
-            $scope.cancelEditing = function()
-            {
-                cleanPositionEditingForm();
-            }
-
             $scope.edit = function(position)
             {
-                $scope.positionEditingForm.positionEditing = angular.copy(position);
+                $scope.positionSaved = false;
+                $scope.positionEditing = angular.copy(position);
+                $scope.editingExisting = true;
             }
+            
             $scope.deletePosition = function (position) {
                 researcherService.removePosition($scope.researcherEditing, position);
             }
             var onPositionUpdated = function () {
                     $scope.positionSaved = true;
+                    $scope.editingExisting = false;
                     $scope.positionEditing = {id: null};
                     $scope.$apply();
-                },
-                onPositionEditUpdated = function()
-                {
-                    cleanPositionEditingForm();
-                    $scope.$apply();
-                },
-                cleanPositionEditingForm = function(){
-                    $scope.positionEditingForm = {positionEditing : {id :null}};
                 },
                 refreshEducationParametrics = function(parametrics)
                 {
