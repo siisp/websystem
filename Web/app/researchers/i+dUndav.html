@@ -67,20 +67,21 @@
     <div layout="row">
     </div>
     <div layout="row">
-                <md-input-container flex="12">
-                    <datepicker date-format="dd/MM/yyyy" selector="form-control">
-                        <div class="input-group">
-                            <label>Alta en la Institución</label>
-                            <input class="form-control" name="highInTheInstitution" ng-model="positionEditing.highInTheInstitution"/>
-                            <span class="input-group-addon" style="cursor: pointer">
-                                <i class="fa fa-lg fa-calendar"></i>
-                            </span>
-                        </div>
-                    </datepicker>
-                </md-input-container>
-            </div>
-    <md-button class="md-raised md-primary" ng-disabled="positionSaved || positionEditing.secretaryshipDepartment==null || positionEditing.career==null || positionEditing.subject==null" ng-click="addNewPosition()">{{ editingExisting ? 'Actualizar cargo' : 'Agregar nuevo cargo'}}</md-button>
-    <md-button ng-show="editingExisting" class="md-raised md-primary" ng-click="cancelEdition()">Cancelar</md-button>
+        <md-input-container flex="12">
+            <datepicker date-format="dd/MM/yyyy" selector="form-control">
+                <div class="input-group">
+                    <label>Alta en la Institución</label>
+                    <input class="form-control" name="highInTheInstitution" ng-model="positionEditing.highInTheInstitution"/>
+                    <span class="input-group-addon" style="cursor: pointer">
+                        <i class="fa fa-lg fa-calendar"></i>
+                    </span>
+                </div>
+            </datepicker>
+        </md-input-container>
+    </div>
+    <md-button class="md-raised md-primary" ng-disabled="positionSaved || positionEditing.secretaryshipDepartment==null || positionEditing.career==null || positionEditing.subject==null" ng-click="addNewPosition()">{{
+        positionEditingExisting ? 'Actualizar cargo' : 'Agregar nuevo cargo'}}</md-button>
+    <md-button ng-show="positionEditingExisting" class="md-raised md-primary" ng-click="cancelEdition()">Cancelar</md-button>
     <label ng-show="positionSaved">Guardado!</label>
     <div ng-show="researcherEditing.positions!=null">
             <md-toolbar class="md-theme-light">

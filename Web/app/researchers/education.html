@@ -20,7 +20,7 @@
     <div layout="row">
         <md-input-container>
             <label>Gran Area de Conocimiento</label>
-            <md-select ng-model="formationEditing.degreeArea" placeholder="Gran Area de Conocimiento">
+            <md-select ng-model="formationEditing.degreeArea"  ng-change="degreeAreaChanged()" placeholder="Gran Area de Conocimiento">
                 <md-option value="{{degreeArea.id}}" ng-repeat="degreeArea in parametrics['degreeArea']">
                     {{ degreeArea.name }}
                 </md-option>
@@ -65,68 +65,38 @@
                         <input name="otro" ng-model="formationEditing.otherScolarhip">
                     </md-input-container>
     </div>
-    <md-button class="md-raised md-primary" ng-disabled="formationEditing.educationType==null || formationEditing.degreeArea==null || formationEditing.academicDegree==null ||  formationEditing.studiesState==null" ng-click="addNewFormation()">Agregar Formación</md-button>
+    <md-button class="md-raised md-primary" ng-disabled="formationEditing.educationType==null || formationEditing.degreeArea==null || formationEditing.academicDegree==null ||  formationEditing.studiesState==null" ng-click="addNewFormation()">
+        {{formationEditingExisting ? 'Actualizar Formación' : 'Agregar Nueva Formación'}}
+    </md-button>
+    <md-button ng-show="formationEditingExisting" class="md-raised md-primary" ng-click="cancelEdition()">Cancelar</md-button>
     <label ng-show="formationSaved">Guardado!</label>
 
-    <div ng-cloak ng-show="researcherEditing.formations!=null">
+    <div ng-show="researcherEditing.formations!=null">
         <md-toolbar class="md-theme-light">
-                <h2 class="md-toolbar-tools">
-                    <span>Formación</span>
-                </h2>
-            </md-toolbar>
+            <h2 class="md-toolbar-tools">
+                <span class="titles">Formación de {{researcherEditing.name + " " + researcherEditing.surname}}</span>
+            </h2>
+        </md-toolbar>
         <div>
-                <md-list>
-                    <md-list-item class="md-3-line" ng-repeat="formation in researcherEditing.formations">
-                        <div class="md-list-item-text" ng-show="formation.id != formationEditingForm.formationEditing.id">
-                            <h3>{{formation.educationType}} -
-                                {{parametrics['degreeArea'][formation.degreeArea].name}} -
-                                {{parametrics['academicDegree'][formation.academicDegree].name}} -
-                                <span ng-show="formation.studiesState=='false'"> En curso </span>
-                                <span ng-show="formation.studiesState=='true'"> Terminado </span></h3>
-                            <md-button  class="md-raised md-primary" ng-click="edit(formation)">Editar</md-button>
-                            <md-button class="md-raised md-primary" ng-click=" deleteFormation(formation)">Eliminar</md-button>
-                        </div>
-                        <div  ng-show="formation.id == formationEditingForm.formationEditing.id">
-                            <md-input-container>
-                                <label>Tipo de Formación</label>
-                                <md-select ng-model="formationEditingForm.formationEditing.educationType" placeholder="Tipo de Formación">
-                                    <md-option value="{{educationType}}" ng-repeat="educationType in educationTypes" value="{{educationType}}">
-                                        {{ educationType }}
-                                    </md-option>
-                                </md-select>
-                            </md-input-container>
-                            <md-input-container >
-                                <label>Gran Area de Conocimiento</label>
-                                <md-select ng-model="formationEditingForm.formationEditing.degreeArea" placeholder="Gran Area de Conocimiento">
-                                    <md-option value="{{degreeArea.id}}" ng-repeat="degreeArea in  parametrics['degreeArea']">
-                                        {{  degreeArea.name }}
-                                    </md-option>
-                                </md-select>
-                            </md-input-container>
-                            <md-input-container flex="">
-                                <label>Grado de Titulación</label>
-                                <md-select ng-model="formationEditingForm.formationEditing.academicDegree" placeholder="Grado de Titulación">
-                                    <md-option value="{{academicDegree.id}}" ng-repeat="academicDegree in  parametrics['academicDegree']">
-                                        {{  academicDegree.name }}
-                                    </md-option>
-                                </md-select>
-                            </md-input-container>
-                            <md-input-container>
-                                <label>Estado</label>
-                                <md-select ng-model="formationEditingForm.formationEditing.studiesState" placeholder="Estado">
-                                    <md-option ng-repeat="studiesState in studiesStates"  value="{{studiesState.name}}">
-                                        {{ studiesState.type }}
-                                    </md-option>
-                                </md-select>
-                            </md-input-container>
-                            <div>
-                                <md-button ng-click="saveEditing()" class="md-raised md-primary">Confirmar</md-button>
-                                <md-button ng-click="cancelEditing()" class="md-raised md-primary">Cancelar</md-button>
-                            </div>
-                        </div>
-                        <md-divider ng-if="!$last"></md-divider>
-                    </md-list-item>
-                </md-list>
-            </div>
+            <table>
+                <tr>
+                    <th>Tipo de Formación</th>
+                    <th>Grado de Titulación</th>
+                    <th>Gran Area de Conocimiento</th>
+                    <th>Carrera</th>
+                    <th>Estado</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="formation in researcherEditing.formations">
+                    <td>{{formation.educationType}}</td>
+                    <td>{{parametrics['academicDegree'][formation.academicDegree].name}}</td>
+                    <td>{{parametrics['degreeArea'][formation.degreeArea].name}}</td>
+                    <td>{{parametrics['degreeArea'][formation.degreeArea].careers[formation.career].name}}</td>
+                    <td>{{formation.studiesState == 'true' ? 'Terminado' : 'En curso'}} <div ng-show="formation.studiesState == 'false'">{{formation.scolarshipType}} {{formation.scolarshipName}} </div></td>
+                    <td></td>
+                    <td><md-button  class="md-raised md-primary" ng-click="edit(formation)"">Editar</md-button>
+                        <md-button class="md-raised md-primary" ng-click=" deleteFormation(formation)">Eliminar</md-button></td>
+            </table>
+        </div>
     </div>
 </div>

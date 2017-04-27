@@ -17,7 +17,6 @@ angular.module('Researchers')
                 }
                 $scope.researcherSaved = false;
                 $scope.cuilRegExpr = '^\\d{2}-\\d{8}-\\d{1}$';
-                $scope.currentTabNeedSaveButton = true;
                 loadParametrics();
             }
             $scope.save = function () {
@@ -25,10 +24,6 @@ angular.module('Researchers')
                 researcherService.save($scope.researcherEditing, onResearcherSaved);
             }
 
-            $scope.showSaveButton = function(value)
-            {
-                $scope.currentTabNeedSaveButton = value;
-            }
 
             $scope.secretaryshipDepartmentChanged = function()
             {
@@ -113,6 +108,7 @@ angular.module('Researchers')
                 $scope.educationTypes = ["Grado","Posgrado"];
                 $scope.studiesStates = [{type:'En curso', name:false},{type:'Terminado', name:true}];
                 $scope.formationEditing = {id: null};
+                $scope.formationEditingExisting = false;
                 cleanFormationEditingForm();
             }
             $scope.addNewFormation = function () {
@@ -120,31 +116,26 @@ angular.module('Researchers')
                 $scope.formationEditing = {id: null};
                 $scope.formationSaved = false;
             };
-            $scope.saveEditing = function()
-            {
-                researcherService.addFormation($scope.researcherEditing, $scope.formationEditingForm.formationEditing, onFormationEditUpdated);
-            }
-            $scope.cancelEditing = function()
-            {
-                cleanFormationEditingForm();
-            }
+            $scope.cancelEdition = function () {
+                $scope.formationEditingExisting = false;
+                $scope.formationEditing = {id: null};
+            };
             $scope.edit = function(formation)
             {
-                $scope.formationEditingForm.formationEditing = angular.copy(formation);
+                $scope.formationSaved = false;
+                $scope.formationEditing = angular.copy(formation);
+                $scope.formationEditingExisting = true;
             }
             $scope.deleteFormation = function (formation) {
                 researcherService.removeFormation($scope.researcherEditing, formation);
             }
-            var cleanFormationEditingForm = function(){
-                    $scope.formationEditingForm = {formationEditing : {id :null}};
-                },
-                onFormationEditUpdated = function()
-                {
-                    cleanFormationEditingForm();
-                    $scope.$apply();
-                },
-                onFormationUpdated = function () {
+            $scope.degreeAreaChanged = function () {
+                $scope.formationEditing.career = null;
+            }
+            var onFormationUpdated = function () {
                     $scope.formationSaved = true;
+                    $scope.formationEditingExisting = false;
+                    $scope.formationEditing = {id: null};
                     $scope.$apply();
                 }
         }
@@ -160,10 +151,10 @@ angular.module('Researchers')
                 $scope.positionEditing = {id: null};
                 $scope.positionSaved = false;
                 $scope.licenses = [{name:'Si', value:true},{name:'No', value:false}];
-                $scope.editingExisting = false;
+                $scope.positionEditingExisting = false;
             }
             $scope.cancelEdition = function () {
-                $scope.editingExisting = false;
+                $scope.positionEditingExisting = false;
                 $scope.positionEditing = {id: null};
             };
             $scope.addNewPosition = function () {
@@ -180,7 +171,7 @@ angular.module('Researchers')
             {
                 $scope.positionSaved = false;
                 $scope.positionEditing = angular.copy(position);
-                $scope.editingExisting = true;
+                $scope.positionEditingExisting = true;
             }
             
             $scope.deletePosition = function (position) {
@@ -188,7 +179,7 @@ angular.module('Researchers')
             }
             var onPositionUpdated = function () {
                     $scope.positionSaved = true;
-                    $scope.editingExisting = false;
+                    $scope.positionEditingExisting = false;
                     $scope.positionEditing = {id: null};
                     $scope.$apply();
                 },
