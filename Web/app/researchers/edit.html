@@ -2,17 +2,17 @@
     <div ng-cloak="" class="tabsForm">
             <md-content>
                 <md-tabs md-dynamic-height md-border-bottom>
-                    <md-tab label="Datos Personales" md-on-select="showSaveButton(true)">
+                    <md-tab label="Datos Personales">
                         <md-content class="md-padding">
                             <div ng-include src="'researchers/personalData.html'" ng-controller="researchers.personalData" ></div>
                         </md-content>
                     </md-tab>
-                    <md-tab data-ng-if="researcherEditing.id!=null" md-on-select="showSaveButton(false)" label="Formación">
+                    <md-tab data-ng-if="researcherEditing.id!=null" label="Formación">
                         <md-content class="md-padding">
                             <div ng-include src="'researchers/education.html'" ng-controller="researchers.education" ></div>
                         </md-content>
                     </md-tab>
-                    <md-tab data-ng-if="researcherEditing.id!=null" md-on-select="showSaveButton(false)" label="I+D Undav">
+                    <md-tab data-ng-if="researcherEditing.id!=null" label="I+D Undav">
                         <md-content class="md-padding">
                             <div ng-include src="'researchers/i+dUndav.html'" ng-controller="researchers.idUndav" ></div>
                         </md-content>
