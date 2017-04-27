@@ -9,17 +9,17 @@ angular.module('Parametrics').factory('parametricService', ['dataService',
             getParametricTypes: function()
             {
                 return {
-                    academicDegree : {type: 'academicDegree', parametricType:'simple',name: 'Grado de Titulación', listTitle: 'Títulos académicos disponibles', newTitle: 'Agregar nuevo grado de titulación' },
-                    career: {type: 'career', parametricType:'composed', name: 'Carrera', listTitle: 'Carreras disponibles', newTitle: 'Agregar nueva carrera'},
-                    undavCareer: {type: 'undavCareer', parametricType:'composed', name: 'Carrera de UNDAV', listTitle: 'Carreras disponibles', newTitle: 'Agregar nueva carrera'},
-                    categoryIncentiveProgram: {type: 'categoryIncentiveProgram', parametricType:'simple', name: 'Categoría Programa de Incentivos', listTitle: 'Programas de incentivos disponibles', newTitle: 'Agregar nuevo programa de incentivo'},
-                    degreeArea: {type: 'degreeArea', parametricType:'simple', name: 'Gran Area de Conocimiento', listTitle: 'Grandes Areas de Conocimiento disponibles', newTitle: 'Agregar nueva gran area de conocimiento disponible'},
-                    idDedication: {type: 'idDedication', parametricType:'simple', name: 'Dedicación a I+D', listTitle: 'Dedicaciones I+D disponibles', newTitle: 'Agregar nueva dedicacion I+D'},
-                    modality: {type: 'modality', parametricType:'simple', name: 'Modalidad', listTitle: 'Modalidades disponibles', newTitle: 'Agregar nueva modalidad'},
-                    positionType: {type: 'positionType', parametricType:'simple', name: 'Tipo de Cargo', listTitle: 'Tipos de cargo disponibles', newTitle: 'Agregar nuevo tipo de cargo'},
-                    secretaryshipDepartment:{type: 'secretaryshipDepartment', parametricType:'composed', name: 'Secretaría/Departamento', listTitle: 'Secretarias/Departamentos disponibles', newTitle: 'Agregar Secretaria/Departamento'},
-                    subject: {type: 'subject', parametricType:'simple', name: 'Asignatura', listTitle: 'Asignaturas disponibles', newTitle: 'Agregar nueva asignatura'},
-                    universityCategorization:{type: 'universityCategorization', parametricType:'simple', name: 'Universidad de Categorización', listTitle: 'Universidades disponibles', newTitle: 'Agregar nueva universidad'}
+                    academicDegree : {type: 'academicDegree',name: 'Grado de Titulación', listTitle: 'Títulos académicos disponibles', newTitle: 'Agregar nuevo grado de titulación' },
+                    career: {type: 'career', name: 'Carrera', listTitle: 'Carreras disponibles', newTitle: 'Agregar nueva carrera'},
+                    undavCareer: {type: 'undavCareer', name: 'Carrera de UNDAV', listTitle: 'Carreras disponibles', newTitle: 'Agregar nueva carrera'},
+                    degreeArea: {type: 'degreeArea', name: 'Gran Area de Conocimiento', listTitle: 'Grandes Areas de Conocimiento disponibles', newTitle: 'Agregar nueva gran area de conocimiento disponible'},
+                    idDedication: {type: 'idDedication', name: 'Dedicación a I+D', listTitle: 'Dedicaciones I+D disponibles', newTitle: 'Agregar nueva dedicacion I+D'},
+                    modality: {type: 'modality', name: 'Modalidad', listTitle: 'Modalidades disponibles', newTitle: 'Agregar nueva modalidad'},
+                    positionType: {type: 'positionType', name: 'Tipo de Cargo', listTitle: 'Tipos de cargo disponibles', newTitle: 'Agregar nuevo tipo de cargo'},
+                    secretaryshipDepartment:{type: 'secretaryshipDepartment', name: 'Secretaría/Departamento', listTitle: 'Secretarias/Departamentos disponibles', newTitle: 'Agregar Secretaria/Departamento'},
+                    subject: {type: 'subject', name: 'Asignatura', listTitle: 'Asignaturas disponibles', newTitle: 'Agregar nueva asignatura'},
+                    scholarshipType: {type: 'scholarshipType', name: 'Tipo de beca', listTitle: 'Tipos de beca', newTitle: 'Agregar nuevo tipo de beca'},
+                    scholarshipName: {type: 'scholarshipName', name: 'Beca', listTitle: 'Becas', newTitle: 'Agregar nueva beca'}
                 };
             },
             saveParametric: function(parametricType, parametric, onSaved){

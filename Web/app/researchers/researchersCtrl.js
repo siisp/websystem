@@ -49,6 +49,7 @@ angular.module('Researchers')
             }
             var refreshParametrics = function (parametrics) {
                 $scope.parametrics = parametrics;
+                console.log($scope.parametrics['scholarshipType'])
             }
             $scope.setup();
         }
