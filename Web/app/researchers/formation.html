@@ -2,9 +2,9 @@
     <div layout="row">
         <md-input-container>
             <label>Tipo de Formación</label>
-            <md-select ng-model="formationEditing.educationType" placeholder="Tipo de Formación">
-                <md-option  value="{{educationType}}" ng-repeat="educationType in educationTypes" >
-                    {{ educationType}}
+            <md-select ng-model="formationEditing.type" placeholder="Tipo de Formación">
+                <md-option  value="{{formationType}}" ng-repeat="formationType in formationTypes" >
+                    {{ formationType}}
                 </md-option>
             </md-select>
         </md-input-container>
@@ -38,22 +38,22 @@
     </div>
     <div layout="row">
         <md-input-container flex="12">
-                        <md-select ng-model="formationEditing.studiesState" placeholder="Estado">
-                            <md-option ng-repeat="studiesState in studiesStates"  value="{{studiesState.name}}">
-                                {{ studiesState.type }}
+                        <md-select ng-model="formationEditing.formationCompleted" placeholder="Estado">
+                            <md-option ng-repeat="studiesState in studiesStates"  value="{{studiesState.value}}">
+                                {{ studiesState.name }}
                             </md-option>
                         </md-select>
         </md-input-container>
     </div>
     <div layout="row">
-                    <md-input-container ng-show="formationEditing.studiesState=='false'">
+                    <md-input-container ng-show="formationEditing.formationCompleted=='false'">
                         <md-select  ng-model="formationEditing.scolarshipType" placeholder="Tipo de Beca">
                             <md-option ng-repeat="scolarshipType in parametrics['scolarshipType']" value="{{ scolarshipType.id }}">
                                 {{ scolarshipType.name }}
                             </md-option>
                         </md-select>
                     </md-input-container>
-                    <md-input-container ng-show="formationEditing.studiesState=='false'">
+                    <md-input-container ng-show="formationEditing.formationCompleted=='false'">
                         <md-select  ng-model="formationEditing.scolarshipName" placeholder="Nombre de Beca">
                             <md-option value="{{scolarshipName.id}}" ng-repeat="scolarshipName in parametrics['scolarshipName']">
                                 {{ scolarshipName.name }}
@@ -65,7 +65,7 @@
                         <input name="otro" ng-model="formationEditing.otherScolarhip">
                     </md-input-container>
     </div>
-    <md-button class="md-raised md-primary" ng-disabled="formationEditing.educationType==null || formationEditing.degreeArea==null || formationEditing.academicDegree==null ||  formationEditing.studiesState==null" ng-click="addNewFormation()">
+    <md-button class="md-raised md-primary" ng-disabled="formationEditing.type==null || formationEditing.degreeArea==null || formationEditing.academicDegree==null ||  formationEditing.formationCompleted==null" ng-click="addNewFormation()">
         {{formationEditingExisting ? 'Actualizar Formación' : 'Agregar Nueva Formación'}}
     </md-button>
     <md-button ng-show="formationEditingExisting" class="md-raised md-primary" ng-click="cancelEdition()">Cancelar</md-button>
@@ -88,11 +88,11 @@
                     <th></th>
                 </tr>
                 <tr ng-repeat="formation in researcherEditing.formations">
-                    <td>{{formation.educationType}}</td>
+                    <td>{{formation.type}}</td>
                     <td>{{parametrics['academicDegree'][formation.academicDegree].name}}</td>
                     <td>{{parametrics['degreeArea'][formation.degreeArea].name}}</td>
                     <td>{{parametrics['degreeArea'][formation.degreeArea].careers[formation.career].name}}</td>
-                    <td>{{formation.studiesState == 'true' ? 'Terminado' : 'En curso'}} <div ng-show="formation.studiesState == 'false'">{{formation.scolarshipType}} {{formation.scolarshipName}} </div></td>
+                    <td>{{formation.formationCompleted == 'true' ? 'Terminada' : 'En curso'}} <div ng-show="formation.formationCompleted == 'false'">{{formation.scolarshipType}} {{formation.scolarshipName}} </div></td>
                     <td></td>
                     <td><md-button  class="md-raised md-primary" ng-click="edit(formation)"">Editar</md-button>
                         <md-button class="md-raised md-primary" ng-click=" deleteFormation(formation)">Eliminar</md-button></td>

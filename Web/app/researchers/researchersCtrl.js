@@ -100,21 +100,19 @@ angular.module('Researchers')
     ]);
 
 angular.module('Researchers')
-    .controller('researchers.education', ['$scope','researcherService',
+    .controller('researchers.formation', ['$scope','researcherService',
         function ($scope, researcherService) {
             $scope.setup = function()
             {
                 $scope.formationSaved = false;
-                $scope.educationTypes = ["Grado","Posgrado"];
-                $scope.studiesStates = [{type:'En curso', name:false},{type:'Terminado', name:true}];
+                $scope.formationTypes = ["Grado","Posgrado"];
+                $scope.studiesStates = [{name:'En curso', value:false},{name:'Terminado', value:true}];
                 $scope.formationEditing = {id: null};
                 $scope.formationEditingExisting = false;
                 cleanFormationEditingForm();
             }
             $scope.addNewFormation = function () {
                 researcherService.addFormation($scope.researcherEditing, $scope.formationEditing, onFormationUpdated);
-                $scope.formationEditing = {id: null};
-                $scope.formationSaved = false;
             };
             $scope.cancelEdition = function () {
                 $scope.formationEditingExisting = false;
