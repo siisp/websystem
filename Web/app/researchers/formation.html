@@ -4,7 +4,7 @@
             <label>Tipo de Formación</label>
             <md-select ng-model="formationEditing.type" placeholder="Tipo de Formación">
                 <md-option  value="{{formationType}}" ng-repeat="formationType in formationTypes" >
-                    {{ formationType}}
+                    {{formationType}}
                 </md-option>
             </md-select>
         </md-input-container>
@@ -93,7 +93,7 @@
                     <td>
                         {{formation.formationCompleted == 'true' ? 'Terminada' : 'En curso'}}
                         <div ng-show="formation.formationCompleted == 'false'">
-                            {{parametrics['scholarshipType'][formation.scholarshipType].name}} - {{parametrics['scholarshipName'][formation.scholarshipName].name}}
+                            {{parametrics['scholarshipType'][formation.scholarshipType].name}} - {{ parametrics['scholarshipName'][formation.scholarshipName].name == 'Otra' ? formation.otherScholarship : parametrics['scholarshipName'][formation.scholarshipName].name}}
                         </div>
                     </td>
                     <td></td>
