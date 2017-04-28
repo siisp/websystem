@@ -69,12 +69,13 @@
     </md-button>
     <md-button ng-show="formationEditingExisting" class="md-raised md-primary" ng-click="cancelEdition()">Cancelar</md-button>
     <label ng-show="formationSaved">Guardado!</label>
+    <md-divider ng-show="researcherEditing.formations!=null"></md-divider>
     <div ng-show="researcherEditing.formations!=null">
-        <md-toolbar class="md-theme-light">
-            <h2 class="md-toolbar-tools">
-                <span class="titles">Formación de {{researcherEditing.name + " " + researcherEditing.surname}}</span>
-            </h2>
-        </md-toolbar>
+        <div>
+            <h4>
+                <span>Formación de {{researcherEditing.name + " " + researcherEditing.surname}}</span>
+            </h4>
+        </div>
         <div>
             <table>
                 <tr>
@@ -96,7 +97,6 @@
                             {{parametrics['scholarshipType'][formation.scholarshipType].name}} - {{ parametrics['scholarshipName'][formation.scholarshipName].name == 'Otra' ? formation.otherScholarship : parametrics['scholarshipName'][formation.scholarshipName].name}}
                         </div>
                     </td>
-                    <td></td>
                     <td>
                         <md-button  class="md-raised md-primary" ng-click="edit(formation)"">Editar</md-button>
                         <md-button class="md-raised md-primary" ng-click=" deleteFormation(formation)">Eliminar</md-button>

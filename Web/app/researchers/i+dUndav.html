@@ -83,12 +83,13 @@
         positionEditingExisting ? 'Actualizar cargo' : 'Agregar nuevo cargo'}}</md-button>
     <md-button ng-show="positionEditingExisting" class="md-raised md-primary" ng-click="cancelEdition()">Cancelar</md-button>
     <label ng-show="positionSaved">Guardado!</label>
+    <md-divider ng-show="researcherEditing.positions!=null"></md-divider>
     <div ng-show="researcherEditing.positions!=null">
-            <md-toolbar class="md-theme-light">
-                <h2 class="md-toolbar-tools">
-                    <span class="titles">Cargos de {{researcherEditing.name + " " + researcherEditing.surname}}</span>
-                </h2>
-            </md-toolbar>
+            <div>
+                <h4>
+                    <span>Cargos de {{researcherEditing.name + " " + researcherEditing.surname}}</span>
+                </h4>
+            </div>
             <div>
                 <table>
                     <tr>

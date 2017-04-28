@@ -3,10 +3,11 @@
 angular.module('Core').factory('dataService', [
     function () {
         var config = {
-            apiKey: "AIzaSyB9Whv3MmJEZz2sp2BXf4gVh3PAmkKv1qI",
-            authDomain: "siisp-dev.firebaseapp.com",
-            databaseURL: "https://siisp-dev.firebaseio.com",
-            storageBucket: "siisp-dev.appspot.com"
+            apiKey: "AIzaSyDZ4eczCUETSw5F5ZGhfgqk1XPNR9nipzU",
+            authDomain: "siisp-staging.firebaseapp.com",
+            databaseURL: "https://siisp-staging.firebaseio.com",
+            projectId: "siisp-staging",
+            storageBucket: "siisp-staging.appspot.com"
         };
         firebase.initializeApp(config);
 

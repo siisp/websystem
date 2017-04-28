@@ -134,16 +134,28 @@ angular.module('Parametrics')
             }
             $scope.parametricValidation = function(parametricType){
                 $scope.isNewParametric = true;
-                for (var key in $scope.parametrics[parametricType]) {
-                    if($scope.parametrics[parametricType][key].name == $scope.parametricEditing.name)
-                    {
-                        $scope.isNewParametric = false;
-                    }else{
-                        $scope.isNewParametric = true;
-                    }
+
+                if(parametricType == 'career'){
+                    setIsNewParametric($scope.parametrics['degreeArea'][$scope.degreeAreaSelected].careers);
+                }
+                if(parametricType == 'undavCareer'){
+                    setIsNewParametric($scope.parametrics['secretaryshipDepartment'][$scope.secretaryshipDepartmentSelected].careers);
+                }
+                if(parametricType == 'subject'){
+                    setIsNewParametric($scope.parametrics['secretaryshipDepartment'][$scope.secretaryshipDepartmentSelected].careers[$scope.undavCareerSelected].subjects);
+                }else{
+                    setIsNewParametric($scope.parametrics[parametricType]);
                 }
             }
-            var onParametricSaved = function()
+            var setIsNewParametric = function(parametricList){
+                for (var key in parametricList) {
+                    if(parametricList[key].name == $scope.parametricEditing.name)
+                    {
+                        $scope.isNewParametric = false;
+                    }
+                }
+            },
+                onParametricSaved = function()
             {
                 $scope.parametricSaved = true;
                 setNewParametric();
