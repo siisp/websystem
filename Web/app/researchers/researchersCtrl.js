@@ -49,7 +49,6 @@ angular.module('Researchers')
             }
             var refreshParametrics = function (parametrics) {
                 $scope.parametrics = parametrics;
-                console.log($scope.parametrics['scholarshipType'])
             }
             $scope.setup();
         }
@@ -192,10 +191,11 @@ angular.module('Researchers')
     ]);
 
 angular.module('Researchers')
-    .controller('researchers.list', ['$scope', 'researcherService', function($scope, researcherService) {
+    .controller('researchers.list', ['$scope', 'researcherService', 'parametricService', function($scope, researcherService, parametricService) {
         $scope.setup = function () {
             $scope.firstTime = true;
             loadResearchers();
+            loadParametrics();
         };
         var loadResearchers = function () {
             researcherService.getResearchers(refreshResearchers);
@@ -211,6 +211,13 @@ angular.module('Researchers')
                $scope.$apply();
                $scope.firstTime = false;
            }
+        }
+        var loadParametrics = function () {
+            parametricService.getParametrics(refreshParametrics);
+        }
+        var refreshParametrics = function (parametrics) {
+            $scope.parametrics = parametrics;
+            $scope.positionTypes = parametrics.positionType;
         }
     }
 ]);
