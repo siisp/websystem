@@ -63,8 +63,20 @@
                         <md-option value="{{subject.id}}" ng-repeat="subject in  parametrics['secretaryshipDepartment'][positionEditing.secretaryshipDepartment].careers[positionEditing.career].subjects">{{  subject.name }}</md-option>
                     </md-select>
                 </md-input-container>
-            </div>
+    </div>
     <div layout="row">
+        <md-input-container>
+            <label>Tipo de Contratación</label>
+            <md-select ng-model="positionEditing.typeOfRecruitment" placeholder="Tipo de Contratación">
+                <md-option value="{{typeOfRecruitment.id}}" ng-repeat="typeOfRecruitment in  parametrics['typeOfRecruitment']">
+                    {{  typeOfRecruitment.name }}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container ng-show="positionEditing.typeOfRecruitment != null">
+            <label>Resolución</label>
+            <input name="resolution" ng-model="positionEditing.typeOfRecruitmentResolution">
+        </md-input-container>
     </div>
     <div layout="row">
         <md-input-container flex="12">
@@ -78,6 +90,12 @@
                 </div>
             </datepicker>
         </md-input-container>
+    </div>
+    <div layout="row">
+        <md-radio-group ng-model="positionEditing.investigationTeaching">
+            <md-radio-button value="Investigación" class="md-primary">Investigación</md-radio-button>
+            <md-radio-button value="Docencia" class="md-primary">Docencia</md-radio-button>
+        </md-radio-group>
     </div>
     <md-button class="md-raised md-primary" ng-disabled="positionSaved || positionEditing.secretaryshipDepartment==null || positionEditing.career==null || positionEditing.subject==null" ng-click="addNewPosition()">{{
         positionEditingExisting ? 'Actualizar cargo' : 'Agregar nuevo cargo'}}</md-button>

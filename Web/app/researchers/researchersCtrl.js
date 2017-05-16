@@ -109,7 +109,6 @@ angular.module('Researchers')
                 $scope.studiesStates = [{name:'En curso', value:false},{name:'Terminado', value:true}];
                 $scope.formationEditing = {id: null};
                 $scope.formationEditingExisting = false;
-                cleanFormationEditingForm();
             }
             $scope.addNewFormation = function () {
                 researcherService.addFormation($scope.researcherEditing, $scope.formationEditing, onFormationUpdated);
