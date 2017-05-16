@@ -9,6 +9,7 @@ angular.module('Parametrics').factory('parametricService', ['dataService',
             getParametricTypes: function()
             {
                 return {
+                    university : {type: 'university',name: 'Universidad', listTitle: 'Universidades disponibles', newTitle: 'Agregar nueva Universidad' },
                     typeOfRecruitment : {type: 'typeOfRecruitment',name: 'Tipo de Contratación', listTitle: 'Tipo de Contratación disponibles', newTitle: 'Agregar nuevo Tipo de Contratación' },
                     academicDegree : {type: 'academicDegree',name: 'Grado de Titulación', listTitle: 'Títulos académicos disponibles', newTitle: 'Agregar nuevo grado de titulación' },
                     career: {type: 'career', name: 'Carrera', listTitle: 'Carreras disponibles', newTitle: 'Agregar nueva carrera'},

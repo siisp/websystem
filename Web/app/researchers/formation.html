@@ -1,6 +1,14 @@
 <div ng-init="setup()">
     <div layout="row">
         <md-input-container>
+            <label>Universidad</label>
+            <md-select ng-model="formationEditing.university" placeholder="Universidad">
+                <md-option  value="{{university.id}}" ng-repeat="university in parametrics['university']" >
+                    {{university.name}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
             <label>Tipo de Formación</label>
             <md-select ng-model="formationEditing.type" placeholder="Tipo de Formación">
                 <md-option  value="{{formationType}}" ng-repeat="formationType in formationTypes" >
@@ -31,6 +39,15 @@
             <md-select ng-model="formationEditing.career" placeholder="Carrera">
                 <md-option value="{{career.id}}" ng-repeat="career in parametrics['degreeArea'][formationEditing.degreeArea].careers">
                     {{ career.name }}
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+    <div layout="row">
+        <md-input-container flex="12">
+            <md-select ng-model="formationEditing.categorizationUniversity" placeholder="Universidad de Categorización">
+                <md-option ng-repeat="categorizationUniversity in categorizationUniversities"  value="{{categorizationUniversity}}">
+                    {{ categorizationUniversity }}
                 </md-option>
             </md-select>
         </md-input-container>

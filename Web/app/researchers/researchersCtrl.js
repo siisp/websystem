@@ -107,6 +107,7 @@ angular.module('Researchers')
                 $scope.formationSaved = false;
                 $scope.formationTypes = ["Grado","Posgrado"];
                 $scope.studiesStates = [{name:'En curso', value:false},{name:'Terminado', value:true}];
+                $scope.categorizationUniversities=["I","II","III","IV","V"];
                 $scope.formationEditing = {id: null};
                 $scope.formationEditingExisting = false;
             }
