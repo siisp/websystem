@@ -4,16 +4,15 @@ angular.module('Researchers')
     .controller('researchers.new', ['$scope', '$stateParams', 'researcherService','parametricService',
         function ($scope, $stateParams, researcherService, parametricService) {
             $scope.setup = function () {
-                $scope.isNew = $stateParams.id == undefined;
-                if (!$scope.isNew) {
-                    researcherService.getResearcher($stateParams.id, setResearchersToEdit);
-                } else {
+                if (isAddingANewResearcher()) {
                     $scope.researcherEditing = {
                         id: null,
                         profilePhoto: null,
                         formations: null,
                         positions: null
                     };
+                } else {
+                    researcherService.getResearcher($stateParams.id, setResearchersToEdit);
                 }
                 $scope.researcherSaved = false;
                 $scope.cuilRegExpr = '^\\d{2}-\\d{8}-\\d{1}$';
@@ -23,7 +22,6 @@ angular.module('Researchers')
                 $scope.researcherSaved = false;
                 researcherService.save($scope.researcherEditing, onResearcherSaved);
             }
-
 
             $scope.secretaryshipDepartmentChanged = function()
             {
@@ -38,7 +36,15 @@ angular.module('Researchers')
 
             var onResearcherSaved = function () {
                 $scope.researcherSaved = true;
-                $scope.$apply();
+                if(isAddingANewResearcher())
+                {
+                    $stateParams.id = $scope.researcherEditing.id;
+                    researcherService.getResearcher($scope.researcherEditing.id, setResearchersToEdit);
+                }
+                else
+                {
+                    $scope.$apply();
+                }
             }
             var setResearchersToEdit = function (researcher) {
                 $scope.researcherEditing = researcher;
@@ -50,6 +56,11 @@ angular.module('Researchers')
             var refreshParametrics = function (parametrics) {
                 $scope.parametrics = parametrics;
             }
+
+            var isAddingANewResearcher=function () {
+                return $stateParams.id == undefined;
+            }
+
             $scope.setup();
         }
     ]);
