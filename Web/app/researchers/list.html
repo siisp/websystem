@@ -52,5 +52,8 @@
                             <md-divider md-inset ng-if="!$last"></md-divider>
                     </md-list>
                 </td>
-                <td><md-button class="md-raised md-primary" ui-sref="researchers.edit({id:researcher.id})">Editar</md-button></td>
+                <td>
+                    <md-button class="md-raised md-primary" ui-sref="researchers.edit({id:researcher.id})">Editar</md-button>
+                    <md-button class="md-raised md-primary" ui-sref="researchers.view({id:researcher.id})">Ver Listado</md-button>
+                </td>
         </table>

@@ -22,4 +22,9 @@ angular.module('Researchers', ['Core', 'Parametrics'])
                 templateUrl: "researchers/edit.html",
                 controller: 'researchers.new'
             })
+            .state('researchers.view', {
+                url: "/view/{id}",
+                templateUrl: "researchers/view.html",
+                controller: 'researchers.view'
+            })
     });

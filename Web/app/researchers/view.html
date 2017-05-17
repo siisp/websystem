@@ -1,0 +1,23 @@
+<div ng-controller="researchers.view" ng-init="setup()">
+    <div ng-cloak="" class="tabsForm">
+        <md-content>
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="Datos Personales">
+                    <md-content class="md-padding">
+                        <div ng-include src="'researchers/personalData.html'" ng-controller="researchers.personalData" ></div>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Formación">
+                    <md-content class="md-padding">
+                        <div ng-include src="'researchers/formation.html'" ng-controller="researchers.formation" ></div>
+                    </md-content>
+                </md-tab>
+                <md-tab  label="I+D Undav">
+                    <md-content class="md-padding">
+                        <div ng-include src="'researchers/i+dUndav.html'" ng-controller="researchers.idUndav" ></div>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </div>
+</div>

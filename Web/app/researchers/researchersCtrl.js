@@ -196,6 +196,7 @@ angular.module('Researchers')
             $scope.firstTime = true;
             loadResearchers();
             loadParametrics();
+            $scope.IsAView = false;
         };
         var loadResearchers = function () {
             researcherService.getResearchers(refreshResearchers);
@@ -222,3 +223,23 @@ angular.module('Researchers')
     }
 ]);
 
+angular.module('Researchers')
+    .controller('researchers.view', ['$scope', '$stateParams', 'researcherService','parametricService',
+        function ($scope, $stateParams, researcherService, parametricService) {
+            $scope.setup = function () {
+                $scope.IsAView = true;
+                researcherService.getResearcher($stateParams.id, setResearchersToEdit);
+                loadParametrics();
+            };
+            var setResearchersToEdit = function (researcher) {
+                $scope.researcherEditing = researcher;
+            };
+            var loadParametrics = function () {
+                parametricService.getParametrics(refreshParametrics);
+            };
+            var refreshParametrics = function (parametrics) {
+                $scope.parametrics = parametrics;
+                $scope.positionTypes = parametrics.positionType;
+            }
+        }
+    ]);
