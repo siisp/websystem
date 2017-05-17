@@ -5,6 +5,7 @@ angular.module('Parametrics')
         function ($scope, parametricService) {
             $scope.setup = function()
             {
+                $scope.parametricEditing = {};
                 $scope.parametricTypeSelected = null;
                 $scope.parametricsSelectedToEdit = {};
                 $scope.parametricTypes = parametricService.getParametricTypes();
@@ -19,6 +20,7 @@ angular.module('Parametrics')
             {
                 cleanFirstChildOfParametricType();
                 setSelectedParametricsToListAndEdit();
+                $scope.parametricEditing.name = null;
             }
 
             $scope.secretaryshipDepartmentChanged=function()
@@ -122,7 +124,6 @@ angular.module('Parametrics')
         function ($scope, parametricService) {
             $scope.setup = function()
             {
-                $scope.parametricEditing = {};
                 $scope.composedParametricEditing = {};
                 $scope.parametricSaved = false;
                 $scope.isNewParametric = true;
