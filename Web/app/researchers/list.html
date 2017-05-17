@@ -30,6 +30,7 @@
                     </md-list>
                 </td>
                 <td>
+                    <label ng-show="(researcher.formations|toArray).length == 0 ">No hay formaciones cargadas</label>
                     <md-list>
                         <md-list-item class="md-3-line" ng-repeat="formation in researcher.formations | toArray">
                         <div class="md-list-item-text">
@@ -41,6 +42,7 @@
                     </md-list>
                 </td>
                 <td>
+                    <label ng-show="(researcher.positions|toArray).length == 0 ">No hay cargos cargados</label>
                     <md-list>
                         <md-list-item class="md-3-line" ng-repeat="position in researcher.positions | toArray">
                             <div class="md-list-item-text">
@@ -54,6 +56,6 @@
                 </td>
                 <td>
                     <md-button class="md-raised md-primary" ui-sref="researchers.edit({id:researcher.id})">Editar</md-button>
-                    <md-button class="md-raised md-primary" ui-sref="researchers.view({id:researcher.id})">Ver Listado</md-button>
+                    <md-button class="md-raised md-primary" ui-sref="researchers.view({id:researcher.id})">Ver</md-button>
                 </td>
         </table>

@@ -1,5 +1,5 @@
 <div ng-init="setup()">
-    <div layout="row"  ng-show=" !IsAView">
+    <div layout="row"  ng-show=" !readOnlyMode">
         <md-input-container>
             <label>Tipo de Cargo</label>
             <md-select ng-model="positionEditing.positionType" placeholder="Tipo de Cargo">
@@ -42,7 +42,7 @@
             <input name="resolution" ng-model="positionEditing.resolution">
         </md-input-container>
     </div>
-    <div layout="row"  ng-show=" !IsAView">
+    <div layout="row"  ng-show=" !readOnlyMode">
         <md-input-container>
             <label>Secretaría/Departamento</label>
             <md-select ng-model="positionEditing.secretaryshipDepartment" ng-change="secretaryshipDepartmentChanged()" placeholder="Secretaría/Departamento">
@@ -64,7 +64,7 @@
             </md-select>
         </md-input-container>
     </div>
-    <div layout="row"  ng-show=" !IsAView">
+    <div layout="row"  ng-show=" !readOnlyMode">
         <md-input-container>
             <label>Tipo de Contratación</label>
             <md-select ng-model="positionEditing.typeOfRecruitment" placeholder="Tipo de Contratación">
@@ -78,7 +78,7 @@
             <input name="resolution" ng-model="positionEditing.typeOfRecruitmentResolution">
         </md-input-container>
     </div>
-    <div layout="row"  ng-show=" !IsAView">
+    <div layout="row"  ng-show=" !readOnlyMode">
         <md-input-container flex="12">
             <datepicker date-format="dd/MM/yyyy" selector="form-control">
                 <div class="input-group">
@@ -91,17 +91,20 @@
             </datepicker>
         </md-input-container>
     </div>
-    <div layout="row"  ng-show=" !IsAView">
+    <div layout="row"  ng-show=" !readOnlyMode">
         <md-radio-group ng-model="positionEditing.isInvestigationPosition">
             <md-radio-button value=false class="md-primary">Docencia</md-radio-button>
             <md-radio-button value=true class="md-primary">Investigación</md-radio-button>
         </md-radio-group>
     </div>
-    <md-button class="md-raised md-primary"  ng-show=" !IsAView" ng-disabled="positionSaved || positionEditing.secretaryshipDepartment==null || positionEditing.career==null || positionEditing.subject==null" ng-click="addNewPosition()">{{
+    <md-button class="md-raised md-primary" ng-show=" !readOnlyMode" ng-disabled="positionSaved || positionEditing.secretaryshipDepartment==null || positionEditing.career==null || positionEditing.subject==null" ng-click="addNewPosition()">{{
         positionEditingExisting ? 'Actualizar cargo' : 'Agregar nuevo cargo'}}</md-button>
     <md-button ng-show="positionEditingExisting" class="md-raised md-primary" ng-click="cancelEdition()">Cancelar</md-button>
     <label ng-show="positionSaved">Guardado!</label>
-    <md-divider ng-show="researcherEditing.positions!=null && !IsAView""></md-divider>
+    <md-divider ng-show="researcherEditing.positions!=null && !readOnlyMode""></md-divider>
+    <div ng-show="readOnlyMode">
+        <label ng-show="(researcherEditing.positions|toArray).length == 0 ">No hay cargos cargados</label>
+    </div>
     <div ng-show="researcherEditing.positions!=null">
             <div>
                 <h4>
@@ -131,12 +134,11 @@
                         <td>{{parametrics['secretaryshipDepartment'][position.secretaryshipDepartment].careers[position.career].subjects[position.subject].name}}</td>
                         <td>{{position.highInTheInstitution}}</td>
                         <td></td>
-                        <td ng-show=" !IsAView">
+                        <td ng-show=" !readOnlyMode">
                             <md-button  class="md-raised md-primary"  ng-click="edit(position)"">Editar</md-button>
                             <md-button class="md-raised md-primary" ng-click=" deletePosition(position)">Eliminar</md-button>
                         </td>
                 </table>
-
             </div>
         </div>
 </div>

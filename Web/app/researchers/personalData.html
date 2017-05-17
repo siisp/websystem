@@ -17,9 +17,9 @@
                     </md-card-title-media>
                 </md-card-title>
                 <md-card-actions layout="row" layout-align="end center">
-                    <md-button ng-show="researcherEditing.profilePhoto == null &&  !IsAView"  ><div class="button"  ngf-select="setProfilePhoto($file)">Seleccionar foto de perfil</div>
+                    <md-button ng-show="researcherEditing.profilePhoto == null &&  !readOnlyMode"  ><div class="button" ngf-select="setProfilePhoto($file)">Seleccionar foto de perfil</div>
                     </md-button>
-                    <md-button ng-show="researcherEditing.profilePhoto != null &&  !IsAView" ng-disabled="IsAView"><div class="button"  ngf-select="setProfilePhoto($file)">Cambiar foto de perfil</div>
+                    <md-button ng-show="researcherEditing.profilePhoto != null &&  !readOnlyMode" ng-disabled="readOnlyMode"><div class="button" ngf-select="setProfilePhoto($file)">Cambiar foto de perfil</div>
                     </md-button>
                 </md-card-actions>
             </md-card>
@@ -28,21 +28,21 @@
             <div layout="row">
                 <md-input-container flex="20">
                 <label>Apellido</label>
-                <input required="" name="surname" ng-disabled="IsAView" ng-model="researcherEditing.surname">
+                <input required="" name="surname" ng-disabled="readOnlyMode" ng-model="researcherEditing.surname">
                 <div ng-messages="researcherForm.surname.$error">
                     <div ng-message="required">Campo requerido.</div>
                 </div>
             </md-input-container>
                 <md-input-container flex="20">
                     <label>Nombre</label>
-                    <input required="" name="name" ng-disabled="IsAView" ng-model="researcherEditing.name">
+                    <input required="" name="name" ng-disabled="readOnlyMode" ng-model="researcherEditing.name">
                     <div ng-messages="researcherForm.name.$error">
                         <div ng-message="required">Campo requerido.</div>
                     </div>
                 </md-input-container>
                 <md-input-container flex="12">
                     <label>Género</label>
-                    <md-select name="gender" ng-disabled="IsAView" ng-model="researcherEditing.gender" required="">
+                    <md-select name="gender" ng-disabled="readOnlyMode" ng-model="researcherEditing.gender" required="">
                         <md-option value="female">Femenino</md-option>
                         <md-option value="male">Masculino</md-option>
                     </md-select>
@@ -54,7 +54,7 @@
             <div layout="row">
                 <md-input-container flex="9">
                     <label>DNI</label>
-                    <input required="" type="number" ng-disabled="IsAView" ng-maxlength="8"  name="dni" ng-model="researcherEditing.dni" ng-change="dniValidation(researcherEditing.dni)">
+                    <input required="" type="number" ng-disabled="readOnlyMode" ng-maxlength="8" name="dni" ng-model="researcherEditing.dni" ng-change="dniValidation(researcherEditing.dni)">
                     <div>
                         <div ng-show="!isNewDni" >Ya existe.</div>
                     </div>
@@ -63,7 +63,7 @@
                     <datepicker date-format="dd/MM/yyyy" selector="form-control">
                         <div class="input-group">
                             <label>Fecha de Nacimiento</label>
-                            <input class="form-control" name="birthday" ng-disabled="IsAView" ng-model="researcherEditing.birthday"/>
+                            <input class="form-control" name="birthday" ng-disabled="readOnlyMode" ng-model="researcherEditing.birthday"/>
                             <span class="input-group-addon" style="cursor: pointer">
                                 <i class="fa fa-lg fa-calendar"></i>
                             </span>
@@ -74,7 +74,7 @@
             <div layout="row">
                 <md-input-container flex="12">
                     <label>Cuil/Cuit</label>
-                    <input required=""  ng-pattern="cuilRegExpr" ng-disabled="IsAView" placeholder="##-########-#"  name="cuilCuit" ng-model="researcherEditing.cuilCuit">
+                    <input required="" ng-pattern="cuilRegExpr" ng-disabled="readOnlyMode" placeholder="##-########-#" name="cuilCuit" ng-model="researcherEditing.cuilCuit">
                     <div ng-messages="researcherForm.cuilCuit.$error">
                         <div ng-message="required">Campo requerido.</div>
                         <div ng-message="pattern">Formato esperado: ##-########-#.</div>
@@ -82,7 +82,7 @@
                 </md-input-container>
                 <md-input-container flex="30">
                     <label>Email</label>
-                    <input type="email" class="form-control" ng-disabled="IsAView" placeholder="example@email.com" name="email" ng-model="researcherEditing.email" required>
+                    <input type="email" class="form-control" ng-disabled="readOnlyMode" placeholder="example@email.com" name="email" ng-model="researcherEditing.email" required>
                     <div ng-messages="researcherForm.email.$error">
                         <div ng-message="required">Campo requerido.</div>
                         <div ng-message="email">Mail invalido.</div>
@@ -90,7 +90,7 @@
                 </md-input-container>
             </div>
         <div>
-            <md-button ng-show=" !IsAView" class="md-raised md-primary" ng-disabled="researcherForm.$invalid || dataLoading" ng-click="save()">Guardar</md-button>
+            <md-button ng-show=" !readOnlyMode" class="md-raised md-primary" ng-disabled="researcherForm.$invalid || dataLoading" ng-click="save()">Guardar</md-button>
             <label ng-show="researcherSaved">Guardado!</label>
         </div>
     </form>

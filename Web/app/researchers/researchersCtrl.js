@@ -207,7 +207,7 @@ angular.module('Researchers')
             $scope.firstTime = true;
             loadResearchers();
             loadParametrics();
-            $scope.IsAView = false;
+            $scope.readOnlyMode = false;
         };
         var loadResearchers = function () {
             researcherService.getResearchers(refreshResearchers);
@@ -238,7 +238,7 @@ angular.module('Researchers')
     .controller('researchers.view', ['$scope', '$stateParams', 'researcherService','parametricService',
         function ($scope, $stateParams, researcherService, parametricService) {
             $scope.setup = function () {
-                $scope.IsAView = true;
+                $scope.readOnlyMode = true;
                 researcherService.getResearcher($stateParams.id, setResearchersToEdit);
                 loadParametrics();
             };

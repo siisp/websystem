@@ -1,5 +1,5 @@
 <div ng-init="setup()">
-    <div layout="row"  ng-show=" !IsAView">
+    <div layout="row"  ng-show=" !readOnlyMode">
         <md-input-container>
             <label>Universidad</label>
             <md-select ng-model="formationEditing.university" placeholder="Universidad">
@@ -25,7 +25,7 @@
             </md-select>
         </md-input-container>
     </div>
-    <div layout="row"  ng-show=" !IsAView">
+    <div layout="row"  ng-show=" !readOnlyMode">
         <md-input-container>
             <label>Gran Area de Conocimiento</label>
             <md-select ng-model="formationEditing.degreeArea"  ng-change="degreeAreaChanged()" placeholder="Gran Area de Conocimiento">
@@ -43,16 +43,17 @@
             </md-select>
         </md-input-container>
     </div>
-    <div layout="row"  ng-show=" !IsAView">
+    <div layout="row"  ng-show=" !readOnlyMode">
         <md-input-container flex="12">
-            <md-select ng-model="formationEditing.categorizationUniversity" placeholder="Universidad de Categorización">
+            <label>Universidad de Categorización</label>
+            <md-select ng-model="formationEditing.categorizationUniversity">
                 <md-option ng-repeat="categorizationUniversity in categorizationUniversities"  value="{{categorizationUniversity}}">
                     {{ categorizationUniversity }}
                 </md-option>
             </md-select>
         </md-input-container>
     </div>
-    <div layout="row"  ng-show=" !IsAView">
+    <div layout="row"  ng-show=" !readOnlyMode">
         <md-input-container flex="12">
             <md-select ng-model="formationEditing.formationCompleted" placeholder="Estado">
                 <md-option ng-repeat="studiesState in studiesStates"  value="{{studiesState.value}}">
@@ -61,7 +62,7 @@
             </md-select>
         </md-input-container>
     </div>
-    <div layout="row" ng-show=" !IsAView">
+    <div layout="row" ng-show=" !readOnlyMode">
         <md-input-container ng-show="formationEditing.formationCompleted=='false'">
             <md-select  ng-model="formationEditing.scholarshipType" placeholder="Tipo de Beca">
                 <md-option ng-repeat="scholarshipType in parametrics['scholarshipType']" value="{{ scholarshipType.id }}">
@@ -81,12 +82,15 @@
             <input name="otra" ng-model="formationEditing.otherScholarship">
         </md-input-container>
     </div>
-    <md-button class="md-raised md-primary"  ng-show=" !IsAView" ng-disabled="formationEditing.type==null || formationEditing.degreeArea==null || formationEditing.academicDegree==null ||  formationEditing.formationCompleted==null" ng-click="addNewFormation()">
+    <md-button class="md-raised md-primary" ng-show=" !readOnlyMode" ng-disabled="formationEditing.type==null || formationEditing.degreeArea==null || formationEditing.academicDegree==null ||  formationEditing.formationCompleted==null" ng-click="addNewFormation()">
         {{formationEditingExisting ? 'Actualizar Formación' : 'Agregar Nueva Formación'}}
     </md-button>
     <md-button ng-show="formationEditingExisting" class="md-raised md-primary" ng-click="cancelEdition()">Cancelar</md-button>
     <label ng-show="formationSaved">Guardado!</label>
-    <md-divider ng-show="researcherEditing.formations!=null && !IsAView"></md-divider>
+    <md-divider ng-show="researcherEditing.formations!=null && !readOnlyMode"></md-divider>
+    <div ng-show="readOnlyMode">
+    <label ng-show="(researcherEditing.formations|toArray).length == 0 ">No hay formaciones cargadas</label>
+    </div>
     <div ng-show="researcherEditing.formations!=null">
         <div>
             <h4>
@@ -114,7 +118,7 @@
                             {{parametrics['scholarshipType'][formation.scholarshipType].name}} - {{ parametrics['scholarshipName'][formation.scholarshipName].name == 'Otra' ? formation.otherScholarship : parametrics['scholarshipName'][formation.scholarshipName].name}}
                         </div>
                     </td>
-                    <td  ng-show=" !IsAView">
+                    <td  ng-show=" !readOnlyMode">
                         <md-button  class="md-raised md-primary" ng-click="edit(formation)"">Editar</md-button>
                         <md-button class="md-raised md-primary" ng-click=" deleteFormation(formation)">Eliminar</md-button>
                     </td>
