@@ -122,3 +122,11 @@ th {
     color : rgb(187, 187, 187);
     background-color: rgba(230, 230, 229, 0.96);
 }
+
+/* Pagination */
+
+.table > tbody > tr:hover {
+    background-color: #F2F2F2;
+    cursor: pointer;
+}
+

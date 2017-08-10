@@ -9,3 +9,10 @@ angular.module('Core').filter('toArray', function() {
         return result;
     };
 });
+
+angular.module('Core').filter('startFromGrid', function() {
+    return function(input, start) {
+        start = +start;
+        return input.slice(start);
+    }
+});

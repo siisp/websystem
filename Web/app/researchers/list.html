@@ -8,14 +8,14 @@
             <label ng-show="researchers===null">No hay investigadores.</label>
             </br>
         </div>
-        <table ng-show="researchers!=null" >
+        <table ng-show="researchers!=null" ng-init='configPages()' >
             <tr>
                 <th>Datos Personales</th>
                 <th>Formación</th>
                 <th>Cargos</th>
                 <th></th>
             </tr>
-            <tr ng-repeat="researcher in researchers | toArray | orderBy:'surname'">
+            <tr ng-repeat="researcher in researchers | toArray | startFromGrid: currentPage * pageSize | limitTo: pageSize" ng-click='seleccionarUsuario(usuario.id)'>
                 <td>
                     <md-list>
                         <md-list-item class="md-3-line" >
@@ -59,3 +59,10 @@
                     <md-button class="md-raised md-primary" ui-sref="researchers.view({id:researcher.id})">Ver</md-button>
                 </td>
         </table>
+        <div class='btn-group'>
+            <button type='button' class='btn btn-default' ng-disabled='currentPage == 0' ng-click='currentPage = currentPage - 1'>&laquo;</button>
+            <button type='button' class='btn btn-default' ng-disabled='currentPage == page.no - 1' ng-click='setPage(page.no)' ng-repeat='page in pages'>{{page.no}}</button>
+            <button type='button' class='btn btn-default' ng-disabled='currentPage >= (researchers|toArray).length/pageSize - 1' , ng-click='currentPage = currentPage + 1'>&raquo;</button>
+        </div>
+    </div>
+</div>

@@ -208,6 +208,9 @@ angular.module('Researchers')
             loadResearchers();
             loadParametrics();
             $scope.readOnlyMode = false;
+            $scope.currentPage = 0;
+            $scope.pageSize = 10;
+            $scope.pages = [];
         };
         var loadResearchers = function () {
             researcherService.getResearchers(refreshResearchers);
@@ -231,6 +234,41 @@ angular.module('Researchers')
             $scope.parametrics = parametrics;
             $scope.positionTypes = parametrics.positionType;
         }
+
+        //pagination
+
+        $scope.configPages = function() {
+            $scope.pages.length = 0;
+            var ini = $scope.currentPage - 4;
+            var fin = $scope.currentPage + 5;
+            if($scope.researchers != null || $scope.researchers != undefined){
+                if (ini < 1) {
+                    ini = 1;
+                    if (Math.ceil(Object.keys($scope.researchers).length / $scope.pageSize) > 10)
+                        fin = 10;
+                    else
+                        fin = Math.ceil(Object.keys($scope.researchers).length  / $scope.pageSize);
+                } else {
+                    if (ini >= Math.ceil(Object.keys($scope.researchers).length  / $scope.pageSize) - 10) {
+                        ini = Math.ceil(Object.keys($scope.researchers).length / $scope.pageSize) - 10;
+                        fin = Math.ceil(Object.keys($scope.researchers).length  / $scope.pageSize);
+                    }
+                }
+                if (ini < 1) ini = 1;
+                for (var i = ini; i <= fin; i++) {
+                    $scope.pages.push({
+                        no: i
+                    });
+                }
+
+                if ($scope.currentPage >= $scope.pages.length)
+                    $scope.currentPage = $scope.pages.length - 1;
+            }
+        };
+
+        $scope.setPage = function(index) {
+            $scope.currentPage = index - 1;
+        };
     }
 ]);
 
