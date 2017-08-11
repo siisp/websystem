@@ -8,6 +8,9 @@
             <label ng-show="researchers===null">No hay investigadores.</label>
             </br>
         </div>
+        <div>
+            <input ng-model="searchText" ng-change="search()" >
+        </div>
         <table ng-show="researchers!=null">
             <tr>
                 <th>Datos Personales</th>
@@ -15,7 +18,7 @@
                 <th>Cargos</th>
                 <th></th>
             </tr>
-            <tr ng-repeat="researcher in researchers | toArray | startFromGrid: currentPage * pageSize | limitTo: pageSize" ng-click='seleccionarUsuario(usuario.id)'>
+            <tr ng-repeat="researcher in filteredResearchers | startFromGrid: currentPage * pageSize | limitTo: pageSize" ng-click='seleccionarUsuario(usuario.id)'>
                 <td>
                     <md-list>
                         <md-list-item class="md-3-line" >

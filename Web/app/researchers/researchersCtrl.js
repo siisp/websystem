@@ -202,7 +202,7 @@ angular.module('Researchers')
     ]);
 
 angular.module('Researchers')
-    .controller('researchers.list', ['$scope', 'researcherService', 'parametricService', function($scope, researcherService, parametricService) {
+    .controller('researchers.list', ['$scope', '$filter', 'researcherService', 'parametricService', function($scope, $filter, researcherService, parametricService) {
         $scope.setup = function () {
             $scope.firstTime = true;
             loadResearchers();
@@ -211,7 +211,23 @@ angular.module('Researchers')
             $scope.currentPage = 0;
             $scope.pageSize = 10;
             $scope.pages = [];
+            $scope.filteredResearchers = [];
         };
+
+
+        $scope.search= function(){
+            var items = $filter('toArray')($scope.researchers);
+            $scope.filteredResearchers = $filter('filter')(items, $scope.searchText);
+            if(items.length != $scope.filteredResearchers.length)
+            {
+                configPages($scope.filteredResearchers );
+            }
+        }
+
+        $scope.setPage = function(index) {
+            $scope.currentPage = index - 1;
+        };
+
         var loadResearchers = function () {
             researcherService.getResearchers(refreshResearchers);
         },
@@ -220,39 +236,37 @@ angular.module('Researchers')
                $scope.researchers = null;
            }else{
                $scope.researchers = researchers;
-               $scope.configPages();
+               $scope.filteredResearchers = $filter('toArray')(researchers);
+               configPages((Object.keys($scope.researchers)));
            }
            if($scope.firstTime)
            {
                $scope.$apply();
                $scope.firstTime = false;
            }
-        }
-        var loadParametrics = function () {
+        },
+        loadParametrics = function () {
             parametricService.getParametrics(refreshParametrics);
-        }
-        var refreshParametrics = function (parametrics) {
+        },
+        refreshParametrics = function (parametrics) {
             $scope.parametrics = parametrics;
             $scope.positionTypes = parametrics.positionType;
-        }
-
-        //pagination
-
-        $scope.configPages = function() {
+        },
+        configPages = function(items) {
             $scope.pages.length = 0;
             var ini = $scope.currentPage - 4;
             var fin = $scope.currentPage + 5;
             if($scope.researchers != null || $scope.researchers != undefined){
                 if (ini < 1) {
                     ini = 1;
-                    if (Math.ceil(Object.keys($scope.researchers).length / $scope.pageSize) > 10)
+                    if (Math.ceil(items.length / $scope.pageSize) > 10)
                         fin = 10;
                     else
-                        fin = Math.ceil(Object.keys($scope.researchers).length  / $scope.pageSize);
+                        fin = Math.ceil(items.length  / $scope.pageSize);
                 } else {
-                    if (ini >= Math.ceil(Object.keys($scope.researchers).length  / $scope.pageSize) - 10) {
-                        ini = Math.ceil(Object.keys($scope.researchers).length / $scope.pageSize) - 10;
-                        fin = Math.ceil(Object.keys($scope.researchers).length  / $scope.pageSize);
+                    if (ini >= Math.ceil(items.length  / $scope.pageSize) - 10) {
+                        ini = Math.ceil(items.length / $scope.pageSize) - 10;
+                        fin = Math.ceil(items.length  / $scope.pageSize);
                     }
                 }
                 if (ini < 1) ini = 1;
@@ -265,10 +279,6 @@ angular.module('Researchers')
                 if ($scope.currentPage >= $scope.pages.length)
                     $scope.currentPage = $scope.pages.length - 1;
             }
-        };
-
-        $scope.setPage = function(index) {
-            $scope.currentPage = index - 1;
         };
     }
 ]);
