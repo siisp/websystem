@@ -220,6 +220,7 @@ angular.module('Researchers')
                $scope.researchers = null;
            }else{
                $scope.researchers = researchers;
+               $scope.configPages();
            }
            if($scope.firstTime)
            {
