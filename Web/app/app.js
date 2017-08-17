@@ -9,7 +9,7 @@ angular.module('SiispApp', ['Core', 'Login', 'Layout', 'Researchers', 'Parametri
         $stateProvider
             .state('home', {
                 url: "/",
-                templateUrl: "layout/index.html"
+                templateUrl: "researchers/index.html"
             });
     })
     .run(['$rootScope', '$state', '$stateParams', '$cookieStore', '$http',
