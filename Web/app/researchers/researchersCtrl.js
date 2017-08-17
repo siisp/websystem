@@ -176,6 +176,28 @@ angular.module('Researchers')
                 researcherService.addPosition($scope.researcherEditing, $scope.positionEditing, onPositionUpdated);
             };
 
+            $scope.permissionToSave = function (position, flag) {
+                var isDisabled=false;
+                if(flag!='3'){
+                    if(position.secretaryshipDepartment==null
+                        || position.career ==null
+                        || position.subject==null
+                        || position.positionType==null
+                        || position.idDedication ==null
+                        || position.typeOfRecruitment ==null){
+                        isDisabled = true;
+                    }
+                }
+                if(flag=='3'){
+                    if(position.positionType==null
+                        || position.idDedication ==null
+                        || position.typeOfRecruitment ==null){
+                        isDisabled = true;
+                    }
+                }
+                return isDisabled;
+            };
+
             $scope.edit = function(position)
             {
                 $scope.positionSaved = false;
