@@ -27,7 +27,9 @@
                     <td>
                         <md-list>
                             <md-list-item class="md-3-line" >
-                                <img ng-src="{{researcher.profilePhoto}}" class="md-avatar" alt="{{researcher.name}}">
+                                <img ng-show="researcher.profilePhoto!=null" ng-src="{{researcher.profilePhoto}}" class="md-avatar">
+                                <img ng-show="researcher.profilePhoto==null && researcher.gender == 'male'" ng-src="../assets/img/profile-male.png" class="md-avatar">
+                                <img ng-show="researcher.profilePhoto==null && researcher.gender == 'female'" ng-src="../assets/img/profile-female.png" class="md-avatar">
                                 <div class="md-list-item-text">
                                     <h3>{{researcher.surname}}</h3>
                                     <h4>{{researcher.name}}</h4>
