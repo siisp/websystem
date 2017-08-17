@@ -130,3 +130,20 @@ th {
     cursor: pointer;
 }
 
+
+
+.scrollable {
+    height: 300px;
+    margin: 20px auto;
+    overflow: auto;
+    padding: .5rem;
+    width: auto;
+}
+
+
+
+.buttonResearcher{
+    float:right;
+    position:absolute;
+    right:20px;
+}
