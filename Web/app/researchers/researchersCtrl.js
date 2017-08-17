@@ -227,24 +227,25 @@ angular.module('Researchers')
     .controller('researchers.list', ['$scope', '$filter', 'researcherService', 'parametricService', function($scope, $filter, researcherService, parametricService) {
         $scope.setup = function () {
             $scope.firstTime = true;
+            $scope.filteredResearchers = [];
+            $scope.pages = [];
             loadResearchers();
             loadParametrics();
             $scope.readOnlyMode = false;
             $scope.currentPage = 0;
             $scope.pageSize = 10;
-            $scope.pages = [];
-            $scope.filteredResearchers = [];
+            $scope.search();
         };
 
 
         $scope.search= function(){
-            var items = $filter('toArray')($scope.researchers);
-            $scope.filteredResearchers = $filter('filter')(items, $scope.searchText);
-            if(items.length != $scope.filteredResearchers.length)
-            {
-                configPages($scope.filteredResearchers );
-            }
-        }
+                var items = $filter('toArray')($scope.researchers);
+                $scope.filteredResearchers = $filter('filter')(items, $scope.searchText);
+                if(items.length != $scope.filteredResearchers.length)
+                {
+                    configPages($scope.filteredResearchers);
+                }
+        };
 
         $scope.setPage = function(index) {
             $scope.currentPage = index - 1;
@@ -302,6 +303,7 @@ angular.module('Researchers')
                     $scope.currentPage = $scope.pages.length - 1;
             }
         };
+        $scope.setup();
     }
 ]);
 
