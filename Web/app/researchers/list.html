@@ -9,10 +9,11 @@
             </br>
         </div>
         <div ng-show="researchers" layout="row">
-            <md-input-container class="md-icon-float md-block" flex="30">
-                <label> Buscar Investigador... </label>
-                <input  class="inputImage" ng-model="searchText" ng-change="search()" >
-            </md-input-container>
+                <md-input-container class="md-icon-float md-block" flex="30">
+                    <label> Buscar Investigador... </label>
+                    <input ng-model="searchText" ng-change="search()" >
+                </md-input-container>
+            <img src="../assets/img/LUPA-128.png" class="inputImage">
             <md-button class="buttonResearcher md-raised md-primary" ui-sref="researchers.new">Agregar nuevo</md-button>
         </div>
         <div class="scrollable">

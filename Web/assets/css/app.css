@@ -149,9 +149,8 @@ th {
 }
 
 .inputImage{
-    background-image:url(../assets/img/LUPA-128.png);
-    background-size: 30px 30px;
-    background-repeat: no-repeat;
-    background-position: right;
-    background-color:transparent;
+    width: 30px;
+    height: 30px;
+    align: left;
+    padding-top: 20px;
 }
