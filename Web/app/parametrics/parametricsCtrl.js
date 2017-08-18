@@ -170,12 +170,14 @@ angular.module('Parametrics')
     ]);
 
 angular.module('Parametrics')
-    .controller('parametrics.editInLine', ['$scope', 'parametricService',
-        function ($scope, parametricService) {
+    .controller('parametrics.editInLine', ['$scope', '$filter', 'parametricService', 'researcherService',
+        function ($scope, $filter, parametricService, researcherService) {
             $scope.setup = function ()
             {
                 $scope.parametricEditing = {id:null};
                 cleanParametricEditingForm();
+                $scope.firstTime = true;
+                loadResearchers();
             }
             $scope.saveEditing = function()
             {
@@ -191,7 +193,9 @@ angular.module('Parametrics')
                 $scope.parametricEditingForm.parametricEditing = angular.copy(parametric);
             }
             $scope.deleteParametric = function (parametric) {
+                /*
                 var pathReference = $scope.parametricTypeSelected;
+
                 if($scope.parametricTypeSelected == 'undavCareer')
                 {
                     pathReference = 'secretaryshipDepartment/'+$scope.secretaryshipDepartmentSelected+'/careers';
@@ -205,15 +209,42 @@ angular.module('Parametrics')
                     pathReference = 'degreeArea/'+$scope.degreeAreaSelected+'/careers';
                 }
 
-                parametricService.removeParametric(pathReference, parametric);
+                parametricService.removeParametric(pathReference, parametric);*/
+                console.log(verifyParametricExist(parametric));
             }
-            var onParametricEditUpdated = function()
+
+            var loadResearchers = function () {
+                    researcherService.getResearchers(refreshResearchers);
+                },
+                refreshResearchers = function(researchers){
+                    if(researchers == null || Object.keys(researchers).length==0){
+                        $scope.researchers = null;
+                    }else{
+                        $scope.researchers = researchers;
+                    }
+                    if($scope.firstTime)
+                    {
+                        $scope.$apply();
+                        $scope.firstTime = false;
+                    }
+                },
+
+                onParametricEditUpdated = function()
                 {
                     cleanParametricEditingForm();
                     $scope.$apply();
                 },
+
                 cleanParametricEditingForm = function(){
                     $scope.parametricEditingForm = {parametricEditing : {id :null}};
+                },
+
+                verifyParametricExist = function (parametric) {
+                    var items = $filter('toArray')($scope.researchers);
+                    $scope.filteredItems = $filter('filter')(items, parametric.id);
+                    console.log($scope.filteredItems);
+                    return $scope.filteredItems.length == 0;
                 }
+
             $scope.setup();
         }]);
