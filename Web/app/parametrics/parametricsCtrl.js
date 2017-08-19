@@ -149,8 +149,8 @@ angular.module('Parametrics')
                 }
             }
             var setIsNewParametric = function(parametricList){
-                for (var key in parametricList) {
-                    if(parametricList[key].name == $scope.parametricEditing.name)
+                for (var parametricItem in parametricList) {
+                    if(parametricList[parametricItem].name == $scope.parametricEditing.name)
                     {
                         $scope.isNewParametric = false;
                     }
@@ -178,6 +178,7 @@ angular.module('Parametrics')
                 cleanParametricEditingForm();
                 $scope.firstTime = true;
                 loadResearchers();
+                $scope.status= null;
             }
             $scope.saveEditing = function()
             {
@@ -196,46 +197,20 @@ angular.module('Parametrics')
             $scope.deleteParametric = function (parametric) {
                 var pathReference = $scope.parametricTypeSelected;
                 if(verifyParametricIsNotUsed(parametric)){
-                    if($scope.parametricTypeSelected == 'undavCareer')
-                    {
-                        pathReference = 'secretaryshipDepartment/'+$scope.secretaryshipDepartmentSelected+'/careers';
-                    }
-                    if($scope.parametricTypeSelected == 'subject')
-                    {
-                        pathReference = 'secretaryshipDepartment/'+$scope.secretaryshipDepartmentSelected+'/careers/'+$scope.undavCareerSelected+'/subjects';
-                    }
-                    if($scope.parametricTypeSelected == 'career')
-                    {
-                        pathReference = 'degreeArea/'+$scope.degreeAreaSelected+'/careers';
-                    }
+                    pathReference = setPathReference(pathReference);
                     parametricService.removeParametric(pathReference, parametric);
                 }else{
-                    $scope.showConfirm();
+                    showConfirm();
                     if($scope.status=='confirm'){
-                        console.log($scope.status);
+                        for(var researcher in $scope.filteredItems){
+                            deleteResearchersParametrics($scope.filteredItems[researcher], parametric);
+                        }
                     }
                     else{
-                        console.log($scope.status);
+                        console.log($scope.status+"sin aceptar");
                     }
                 }
             }
-                /*
-                var pathReference = $scope.parametricTypeSelected;
-
-                if($scope.parametricTypeSelected == 'undavCareer')
-                {
-                    pathReference = 'secretaryshipDepartment/'+$scope.secretaryshipDepartmentSelected+'/careers';
-                }
-                if($scope.parametricTypeSelected == 'subject')
-                {
-                    pathReference = 'secretaryshipDepartment/'+$scope.secretaryshipDepartmentSelected+'/careers/'+$scope.undavCareerSelected+'/subjects';
-                }
-                if($scope.parametricTypeSelected == 'career')
-                {
-                    pathReference = 'degreeArea/'+$scope.degreeAreaSelected+'/careers';
-                }
-
-                parametricService.removeParametric(pathReference, parametric);*/
 
             var loadResearchers = function () {
                     researcherService.getResearchers(refreshResearchers);
@@ -267,25 +242,58 @@ angular.module('Parametrics')
                     var items = $filter('toArray')($scope.researchers);
                     $scope.filteredItems = $filter('filter')(items, parametric.id);
                     return $scope.filteredItems.length == 0;
-                }
-
-
-            $scope.showConfirm = function(ev) {
-                // Appending dialog to document.body to cover sidenav in docs app
-                var confirm = $mdDialog.confirm()
-                    .title('Algunos investigadores tienen asociada esta paramétrica')
-                    .textContent('¿Desea quitar esta parametrica y quitarla de los investigadores?')
-                    .ariaLabel('Lucky day')
-                    .targetEvent(ev)
-                    .ok('Si')
-                    .cancel('No');
-
-                $mdDialog.show(confirm).then(function() {
-                    $scope.status = 'confirm';
-                }, function() {
-                    $scope.status = 'cancel';
-                });
-            };
+                },
+                
+                showConfirm = function(ev) {
+                    // Appending dialog to document.body to cover sidenav in docs app
+                    var confirm = $mdDialog.confirm()
+                        .title('Algunos investigadores tienen asociada esta paramétrica')
+                        .textContent('¿Desea quitar esta parametrica y quitarla de los investigadores?')
+                        .targetEvent(ev)
+                        .ok('Confirmar')
+                        .cancel('Cancelar');
+    
+                    $mdDialog.show(confirm).then(function() {
+                        $scope.status = 'confirm';
+                    }, function() {
+                        $scope.status = 'cancel';
+                    });
+                },
+                
+                deleteResearchersParametrics = function (researcher, parametric) {
+                    var path = '/';
+                    if($scope.parametricTypes[$scope.parametricTypeSelected].page=='formation'){
+                        for (var formation in researcher.formations) {
+                            if(researcher.formations[formation][$scope.parametricTypes[$scope.parametricTypeSelected].type] == parametric.id){
+                                path = 'formations/'+ formation+ '/'+$scope.parametricTypes[$scope.parametricTypeSelected].type ;
+                                    researcherService.removeParametric(researcher, parametric, path);
+                                }
+                            }
+                    }
+                    if($scope.parametricTypes[$scope.parametricTypeSelected].page=='position'){
+                        for (var position in researcher.positions) {
+                            if(researcher.positions[position][$scope.parametricTypes[$scope.parametricTypeSelected].type] == parametric.id){
+                                path = 'positions/'+ position+ '/'+$scope.parametricTypes[$scope.parametricTypeSelected].type;
+                                researcherService.removeParametric(researcher, parametric, path);
+                            }
+                        }
+                    }
+                },
+                setPathReference = function (pathReference) {
+                    if($scope.parametricTypeSelected == 'undavCareer')
+                    {
+                        pathReference = 'secretaryshipDepartment/'+$scope.secretaryshipDepartmentSelected+'/careers';
+                    }
+                    if($scope.parametricTypeSelected == 'subject')
+                    {
+                        pathReference = 'secretaryshipDepartment/'+$scope.secretaryshipDepartmentSelected+'/careers/'+$scope.undavCareerSelected+'/subjects';
+                    }
+                    if($scope.parametricTypeSelected == 'career')
+                    {
+                        pathReference = 'degreeArea/'+$scope.degreeAreaSelected+'/careers';
+                    }
+                    return  pathReference;
+                };
 
 
             $scope.setup();
