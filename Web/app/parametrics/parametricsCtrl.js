@@ -204,6 +204,7 @@ angular.module('Parametrics')
                     if($scope.status=='confirm'){
                         for(var researcher in $scope.filteredItems){
                             deleteResearchersParametrics($scope.filteredItems[researcher], parametric);
+                            console.log($scope.status+"sin aceptar");
                         }
                     }
                     else{
@@ -245,7 +246,6 @@ angular.module('Parametrics')
                 },
                 
                 showConfirm = function(ev) {
-                    // Appending dialog to document.body to cover sidenav in docs app
                     var confirm = $mdDialog.confirm()
                         .title('Algunos investigadores tienen asociada esta paramétrica')
                         .textContent('¿Desea quitar esta parametrica y quitarla de los investigadores?')
@@ -272,9 +272,16 @@ angular.module('Parametrics')
                     }
                     if($scope.parametricTypes[$scope.parametricTypeSelected].page=='position'){
                         for (var position in researcher.positions) {
-                            if(researcher.positions[position][$scope.parametricTypes[$scope.parametricTypeSelected].type] == parametric.id){
+                            if($scope.parametricTypeSelected == 'undavCareer'){
+                                path = 'positions/'+ position +'/career';
+                                if(researcher.positions[position][$scope.parametricTypes['career'].type] == parametric.id){
+                                    researcherService.removeParametric(researcher, parametric, path);
+                                }
+                            }else{
                                 path = 'positions/'+ position+ '/'+$scope.parametricTypes[$scope.parametricTypeSelected].type;
-                                researcherService.removeParametric(researcher, parametric, path);
+                                if(researcher.positions[position][$scope.parametricTypes[$scope.parametricTypeSelected].type] == parametric.id){
+                                    researcherService.removeParametric(researcher, parametric, path);
+                                }
                             }
                         }
                     }
