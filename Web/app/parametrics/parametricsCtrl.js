@@ -195,21 +195,13 @@ angular.module('Parametrics')
             }
 
             $scope.deleteParametric = function (parametric) {
-                var pathReference = $scope.parametricTypeSelected;
-                if(verifyParametricIsNotUsed(parametric)){
-                    pathReference = setPathReference(pathReference);
+                var pathReference = getPathReferenceFor($scope.parametricTypeSelected);
+                var researchersWithParametric = getResearchersWithParametric(parametric);
+                if(researchersWithParametric.length == 0){
                     parametricService.removeParametric(pathReference, parametric);
                 }else{
-                    showConfirm();
-                    if($scope.status=='confirm'){
-                        for(var researcher in $scope.filteredItems){
-                            deleteResearchersParametrics($scope.filteredItems[researcher], parametric);
-                            console.log($scope.status+"sin aceptar");
-                        }
-                    }
-                    else{
-                        console.log($scope.status+"sin aceptar");
-                    }
+                    console.log('hay researchers')
+                    showConfirm(parametric, pathReference, researchersWithParametric);
                 }
             }
 
@@ -238,29 +230,28 @@ angular.module('Parametrics')
                 cleanParametricEditingForm = function(){
                     $scope.parametricEditingForm = {parametricEditing : {id :null}};
                 },
-
-                verifyParametricIsNotUsed = function (parametric) {
+                getResearchersWithParametric = function (parametric) {
                     var items = $filter('toArray')($scope.researchers);
-                    $scope.filteredItems = $filter('filter')(items, parametric.id);
-                    return $scope.filteredItems.length == 0;
+                    var filteredItems = $filter('filter')(items, parametric.id);
+                    return filteredItems;
                 },
-                
-                showConfirm = function(ev) {
+                showConfirm = function(parametric, pathReference, reserchersWithParametric) {
                     var confirm = $mdDialog.confirm()
                         .title('Algunos investigadores tienen asociada esta paramétrica')
-                        .textContent('¿Desea quitar esta parametrica y quitarla de los investigadores?')
-                        .targetEvent(ev)
-                        .ok('Confirmar')
-                        .cancel('Cancelar');
+                        .textContent('¿Desea quitarla de los investigadores y eliminar esta paramétrica?')
+                        .ok('Si')
+                        .cancel('No');
     
                     $mdDialog.show(confirm).then(function() {
-                        $scope.status = 'confirm';
+                        for(var researcher in reserchersWithParametric){
+                            deleteParametricInResearcher(parametric, reserchersWithParametric[researcher]);
+                        }
+                        parametricService.removeParametric(pathReference, parametric);
                     }, function() {
-                        $scope.status = 'cancel';
                     });
                 },
-                
-                deleteResearchersParametrics = function (researcher, parametric) {
+
+                deleteParametricInResearcher = function (parametric, researcher) {
                     var path = '/';
                     if($scope.parametricTypes[$scope.parametricTypeSelected].page=='formation'){
                         for (var formation in researcher.formations) {
@@ -286,20 +277,21 @@ angular.module('Parametrics')
                         }
                     }
                 },
-                setPathReference = function (pathReference) {
-                    if($scope.parametricTypeSelected == 'undavCareer')
+                getPathReferenceFor = function (parametricTypeSelected) {
+                    if(parametricTypeSelected == 'undavCareer')
                     {
-                        pathReference = 'secretaryshipDepartment/'+$scope.secretaryshipDepartmentSelected+'/careers';
+                        return 'secretaryshipDepartment/'+$scope.secretaryshipDepartmentSelected+'/careers';
                     }
-                    if($scope.parametricTypeSelected == 'subject')
+                    if(parametricTypeSelected == 'subject')
                     {
-                        pathReference = 'secretaryshipDepartment/'+$scope.secretaryshipDepartmentSelected+'/careers/'+$scope.undavCareerSelected+'/subjects';
+                        return 'secretaryshipDepartment/'+$scope.secretaryshipDepartmentSelected+'/careers/'+$scope.undavCareerSelected+'/subjects';
                     }
-                    if($scope.parametricTypeSelected == 'career')
+                    if(parametricTypeSelected == 'career')
                     {
-                        pathReference = 'degreeArea/'+$scope.degreeAreaSelected+'/careers';
+                        return 'degreeArea/'+$scope.degreeAreaSelected+'/careers';
                     }
-                    return  pathReference;
+
+                    return  parametricTypeSelected;
                 };
 
 
