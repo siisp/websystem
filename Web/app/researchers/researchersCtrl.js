@@ -34,6 +34,12 @@ angular.module('Researchers')
                 $scope.positionEditing.subject = null;
             }
 
+            $scope.addNewResearcher = function () {
+                $scope.researcherSaved=false;
+                $stateParams.id = undefined;
+                $scope.setup();
+            };
+
             var onResearcherSaved = function () {
                 $scope.researcherSaved = true;
                 if(isAddingANewResearcher())
@@ -92,14 +98,15 @@ angular.module('Researchers')
                         $scope.isNewDni = false;
                     }
                 }
-            }
+            };
             $scope.setProfilePhoto = function (file) {
                 if (file) {
                     $scope.uploadProfilePhotoIndicator.completed = false;
                     researcherService.setProfilePhoto($scope.researcherEditing, file, $scope.uploadProfilePhotoIndicator,
                         onProfilePhotoUpdated, onUploadingProfilePhotoError);
                 }
-            }
+            };
+
             var onProfilePhotoUpdated = function () {
                     $scope.uploadProfilePhotoIndicator = {percentageCompleted: 0, completed: true};
                     $scope.$apply();
