@@ -59,16 +59,9 @@
                         <div ng-show="!isNewDni" >Ya existe.</div>
                     </div>
                 </md-input-container>
-                <md-input-container flex="12">
-                    <datepicker date-format="dd/MM/yyyy" selector="form-control">
-                        <div class="input-group">
-                            <label>Fecha de Nacimiento</label>
-                            <input class="form-control" name="birthday" ng-disabled="readOnlyMode" ng-model="researcherEditing.birthday"/>
-                            <span class="input-group-addon" style="cursor: pointer">
-                                <i class="fa fa-lg fa-calendar"></i>
-                            </span>
-                        </div>
-                    </datepicker>
+                <md-input-container flex="20">
+                    <label>Fecha de Nacimiento</label>
+                    <input type="date" ng-model="researcherEditing.birthday" ng-disabled="readOnlyMode">
                 </md-input-container>
             </div>
             <div layout="row">

@@ -19,6 +19,11 @@ angular.module('Researchers')
                 loadParametrics();
             }
             $scope.save = function () {
+                console.log($scope.researcherEditing.birthdayy);
+                if (typeof $scope.birthday !== 'string') {
+                    $scope.researcherEditing.birthday = $scope.researcherEditing.birthday.toJSON();
+                }
+                console.log($scope.researcherEditing.birthday);
                 $scope.researcherSaved = false;
                 researcherService.save($scope.researcherEditing, onResearcherSaved);
             }
@@ -54,6 +59,9 @@ angular.module('Researchers')
             }
             var setResearchersToEdit = function (researcher) {
                 $scope.researcherEditing = researcher;
+                if (typeof $scope.researcherEditing.birthday === 'string') {
+                    $scope.researcherEditing.birthday = new Date($scope.researcherEditing.birthday);
+                }
             }
 
             var loadParametrics = function () {
@@ -167,19 +175,25 @@ angular.module('Researchers')
                 $scope.positionEditing = {id: null};
                 $scope.positionSaved = false;
                 $scope.licenses = [{name:'Si', value:true},{name:'No', value:false}];
-                $scope.positionEditingExisting = false;
+                $scope.positionEditingExisting = false
+                prepareDatePositionsToShow();
             }
             $scope.cancelEdition = function () {
                 $scope.positionEditingExisting = false;
                 $scope.positionEditing = {id: null};
             };
             $scope.addNewPosition = function () {
+                if (typeof $scope.positionEditing.highInTheInstitution !== 'string') {
+                    $scope.positionEditing.highInTheInstitution = $scope.positionEditing.highInTheInstitution.toJSON();
+                }
+                if (typeof $scope.positionEditing.terminationDate !== 'string') {
+                    $scope.positionEditing.terminationDate = $scope.positionEditing.terminationDate.toJSON();
+                }
                 if($scope.positionEditing.license == 'false')
                 {
                     $scope.positionEditing.licenseDate = null;
                     $scope.positionEditing.resolution = null;
                 }
-
                 researcherService.addPosition($scope.researcherEditing, $scope.positionEditing, onPositionUpdated);
             };
 
@@ -210,6 +224,12 @@ angular.module('Researchers')
                 $scope.positionSaved = false;
                 $scope.positionEditing = angular.copy(position);
                 $scope.positionEditingExisting = true;
+                if (typeof $scope.positionEditing.highInTheInstitution === 'string') {
+                    $scope.positionEditing.highInTheInstitution = new Date($scope.positionEditing.highInTheInstitution);
+                }
+                if (typeof $scope.positionEditing.terminationDate === 'string') {
+                    $scope.positionEditing.terminationDate = new Date($scope.positionEditing.terminationDate);
+                }
             }
             
             $scope.deletePosition = function (position) {
@@ -219,6 +239,7 @@ angular.module('Researchers')
                     $scope.positionSaved = true;
                     $scope.positionEditingExisting = false;
                     $scope.positionEditing = {id: null};
+                    prepareDatePositionsToShow();
                     $scope.$apply();
                 },
                 refreshEducationParametrics = function(parametrics)
@@ -226,7 +247,18 @@ angular.module('Researchers')
                     $scope.positionTypes = parametrics.positionType;
                     $scope.modalities = parametrics.modality;
                     $scope.idDedications = parametrics.idDedication;
+                },
+                prepareDatePositionsToShow = function () {
+                    for(var position in $scope.researcherEditing.positions){
+                        if (typeof $scope.researcherEditing.positions[position].highInTheInstitution === 'string') {
+                            $scope.researcherEditing.positions[position].highInTheInstitution = new Date($scope.researcherEditing.positions[position].highInTheInstitution);
+                        }
+                        if (typeof $scope.researcherEditing.positions[position].terminationDate === 'string') {
+                            $scope.researcherEditing.positions[position].terminationDate = new Date($scope.researcherEditing.positions[position].terminationDate);
+                        }
+                    }
                 }
+            $scope.setup();
         }
     ]);
 
@@ -324,6 +356,9 @@ angular.module('Researchers')
             };
             var setResearchersToEdit = function (researcher) {
                 $scope.researcherEditing = researcher;
+                if (typeof $scope.researcherEditing.birthday === 'string') {
+                    $scope.researcherEditing.birthday = new Date($scope.researcherEditing.birthday);
+                }
             };
             var loadParametrics = function () {
                 parametricService.getParametrics(refreshParametrics);

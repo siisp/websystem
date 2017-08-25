@@ -154,3 +154,7 @@ th {
     align: left;
     padding-top: 20px;
 }
+
+.inputMaterial{
+    color:grey !important;
+}

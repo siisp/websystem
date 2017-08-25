@@ -79,27 +79,13 @@
         </md-input-container>
     </div>
     <div layout="row"  ng-show=" !readOnlyMode">
-        <md-input-container flex="12">
-            <datepicker date-format="dd/MM/yyyy" selector="form-control">
-                <div class="input-group">
-                    <label>Alta en la Institución</label>
-                    <input class="form-control" name="highInTheInstitution" ng-model="positionEditing.highInTheInstitution"/>
-                    <span class="input-group-addon" style="cursor: pointer">
-                        <i class="fa fa-lg fa-calendar"></i>
-                    </span>
-                </div>
-            </datepicker>
+        <md-input-container flex="20">
+            <label>Alta en la Institución</label>
+            <input type="date" ng-model="positionEditing.highInTheInstitution">
         </md-input-container>
-        <md-input-container flex="12">
-            <datepicker date-format="dd/MM/yyyy" selector="form-control">
-                <div class="input-group">
-                    <label>Baja en la Institución</label>
-                    <input class="form-control" name="terminationDate" ng-model="positionEditing.terminationDate"/>
-                    <span class="input-group-addon" style="cursor: pointer">
-                        <i class="fa fa-lg fa-calendar"></i>
-                    </span>
-                </div>
-            </datepicker>
+        <md-input-container flex="20">
+            <label>Baja en la Institución</label>
+            <input type="date" ng-model="positionEditing.terminationDate">
         </md-input-container>
     </div>
     <div layout="row"  ng-show=" !readOnlyMode">
@@ -145,8 +131,8 @@
                         <td>{{parametrics['secretaryshipDepartment'][position.secretaryshipDepartment].name}}</td>
                         <td>{{parametrics['secretaryshipDepartment'][position.secretaryshipDepartment].careers[position.career].name}}</td>
                         <td>{{parametrics['secretaryshipDepartment'][position.secretaryshipDepartment].careers[position.career].subjects[position.subject].name}}</td>
-                        <td>{{position.highInTheInstitution}}</td>
-                        <td>{{position.terminationDate}}</td>
+                        <td>{{position.highInTheInstitution.getDate()+'/'+(position.highInTheInstitution.getMonth()+1)+'/'+position.highInTheInstitution.getFullYear()}}</td>
+                        <td>{{position.terminationDate.getDate()+'/'+(position.terminationDate.getMonth()+1)+'/'+position.terminationDate.getFullYear()}}</td>
                         <td></td>
                         <td ng-show=" !readOnlyMode">
                             <md-button  class="md-raised md-primary"  ng-click="edit(position)"">Editar</md-button>
