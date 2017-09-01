@@ -131,8 +131,10 @@
                         <td>{{parametrics['secretaryshipDepartment'][position.secretaryshipDepartment].name}}</td>
                         <td>{{parametrics['secretaryshipDepartment'][position.secretaryshipDepartment].careers[position.career].name}}</td>
                         <td>{{parametrics['secretaryshipDepartment'][position.secretaryshipDepartment].careers[position.career].subjects[position.subject].name}}</td>
-                        <td>{{position.highInTheInstitution.getDate()+'/'+(position.highInTheInstitution.getMonth()+1)+'/'+position.highInTheInstitution.getFullYear()}}</td>
-                        <td>{{position.terminationDate.getDate()+'/'+(position.terminationDate.getMonth()+1)+'/'+position.terminationDate.getFullYear()}}</td>
+                        <td ng-if="position.highInTheInstitution">{{position.highInTheInstitution.getDate()+'/'+(position.highInTheInstitution.getMonth()+1)+'/'+position.highInTheInstitution.getFullYear()}}</td>
+                        <td ng-if="position.terminationDate">{{position.terminationDate.getDate()+'/'+(position.terminationDate.getMonth()+1)+'/'+position.terminationDate.getFullYear()}}</td>
+                        <td ng-if="!position.highInTheInstitution"></td>
+                        <td ng-if="!position.terminationDate"></td>
                         <td></td>
                         <td ng-show=" !readOnlyMode">
                             <md-button  class="md-raised md-primary"  ng-click="edit(position)"">Editar</md-button>
