@@ -15,6 +15,7 @@ angular.module('Convocatories')
             $scope.setup = function()
             {
                 $scope.convocatories = {};
+                $scope.convocatoryEditing = {};
             }
         }
     ]);

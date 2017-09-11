@@ -2,9 +2,16 @@
     <form name="convocatoryForm">
         <div layout="row">
             <md-input-container flex="20">
-                <label>Apellido</label>
-                <input required="" name="surname" ng-disabled="readOnlyMode" ng-model="researcherEditing.surname">
-                <div ng-messages="researcherForm.surname.$error">
+                <label>Tipo de Convocatoria</label>
+                <input required="" name="type" ng-disabled="readOnlyMode" ng-model="convocatoryEditing.type">
+                <div ng-messages="researcherForm.type.$error">
+                    <div ng-message="required">Campo requerido.</div>
+                </div>
+            </md-input-container>
+            <md-input-container flex="20">
+                <label>Año de Convocatoria</label>
+                <input required="" name="year" ng-disabled="readOnlyMode" ng-model="convocatoryEditing.year">
+                <div ng-messages="researcherForm.year.$error">
                     <div ng-message="required">Campo requerido.</div>
                 </div>
             </md-input-container>
@@ -12,9 +19,6 @@
         <div>
             <md-button ng-show=" !readOnlyMode" class="md-raised md-primary" ng-disabled="researcherForm.$invalid || dataLoading || researcherSaved " ng-click="save()">Guardar</md-button>
             <label ng-show="researcherSaved">Guardado!</label>
-        </div>
-        <div>
-            <md-button ng-show="convocatorySaved" ng-click="addNewResearcher()">Agregar Otro</md-button>
         </div>
     </form>
 </div>
