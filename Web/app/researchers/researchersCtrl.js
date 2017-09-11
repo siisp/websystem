@@ -183,11 +183,15 @@ angular.module('Researchers')
                 $scope.positionEditing = {id: null};
             };
             $scope.addNewPosition = function () {
-                if (typeof $scope.positionEditing.highInTheInstitution !== 'string') {
-                    $scope.positionEditing.highInTheInstitution = $scope.positionEditing.highInTheInstitution.toJSON();
+                if($scope.positionEditing.highInTheInstitution!= undefined) {
+                    if (typeof $scope.positionEditing.highInTheInstitution !== 'string') {
+                        $scope.positionEditing.highInTheInstitution = $scope.positionEditing.highInTheInstitution.toJSON();
+                    }
                 }
-                if (typeof $scope.positionEditing.terminationDate !== 'string') {
-                    $scope.positionEditing.terminationDate = $scope.positionEditing.terminationDate.toJSON();
+                if($scope.positionEditing.terminationDate!= undefined) {
+                    if (typeof $scope.positionEditing.terminationDate !== 'string') {
+                        $scope.positionEditing.terminationDate = $scope.positionEditing.terminationDate.toJSON();
+                    }
                 }
                 if($scope.positionEditing.license == 'false')
                 {
@@ -206,6 +210,7 @@ angular.module('Researchers')
                         || position.positionType==null
                         || position.idDedication ==null
                         || position.typeOfRecruitment ==null){
+                        $scope.positionSaved = false;
                         isDisabled = true;
                     }
                 }
@@ -214,6 +219,7 @@ angular.module('Researchers')
                         || position.idDedication ==null
                         || position.typeOfRecruitment ==null){
                         isDisabled = true;
+                        $scope.positionSaved = false;
                     }
                 }
                 return isDisabled;
