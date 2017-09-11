@@ -1,0 +1,15 @@
+<div ng-controller="convocatories.list" ng-init="setup()">
+    <div class="scrollable">
+        <div layout="row" ng-show="convocatories === undefined" layout-sm="column" layout-align="left">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+            </br>
+        </div>
+        <div>
+            <label ng-show="convocatories===null">No hay Convocatorias.</label>
+            </br>
+        </div>
+        <div layout="row">
+            <md-button class="buttonResearcher md-raised md-primary" ui-sref="convocatories.new">Agregar nuevo</md-button>
+        </div>
+    </div>
+</div>
