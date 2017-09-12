@@ -1,15 +1,41 @@
-<div ng-controller="convocatories.list" ng-init="setup()">
-    <div class="scrollable">
+<div ng-init="setup()">
+    <div>
         <div layout="row" ng-show="convocatories === undefined" layout-sm="column" layout-align="left">
             <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-            </br>
         </div>
         <div>
             <label ng-show="convocatories===null">No hay Convocatorias.</label>
-            </br>
         </div>
         <div layout="row">
-            <md-button class="buttonResearcher md-raised md-primary" ui-sref="convocatories.new">Agregar nuevo</md-button>
+            <md-button class="md-raised md-primary" ui-sref="convocatories.new">Agregar nuevo</md-button>
+        </div>
+
+        <div class="scrollable">
+            <table ng-show="convocatories!=null">
+                <tr>
+                    <th>Tipo de Convocatoria</th>
+                    <th>Fecha de Inicio</th>
+                    <th>Fecha de Cierre</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="convocatory in convocatories">
+                    <td>
+                       {{convocatory.type}}
+                    </td>
+                    <td ng-if="convocatory.startDate">
+                        {{convocatory.startDate.getDate()+'/'+(convocatory.startDate.getMonth()+1)+'/'+convocatory.startDate.getFullYear()}}
+                    </td>
+                    <td ng-if="convocatory.endDate">
+                        {{convocatory.endDate.getDate()+'/'+(convocatory.endDate.getMonth()+1)+'/'+convocatory.endDate.getFullYear()}}
+                    </td>
+                    <td ng-if="!convocatory.startDate"></td>
+                    <td ng-if="!convocatory.endDate"></td>
+                    <td>
+                        <md-button class="md-raised md-primary">Editar</md-button>
+                        <md-button class="md-raised md-primary">Ver</md-button>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>

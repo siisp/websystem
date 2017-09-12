@@ -148,6 +148,10 @@ th {
     right:20px;
 }
 
+.buttonConvocatory{
+    position:absolute;
+    right:40px;}
+
 .inputImage{
     width: 30px;
     height: 30px;

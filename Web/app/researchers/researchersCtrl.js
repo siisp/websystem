@@ -19,11 +19,9 @@ angular.module('Researchers')
                 loadParametrics();
             }
             $scope.save = function () {
-                console.log($scope.researcherEditing.birthdayy);
                 if (typeof $scope.birthday !== 'string') {
                     $scope.researcherEditing.birthday = $scope.researcherEditing.birthday.toJSON();
                 }
-                console.log($scope.researcherEditing.birthday);
                 $scope.researcherSaved = false;
                 researcherService.save($scope.researcherEditing, onResearcherSaved);
             }
