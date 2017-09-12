@@ -31,8 +31,7 @@
                     <td ng-if="!convocatory.startDate"></td>
                     <td ng-if="!convocatory.endDate"></td>
                     <td>
-                        <md-button class="md-raised md-primary">Editar</md-button>
-                        <md-button class="md-raised md-primary">Ver</md-button>
+                        <md-button class="md-raised md-primary" ui-sref="convocatories.edit({id:convocatory.id})">Editar</md-button>
                     </td>
                 </tr>
             </table>

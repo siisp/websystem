@@ -18,4 +18,9 @@ angular.module('Convocatories', ['Core'])
                 templateUrl: "convocatories/edit.html",
                 controller: 'convocatories.new'
             })
+            .state('convocatories.edit', {
+                url: "/edit/{id}",
+                templateUrl: "convocatories/edit.html",
+                controller: 'convocatories.new'
+            })
     });

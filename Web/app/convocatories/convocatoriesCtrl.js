@@ -40,18 +40,21 @@ angular.module('Convocatories')
     ]);
 
 angular.module('Convocatories')
-    .controller('convocatories.new', ['$scope', 'convocatoryService',
-        function ($scope, convocatoryService) {
-            $scope.setup = function()
-            {
-                $scope.convocatoryEditing = {
-                    id: null,
-                    startDate : null,
-                    endDate: null,
-                    type: null
-                };
+    .controller('convocatories.new', ['$scope', 'convocatoryService','$stateParams',
+        function ($scope, convocatoryService, $stateParams) {
+            $scope.setup = function() {
+                if (isAddingANewConvocatory()) {
+                    $scope.convocatoryEditing = {
+                        id: null,
+                        startDate : null,
+                        endDate: null,
+                        type: null
+                    };
+                }else{
+                    convocatoryService.getConvocatory($stateParams.id, setConcocatoriesToEdit);
+                }
                 $scope.convocatorySaved = false;
-            }
+            };
 
 
             $scope.save = function () {
@@ -67,12 +70,25 @@ angular.module('Convocatories')
                 }
                 $scope.convocatorySaved = false;
                 convocatoryService.save($scope.convocatoryEditing, onConvocatorySaved);
-            }
+            };
 
             var onConvocatorySaved = function () {
                 $scope.convocatorySaved = true;
                 $scope.$apply();
-            }
+            },
+                isAddingANewConvocatory=function () {
+                    return $stateParams.id == undefined;
+            },
+                setConcocatoriesToEdit = function (convocatory) {
+                    $scope.convocatoryEditing = convocatory;
+                    if (typeof $scope.convocatoryEditing.startDate === 'string') {
+                        $scope.convocatoryEditing.startDate = new Date($scope.convocatoryEditing.startDate);
+                    }
+                    if (typeof $scope.convocatoryEditing.endDate === 'string') {
+                        $scope.convocatoryEditing.endDate = new Date($scope.convocatoryEditing.endDate);
+                    }
+                };
+
             $scope.setup();
         }
     ]);
