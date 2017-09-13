@@ -6,6 +6,10 @@
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
     </div>
     <div>
+        <md-divider ng-if="convocatorySelected"></md-divider>
+        <div ng-show="convocatorySelected != null">
+            <h4>Proyectos disponibles</h4>
+        </div>
         <label ng-show="(projects | toArray).length == 0">No hay Proyectos.</label>
     </div>
 </div>

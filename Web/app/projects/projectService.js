@@ -8,10 +8,10 @@ angular.module('Projects').factory('projectService', ['dataService',
                 dataService.saveObject(referenceName, project, onProjectUpdated);
             },
             getProject: function (convocatory ,id, callback) {
-                dataService.getData('convocatories/'+convocatory.id+'/projects/' + id, callback);
+                dataService.getData('convocatories/'+convocatory+'/projects/' + id, callback);
             },
             getProjects: function(convocatory, callback){
-                dataService.getData('convocatories/'+convocatory.id+'/projects', callback);
+                dataService.getData('convocatories/'+convocatory+'/projects', callback);
             }
         };
     }
