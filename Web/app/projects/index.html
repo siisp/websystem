@@ -1,3 +1,10 @@
-<div ng-controller="projects.index" >
-    Home
+<div>
+    <h3>Proyectos</h3>
+    <div>
+        <div ng-cloak>
+            <md-content>
+                <div ng-include src="'projects/list.html'" ng-controller="projects.list"></div>
+            </md-content>
+        </div>
+    </div>
 </div>
