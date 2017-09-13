@@ -11,4 +11,14 @@ angular.module('Projects', ['Core', 'Convocatories'])
                 templateUrl: "projects/index.html",
                 controller: "projects.index"
             })
+            .state('projects.new', {
+                url: "/new",
+                templateUrl: "projects/edit.html",
+                controller: 'projects.new'
+            })
+            .state('projects.edit', {
+                url: "/edit/{id}",
+                templateUrl: "projects/edit.html",
+                controller: 'projects.new'
+            })
     });

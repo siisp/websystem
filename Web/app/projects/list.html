@@ -1,3 +1,11 @@
 <div>
-
+    <div layout="row">
+        <md-button class="md-raised md-primary" ui-sref="projects.new">Agregar nuevo</md-button>
+    </div>
+    <div layout="row" ng-show="projects === undefined" layout-sm="column" layout-align="left">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <div>
+        <label ng-show="(projects | toArray).length == 0">No hay Proyectos.</label>
+    </div>
 </div>
