@@ -1,4 +1,4 @@
-angular.module('Projects', ['Core'])
+angular.module('Projects', ['Core', 'Convocatories'])
     .config(function($stateProvider) {
         $stateProvider
             .state('projects', {

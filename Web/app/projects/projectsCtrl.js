@@ -1,11 +1,21 @@
 'use strict';
 
 angular.module('Projects')
-    .controller('projects.index', ['$scope',
-        function ($scope) {
+    .controller('projects.index', ['$scope', 'convocatoryService',
+        function ($scope, convocatoryService) {
             $scope.setup = function()
             {
-            }
+                loadConvocatories();
+            };
+
+            var loadConvocatories = function () {
+                    convocatoryService.getConvocatories(refreshConvocatories);
+                },
+                refreshConvocatories = function (convocatories) {
+                    $scope.convocatories = convocatories;
+                    $scope.$apply();
+                };
+            $scope.setup();
         }
     ]);
 
