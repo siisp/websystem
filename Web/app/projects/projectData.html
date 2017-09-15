@@ -1,3 +1,21 @@
 <div>
+    <form name="projectForm">
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Datos">
+                <md-content class="md-padding">
+                    <div ng-include src="'projects/data.html'"></div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Productos">
+                <md-content class="md-padding">
+                    <div ng-include src="'projects/projectsProducts.html'"></div>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+        <div>
+            <md-button ng-show=" !readOnlyMode" class="md-raised md-primary" ng-disabled="projectForm.$invalid || dataLoading || projectSaved " ng-click="save()">Guardar</md-button>
+            <label ng-show="projectSaved">Guardado!</label>
+        </div>
+    </form>
 
 </div>

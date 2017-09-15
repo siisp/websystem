@@ -11,7 +11,7 @@ angular.module('Projects')
             $scope.changeConvocatoriesToEdit = function()
             {
                 setProjectsToListAndEdit();
-            }
+            };
 
             var loadConvocatories = function () {
                     convocatoryService.getConvocatories(refreshConvocatories);
@@ -46,10 +46,28 @@ angular.module('Projects')
     ]);
 
 angular.module('Projects')
-    .controller('projects.new', ['$scope',
-        function ($scope) {
+    .controller('projects.new', ['$scope','convocatoryService','parametricService',
+        function ($scope, convocatoryService, parametricService) {
             $scope.setup = function()
             {
-            }
+                loadConvocatories();
+                loadParametrics();
+                $scope.binarySeletions = [{name:'Si', value:true},{name:'No', value:false}];
+                $scope.reports = ['Aprobado', 'En Observación', 'Desaprobado'];
+            };
+            var loadConvocatories = function () {
+                    convocatoryService.getConvocatories(refreshConvocatories);
+                },
+                refreshConvocatories = function (convocatories) {
+                    $scope.convocatories = convocatories;
+                    $scope.$apply();
+                },
+                loadParametrics = function () {
+                parametricService.getParametrics(refreshParametrics);
+                }, 
+                refreshParametrics = function (parametrics) {
+                $scope.parametrics = parametrics;
+                };
+            $scope.setup();
         }
     ]);
