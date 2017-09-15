@@ -7,7 +7,7 @@ angular.module('Projects').factory('projectService', ['dataService',
                 var referenceName = 'convocatories/' + convocatory + '/projects';
                 dataService.saveObject(referenceName, project, onProjectUpdated);
             },
-            getProject: function (convocatory ,id, callback) {
+            getProject: function (convocatory,id, callback) {
                 dataService.getData('convocatories/'+convocatory+'/projects/' + id, callback);
             },
             getProjects: function(convocatory, callback){

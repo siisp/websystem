@@ -12,7 +12,7 @@ angular.module('Projects', ['Core', 'Convocatories'])
                 controller: "projects.index"
             })
             .state('projects.new', {
-                url: "/new",
+                url: "/new/{idConvocatory}",
                 templateUrl: "projects/edit.html",
                 controller: 'projects.new'
             })

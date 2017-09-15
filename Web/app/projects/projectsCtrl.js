@@ -6,6 +6,7 @@ angular.module('Projects')
             $scope.setup = function()
             {
                 loadConvocatories();
+                $scope.convocatorySelected = null;
             };
 
             $scope.changeConvocatoriesToEdit = function()
@@ -46,14 +47,27 @@ angular.module('Projects')
     ]);
 
 angular.module('Projects')
-    .controller('projects.new', ['$scope','convocatoryService','parametricService',
-        function ($scope, convocatoryService, parametricService) {
+    .controller('projects.new', ['$scope','convocatoryService','parametricService','projectService','$stateParams',
+        function ($scope, convocatoryService, parametricService,projectService, $stateParams) {
             $scope.setup = function()
             {
+                if (isAddingANewProject()) {
+                    $scope.projectEditing = {
+                        id: null
+                    };
+                } else {
+                    projectService.getProject($stateParams.idConvocatory, $stateParams.id, setProjectsToEdit);
+                }
+                $scope.projectSaved = false;
                 loadConvocatories();
                 loadParametrics();
                 $scope.binarySeletions = [{name:'Si', value:true},{name:'No', value:false}];
                 $scope.reports = ['Aprobado', 'En Observación', 'Desaprobado'];
+            };
+            $scope.save = function () {
+                $scope.researcherSaved = false;
+                console.log($stateParams.idConvocatory);
+                projectService.save($stateParams.idConvocatory, $scope.projectEditing, onProjectSaved);
             };
             var loadConvocatories = function () {
                     convocatoryService.getConvocatories(refreshConvocatories);
@@ -67,6 +81,24 @@ angular.module('Projects')
                 }, 
                 refreshParametrics = function (parametrics) {
                 $scope.parametrics = parametrics;
+                },
+                isAddingANewProject=function () {
+                return $stateParams.id == undefined;
+                },
+                setProjectsToEdit = function (project) {
+                    $scope.projectEditing = project;
+                },
+                onProjectSaved = function () {
+                    $scope.projectSaved = true;
+                    if(isAddingANewProject())
+                    {
+                        $stateParams.id = $scope.projectEditing.id;
+                        projectService.getproject($scope.convocatorySelected,$scope.projectEditing.id, setProjectsToEdit);
+                    }
+                    else
+                    {
+                        $scope.$apply();
+                    }
                 };
             $scope.setup();
         }
