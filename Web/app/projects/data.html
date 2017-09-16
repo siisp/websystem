@@ -1,14 +1,5 @@
 <div>
     <div layout="row">
-        <md-input-container>
-            <label>Convocatoria</label>
-            <md-select ng-model="projectEditing.convocatory" placeholder="Elije una Convocatoria">
-                <md-option><em>Ninguna</em></md-option>
-                <md-option  value="{{convocatory.id}}" ng-repeat="convocatory in convocatories" >
-                    {{convocatory.type}}
-                </md-option>
-            </md-select>
-        </md-input-container>
         <md-input-container flex="20">
             <label>Nombre de Proyecto</label>
             <input required="" name="projectName" ng-disabled="readOnlyMode" ng-model="projectEditing.projectName">
