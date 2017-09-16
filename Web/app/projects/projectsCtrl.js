@@ -56,7 +56,7 @@ angular.module('Projects')
                         id: null
                     };
                 } else {
-                    projectService.getProject($stateParams.idConvocatory, $stateParams.id, setProjectsToEdit);
+                    projectService.getProject($stateParams.idConvocatory, $stateParams.idProject, setProjectsToEdit);
                 }
                 $scope.projectSaved = false;
                 loadConvocatories();
@@ -66,7 +66,6 @@ angular.module('Projects')
             };
             $scope.save = function () {
                 $scope.researcherSaved = false;
-                console.log($stateParams.idConvocatory);
                 projectService.save($stateParams.idConvocatory, $scope.projectEditing, onProjectSaved);
             };
             var loadConvocatories = function () {
@@ -83,7 +82,7 @@ angular.module('Projects')
                 $scope.parametrics = parametrics;
                 },
                 isAddingANewProject=function () {
-                return $stateParams.id == undefined;
+                return $stateParams.idProject == undefined;
                 },
                 setProjectsToEdit = function (project) {
                     $scope.projectEditing = project;
@@ -92,8 +91,8 @@ angular.module('Projects')
                     $scope.projectSaved = true;
                     if(isAddingANewProject())
                     {
-                        $stateParams.id = $scope.projectEditing.id;
-                        projectService.getproject($scope.convocatorySelected,$scope.projectEditing.id, setProjectsToEdit);
+                        $stateParams.idProject = $scope.projectEditing.id;
+                        projectService.getProject($stateParams.idConvocatory, $scope.projectEditing.id, setProjectsToEdit);
                     }
                     else
                     {
