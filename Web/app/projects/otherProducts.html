@@ -1,3 +1,81 @@
 <div>
-    Other Products
+    <div ng-init="setup()">
+        <div>
+            <md-radio-group ng-model="productEditing.Type">
+                <md-radio-button value="article" class="md-primary">Articulo</md-radio-button>
+                <md-radio-button value="lecture">Ponencia</md-radio-button>
+                <md-radio-button value="bookPart">Parte de Libro</md-radio-button>
+            </md-radio-group>
+        </div>
+        <div layout="row" ng-show="productEditing.Type=='article'">
+            <md-input-container>
+                <label>Procedencia</label>
+                <md-select ng-model="productEditing.origin" placeholder="Procedencia">
+                    <md-option ng-value="origin" ng-repeat="origin in origins">{{ origin }}</md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container>
+                <label>Referato</label>
+                <md-select ng-model="productEditing.referato" placeholder="Procedencia">
+                    <md-option ng-value="referato.id" ng-repeat="referato in binarySeletions">{{ referato.name }}</md-option>
+                </md-select>
+            </md-input-container>
+        </div>
+        <div layout="row" ng-show="productEditing.Type=='lecture'">
+            <md-input-container>
+                <label>Procedencia</label>
+                <md-select ng-model="productEditing.origin" placeholder="Procedencia">
+                    <md-option ng-value="origin" ng-repeat="origin in origins">{{ origin }}</md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container>
+                <label>Publicado en Actas</label>
+                <md-select ng-model="productEditing.publishedInProceedings" placeholder="Publicado en Actas">
+                    <md-option ng-value="publishedInProceedings.id" ng-repeat="publishedInProceedings in binarySeletions">{{ publishedInProceedings.name }}</md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container ng-show="productEditing.publishedInProceedings">
+                <label>ISSN/ISBN</label>
+                <input required="" type="number" name="issnIsbn" ng-disabled="readOnlyMode" ng-model="productEditing.issnIsbn">
+                <div ng-messages="researcherForm.issnIsbn.$error">
+                    <div ng-message="required">Campo requerido.</div>
+                </div>
+            </md-input-container>
+        </div>
+
+        <md-button class="md-raised md-primary" ng-show=" !readOnlyMode" ng-disabled="productSaved || permissionToSave(productEditing)" ng-click="addNewProduct()">{{
+            productEditingExisting ? 'Actualizar producto' : 'Agregar nuevo producto'}}</md-button>
+        <md-button ng-show="productEditingExisting" class="md-raised md-primary" ng-click="cancelEdition()">Cancelar</md-button>
+        <label ng-show="productSaved">Guardado!</label>
+        <md-divider ng-show="projectEditing.products!=null && !readOnlyMode""></md-divider>
+        <div ng-show="readOnlyMode">
+            <label ng-show="(projectEditing.products|toArray).length == 0 ">No hay productos cargados</label>
+        </div>
+        <div ng-show="projectEditing.products!=null">
+            <div>
+                <h4>
+                    <span>Productos del Proyecto {{projectEditing.projectName}}</span>
+                </h4>
+            </div>
+            <div>
+                <table>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Procedencia</th>
+                        <th></th>
+                    </tr>
+                    <tr ng-repeat="product in projectEditing.products">
+                        <td ng-show="product.Type==article">Articulo</td>
+                        <td ng-show="product.Type==lecture">Ponencia</td>
+                        <td ng-show="product.Type==bookPart">Parte de Libro</td>
+                        <td>product.origin</td>
+                        <td></td>
+                        <td ng-show=" !readOnlyMode">
+                            <md-button  class="md-raised md-primary"  ng-click="edit(product)"">Editar</md-button>
+                            <md-button class="md-raised md-primary" ng-click=" deletePosition(product)">Eliminar</md-button>
+                        </td>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
