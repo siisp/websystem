@@ -90,7 +90,7 @@
             <md-radio-button value="3" class="md-primary">Gestión</md-radio-button>
         </md-radio-group>
     </div>
-    <md-button class="md-raised md-primary" ng-show=" !readOnlyMode" ng-disabled="positionSaved || permissionToSave(positionEditing, positionEditing.isInvestigationPosition)" ng-click="addNewPosition()">{{
+    <md-button class="md-raised md-primary" ng-show=" !readOnlyMode" ng-disabled="permissionToSave(positionEditing, positionEditing.isInvestigationPosition)" ng-click="addNewPosition()">{{
         positionEditingExisting ? 'Actualizar cargo' : 'Agregar nuevo cargo'}}</md-button>
     <md-button ng-show="positionEditingExisting" class="md-raised md-primary" ng-click="cancelEdition()">Cancelar</md-button>
     <label ng-show="positionSaved">Guardado!</label>
