@@ -12,7 +12,6 @@ angular.module('Core').factory('dataService', [
             messagingSenderId: "111838311426"
         };
         firebase.initializeApp(config);
-
         return {
             login: function(email, password) {
                 return firebase.auth().signInWithEmailAndPassword(email, password);
