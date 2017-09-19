@@ -1,11 +1,12 @@
 <div>
-    <div ng-init="setup()">
+    <div ng-controller="projects.otherProducts" ng-init="setup()">
         <div>
-            <md-radio-group ng-model="productEditing.Type">
-                <md-radio-button value="article" class="md-primary">Articulo</md-radio-button>
-                <md-radio-button value="lecture">Ponencia</md-radio-button>
-                <md-radio-button value="bookPart">Parte de Libro</md-radio-button>
-            </md-radio-group>
+            <md-input-container>
+                <label>Tipo de Producto</label>
+                <md-select ng-model="productEditing.Type" placeholder="Tipo de Producto">
+                    <md-option ng-value="Type.value" ng-repeat="Type in productTypes">{{ Type.name }}</md-option>
+                </md-select>
+            </md-input-container>
         </div>
         <div layout="row" ng-show="productEditing.Type=='article'">
             <md-input-container>
@@ -17,7 +18,7 @@
             <md-input-container>
                 <label>Referato</label>
                 <md-select ng-model="productEditing.referato" placeholder="Procedencia">
-                    <md-option ng-value="referato.id" ng-repeat="referato in binarySeletions">{{ referato.name }}</md-option>
+                    <md-option ng-value="referato.id" ng-repeat="referato in binaryProductSeletions">{{ referato.name }}</md-option>
                 </md-select>
             </md-input-container>
         </div>
@@ -31,7 +32,7 @@
             <md-input-container>
                 <label>Publicado en Actas</label>
                 <md-select ng-model="productEditing.publishedInProceedings" placeholder="Publicado en Actas">
-                    <md-option ng-value="publishedInProceedings.id" ng-repeat="publishedInProceedings in binarySeletions">{{ publishedInProceedings.name }}</md-option>
+                    <md-option ng-value="publishedInProceedings.id" ng-repeat="publishedInProceedings in binaryProductSeletions">{{ publishedInProceedings.name }}</md-option>
                 </md-select>
             </md-input-container>
             <md-input-container ng-show="productEditing.publishedInProceedings">

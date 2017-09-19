@@ -102,3 +102,18 @@ angular.module('Projects')
             $scope.setup();
         }
     ]);
+
+angular.module('Projects')
+    .controller('projects.otherProducts', ['$scope',
+        function ($scope) {
+            $scope.setup = function()
+            {
+                $scope.productEditing = {};
+                $scope.binaryProductSeletions = [{name:'Si', value:true},{name:'No', value:false}];
+                $scope.productTypes = [{name:'Artículo', value:'article'},{name:'Ponencia', value:'lecture'}, {name:'Parte de Libro', value:'bookPart'}];
+            };
+            $scope.productTypeChange = function () {
+                $scope.productEditing = {};
+            }
+        }
+    ]);
