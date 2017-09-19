@@ -12,6 +12,12 @@ angular.module('Projects').factory('projectService', ['dataService',
             },
             getProjects: function(convocatory, callback){
                 dataService.getData('convocatories/'+convocatory+'/projects', callback);
+            },
+            addProduct: function (convocatory, project, product, onProductUpdated) {
+                if (project == null && convocatory == null)
+                    return;
+                var referenceName = 'convocatories/' + convocatory + '/projects/' + project + '/products';
+                dataService.saveObject(referenceName, product, onProductUpdated);
             }
         };
     }

@@ -104,16 +104,27 @@ angular.module('Projects')
     ]);
 
 angular.module('Projects')
-    .controller('projects.otherProducts', ['$scope',
-        function ($scope) {
+    .controller('projects.otherProducts', ['$scope', 'projectService',
+        function ($scope, projectService) {
             $scope.setup = function()
             {
                 $scope.productEditing = {};
                 $scope.binaryProductSeletions = [{name:'Si', value:true},{name:'No', value:false}];
                 $scope.productTypes = [{name:'Artículo', value:'article'},{name:'Ponencia', value:'lecture'}, {name:'Parte de Libro', value:'bookPart'}];
+                $scope.origins = [{name:'Nacional', value:'national'},{name:'Internacional', value:'international'}];
+                $scope.productType = null;
+                $scope.productEditingExisting = false;
+                $scope.productSaved = false
             };
-            $scope.productTypeChange = function () {
-                $scope.productEditing = {};
-            }
+            $scope.addNewProduct = function () {
+                projectService.addProduct($scope.researcherEditing, $scope.positionEditing, onPositionUpdated);
+            };
+            $scope.edit = function(product)
+            {
+                $scope.productSaved = false;
+                $scope.productEditing = angular.copy(product);
+                $scope.productEditingExisting = true;
+            };
+            $scope.setup();
         }
     ]);

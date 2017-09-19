@@ -173,7 +173,7 @@ angular.module('Researchers')
                 $scope.positionEditing = {id: null};
                 $scope.positionSaved = false;
                 $scope.licenses = [{name:'Si', value:true},{name:'No', value:false}];
-                $scope.positionEditingExisting = false
+                $scope.positionEditingExisting = false;
                 prepareDatePositionsToShow();
             }
             $scope.cancelEdition = function () {
@@ -234,7 +234,7 @@ angular.module('Researchers')
                 if (typeof $scope.positionEditing.terminationDate === 'string') {
                     $scope.positionEditing.terminationDate = new Date($scope.positionEditing.terminationDate);
                 }
-            }
+            };
             
             $scope.deletePosition = function (position) {
                 researcherService.removePosition($scope.researcherEditing, position);
