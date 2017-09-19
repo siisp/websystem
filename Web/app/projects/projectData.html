@@ -17,5 +17,9 @@
             <label ng-show="projectSaved">Guardado!</label>
         </div>
     </form>
-
+    <md-tab data-ng-if="projectEditing.id!=null" label="Otros Productos">
+        <md-content class="md-padding">
+            <div ng-include src="'projects/otherProducts.html'"></div>
+        </md-content>
+    </md-tab>
 </div>

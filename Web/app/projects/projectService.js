@@ -14,9 +14,10 @@ angular.module('Projects').factory('projectService', ['dataService',
                 dataService.getData('convocatories/'+convocatory+'/projects', callback);
             },
             addProduct: function (convocatory, project, product, onProductUpdated) {
-                if (project == null && convocatory == null)
+                if (project.id == null && convocatory == null)
                     return;
-                var referenceName = 'convocatories/' + convocatory + '/projects/' + project + '/products';
+                console.log(project.id+"lala");
+                var referenceName = 'convocatories/' + convocatory + '/projects/' + project.id + '/products';
                 dataService.saveObject(referenceName, product, onProductUpdated);
             }
         };
