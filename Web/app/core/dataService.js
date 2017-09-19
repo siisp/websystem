@@ -2,12 +2,14 @@
 
 angular.module('Core').factory('dataService', [
     function () {
+        // Initialize Firebase
         var config = {
             apiKey: "AIzaSyB9Whv3MmJEZz2sp2BXf4gVh3PAmkKv1qI",
             authDomain: "siisp-dev.firebaseapp.com",
             databaseURL: "https://siisp-dev.firebaseio.com",
             projectId: "siisp-dev",
-            storageBucket: "siisp-dev.appspot.com"
+            storageBucket: "siisp-dev.appspot.com",
+            messagingSenderId: "111838311426"
         };
         firebase.initializeApp(config);
 

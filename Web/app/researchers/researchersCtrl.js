@@ -174,7 +174,7 @@ angular.module('Researchers')
                 $scope.positionEditing = {id: null};
                 $scope.positionSaved = false;
                 $scope.licenses = [{name:'Si', value:true},{name:'No', value:false}];
-                $scope.positionEditingExisting = false
+                $scope.positionEditingExisting = false;
                 prepareDatePositionsToShow();
             }
             $scope.cancelEdition = function () {
@@ -202,6 +202,7 @@ angular.module('Researchers')
 
             $scope.permissionToSave = function (position, flag) {
                 var isDisabled=false;
+                $scope.positionSaved = false;
                 if(flag!='3'){
                     if(position.secretaryshipDepartment==null
                         || position.career ==null
@@ -209,7 +210,6 @@ angular.module('Researchers')
                         || position.positionType==null
                         || position.idDedication ==null
                         || position.typeOfRecruitment ==null){
-                        $scope.positionSaved = false;
                         isDisabled = true;
                     }
                 }
@@ -218,7 +218,6 @@ angular.module('Researchers')
                         || position.idDedication ==null
                         || position.typeOfRecruitment ==null){
                         isDisabled = true;
-                        $scope.positionSaved = false;
                     }
                 }
                 return isDisabled;
