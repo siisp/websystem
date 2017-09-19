@@ -3,7 +3,7 @@
         <div>
             <md-input-container>
                 <label>Tipo de Producto</label>
-                <md-select ng-model="productEditing.Type" placeholder="Tipo de Producto" ng-change="">
+                <md-select ng-model="productEditing.Type" placeholder="Tipo de Producto" ng-change="permissionToSave()">
                     <md-option ng-value="Type.value" ng-repeat="Type in productTypes">{{ Type.name }}</md-option>
                 </md-select>
             </md-input-container>
@@ -66,9 +66,9 @@
                         <th></th>
                     </tr>
                     <tr ng-repeat="product in projectEditing.products">
-                        <td ng-show="product.Type==article">Articulo</td>
-                        <td ng-show="product.Type==lecture">Ponencia</td>
-                        <td ng-show="product.Type==bookPart">Parte de Libro</td>
+                        <td ng-show="product.Type=='article'">Articulo</td>
+                        <td ng-show="product.Type=='lecture'">Ponencia</td>
+                        <td ng-show="product.Type=='bookPart'">Parte de Libro</td>
                         <td>{{product.origin}}</td>
                         <td></td>
                         <td ng-show=" !readOnlyMode">

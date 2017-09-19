@@ -19,6 +19,12 @@ angular.module('Projects').factory('projectService', ['dataService',
                 console.log(project.id+"lala");
                 var referenceName = 'convocatories/' + convocatory + '/projects/' + project.id + '/products';
                 dataService.saveObject(referenceName, product, onProductUpdated);
+            },
+            removeProduct: function (convocatory, project, product) {
+                if (convocatory == null || project.id == null)
+                    return;
+                var referenceName =  'convocatories/' + convocatory + '/projects/' + project.id + '/products';
+                dataService.deleteObject(referenceName, product);
             }
         };
     }

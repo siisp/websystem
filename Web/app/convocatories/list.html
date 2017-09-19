@@ -13,13 +13,24 @@
             <table ng-show="convocatories!=null">
                 <tr>
                     <th>Tipo de Convocatoria</th>
+                    <th>AÑo</th>
+                    <th>Evaluciones Externas</th>
                     <th>Fecha de Inicio</th>
                     <th>Fecha de Cierre</th>
                     <th></th>
                 </tr>
                 <tr ng-repeat="convocatory in convocatories">
                     <td>
-                       {{convocatory.type}}
+                        {{convocatory.type}}
+                    </td>
+                    <td>
+                        {{convocatory.year}}
+                    </td>
+                    <td ng-if="convocatory.externalEvaluations=='true'">
+                        {{"Si"}}
+                    </td>
+                    <td ng-if="convocatory.externalEvaluations=='false'">
+                        {{"No"}}
                     </td>
                     <td ng-if="convocatory.startDate">
                         {{convocatory.startDate.getDate()+'/'+(convocatory.startDate.getMonth()+1)+'/'+convocatory.startDate.getFullYear()}}

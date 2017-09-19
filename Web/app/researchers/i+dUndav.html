@@ -27,15 +27,10 @@
             </md-select>
         </md-input-container>
         <md-input-container flex="12" ng-show="positionEditing.license == 'true'">
-            <datepicker date-format="dd/MM/yyyy" selector="form-control">
                 <div class="input-group">
                     <label>Inicio de Licencia</label>
-                    <input class="form-control" name="licenseDate" ng-model="positionEditing.licenseDate"/>
-                    <span class="input-group-addon" style="cursor: pointer">
-                        <i class="fa fa-lg fa-calendar"></i>
-                    </span>
+                    <input type="date"  name="licenseDate" ng-model="positionEditing.licenseDate"/>
                 </div>
-            </datepicker>
         </md-input-container>
         <md-input-container ng-show="positionEditing.license == 'true' && positionEditing.licenseDate!=null">
             <label>Resolución</label>

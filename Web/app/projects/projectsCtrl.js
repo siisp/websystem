@@ -63,8 +63,6 @@ angular.module('Projects')
                         id: null
                     };
                 } else {
-                    console.log($stateParams.idProject+"hola");
-                    console.log($stateParams.idConvocatory+"chau");
                     projectService.getProject($stateParams.idConvocatory, $stateParams.idProject, setProjectsToEdit);
                 }
                 $scope.projectSaved = false;
@@ -119,11 +117,13 @@ angular.module('Projects')
                 $scope.productType = null;
                 $scope.productEditing = {};
                 $scope.productEditingExisting = false;
-                $scope.productSaved = false
+                $scope.productSaved = false;
             };
             $scope.addNewProduct = function () {
                 projectService.addProduct($stateParams.idConvocatory, $scope.projectEditing, $scope.productEditing, onProductUpdated);
-                console.log($scope.productSaved)
+            };
+            $scope.deleteProduct = function (product) {
+                projectService.removeProduct($stateParams.idConvocatory, $scope.projectEditing, product);
             };
             $scope.edit = function(product)
             {
@@ -131,7 +131,11 @@ angular.module('Projects')
                 $scope.productEditing = angular.copy(product);
                 $scope.productEditingExisting = true;
             };
-
+            
+            $scope.permissionToSave = function () {
+                $scope.productSaved  = false;
+                $scope.$apply();
+            }
             var onProductUpdated = function () {
                 $scope.productSaved  = true;
                 $scope.productEditingExisting = false;

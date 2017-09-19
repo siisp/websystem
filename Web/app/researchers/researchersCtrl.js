@@ -4,6 +4,7 @@ angular.module('Researchers')
     .controller('researchers.new', ['$scope', '$stateParams', 'researcherService','parametricService',
         function ($scope, $stateParams, researcherService, parametricService) {
             $scope.setup = function () {
+                $scope.isAddingANewResearcher = isAddingANewResearcher();
                 if (isAddingANewResearcher()) {
                     $scope.researcherEditing = {
                         id: null,

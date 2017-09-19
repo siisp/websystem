@@ -15,6 +15,15 @@
                     <div ng-message="required">Campo requerido.</div>
                 </div>
             </md-input-container>
+            <md-input-container>
+                <label>Evaluaciones Externas</label>
+                <md-select ng-model="convocatoryEditing.externalEvaluations" placeholder="Evaluaciones Externas">
+                    <md-option><em>Ninguno</em></md-option>
+                    <md-option value="{{externalEvaluations.value}}" ng-repeat="externalEvaluations in  binaryStates">
+                        {{  externalEvaluations.name }}
+                    </md-option>
+                </md-select>
+            </md-input-container>
         </div>
         <div>
             <md-input-container flex="20">

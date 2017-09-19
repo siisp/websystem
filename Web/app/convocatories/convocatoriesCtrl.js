@@ -98,6 +98,7 @@ angular.module('Convocatories')
         function ($scope) {
             $scope.setup = function()
             {
+                $scope.binaryStates = [{name:'Si', value:true},{name:'No', value:false}];
             }
 
         }
