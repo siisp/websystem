@@ -4,12 +4,12 @@ angular.module('Core').factory('dataService', [
     function () {
         // Initialize Firebase
         var config = {
-            apiKey: "AIzaSyB9Whv3MmJEZz2sp2BXf4gVh3PAmkKv1qI",
-            authDomain: "siisp-dev.firebaseapp.com",
-            databaseURL: "https://siisp-dev.firebaseio.com",
-            projectId: "siisp-dev",
-            storageBucket: "siisp-dev.appspot.com",
-            messagingSenderId: "111838311426"
+            apiKey: "AIzaSyB-KTV18xgzyIGlm_QwryXLsjx3KM8CbdY",
+            authDomain: "siisp-36b10.firebaseapp.com",
+            databaseURL: "https://siisp-36b10.firebaseio.com",
+            projectId: "siisp-36b10",
+            storageBucket: "siisp-36b10.appspot.com",
+            messagingSenderId: "152939447966"
         };
         firebase.initializeApp(config);
         return {
