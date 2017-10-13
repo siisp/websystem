@@ -35,16 +35,14 @@
         <md-input-container>
             <label>Objetivo Socio-Económico</label>
             <md-select ng-model="projectEditing.socioEconomicObjective" placeholder="Objetivo Socio-Económico">
-                <md-option><em>Ninguno</em></md-option>
-                <md-option value="{{socioEconomicObjective.id}}" ng-repeat="socioEconomicObjective in  parametrics['socioEconomicObjective']">
-                    {{  socioEconomicObjective.name }}
+                <md-option value="{{socioEconomicObjective}}" ng-repeat="socioEconomicObjective in  socioEconomicObjectives">
+                    {{  socioEconomicObjective }}
                 </md-option>
             </md-select>
         </md-input-container>
         <md-input-container>
             <label>Disciplina de Aplicación</label>
             <md-select ng-model="projectEditing.applicationDiscipline" placeholder="Disciplina de Aplicación">
-                <md-option><em>Ninguno</em></md-option>
                 <md-option value="{{applicationDiscipline.id}}" ng-repeat="applicationDiscipline in  parametrics['degreeArea']">
                     {{  applicationDiscipline.name }}
                 </md-option>
@@ -53,9 +51,8 @@
         <md-input-container>
             <label>Tipo de Investigación</label>
             <md-select ng-model="projectEditing.investigactionType" placeholder="Tipo de Investigación">
-                <md-option><em>Ninguno</em></md-option>
-                <md-option value="{{investigactionType.id}}" ng-repeat="investigactionType in  parametrics['investigactionType']">
-                    {{  investigactionType.name }}
+                <md-option value="{{investigactionType}}" ng-repeat="investigactionType in  investigactionTypes">
+                    {{  investigactionType }}
                 </md-option>
             </md-select>
         </md-input-container>

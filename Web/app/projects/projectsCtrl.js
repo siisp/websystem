@@ -70,6 +70,20 @@ angular.module('Projects')
                 loadParametrics();
                 $scope.binarySeletions = [{name:'Si', value:true},{name:'No', value:false}];
                 $scope.reports = ['Aprobado', 'En Observación', 'Desaprobado'];
+                $scope.investigactionTypes = ['Experimental', 'Aplicada', 'Básica'];
+                $scope.socioEconomicObjectives = [
+                    'Exploración y Explotación de la tierra',
+                    'Infraestructuras y Ordenación del territorio',
+                    'Control y Protección del medio ambiente',
+                    'Protección y Mejora de la salud humana',
+                    'Producción, Distribución y Utilización nacional de la energía',
+                    'Producción y Tecnología agrícola',
+                    'Producción y Tecnología industrial',
+                    'Estructuras y Relaciones sociales',
+                    'Exploración y Explotación del espacio',
+                    'Investigación no orientada',
+                    'Otra Investigación civil',
+                    'Defensa'];
             };
             $scope.save = function () {
                 $scope.projectSaved  = false;
