@@ -56,6 +56,9 @@ angular.module('Projects')
 
                 projectService.addDepartment($stateParams.idConvocatory,  $scope.projectEditing, $scope.parametrics['secretaryshipDepartment'][$scope.secretaryshipDepartment], onDepartmentSaved);
             };
+            $scope.deleteDepartment = function (department) {
+                projectService.removeDepartment($stateParams.idConvocatory,$scope.projectEditing, department);
+            };
             var onDepartmentSaved = function () {
                 $scope.departmentSaved = true;
                 $scope.secretaryshipDepartment = null;
@@ -69,17 +72,20 @@ angular.module('Projects')
         function ($scope, $stateParams, projectService) {
             $scope.setup = function()
             {
-                $scope.foudingSourceSaved  = false;
-                $scope.foudingSourceEditing = {};
+                $scope.fundingSourceSaved  = false;
+                $scope.fundingSourceEditing = {};
                 $scope.totalAmountOfSubsidies = ['Recursos', 'Propio', 'Externo', 'Presupuestación', 'Nacional'];
             };
             $scope.addNewFundingSource = function () {
                 $scope.departmentSaved  = false;
-                projectService.addFoundingSource($stateParams.idConvocatory,  $scope.projectEditing, $scope.foudingSourceEditing, onDepartmentSaved);
+                projectService.addFundingSource($stateParams.idConvocatory,  $scope.projectEditing, $scope.fundingSourceEditing, onFundingSourceSaved);
             };
-            var onDepartmentSaved = function () {
-                $scope.foudingSourceSaved = true;
-                $scope.foudingSourceEditing = {id: null};
+            $scope.deleteFundingSource = function (fundingSource) {
+                projectService.removeFundingSource($stateParams.idConvocatory,$scope.projectEditing, fundingSource);
+            };
+            var onFundingSourceSaved = function () {
+                $scope.fundingSourceSaved = true;
+                $scope.fundingSourceEditing = {id: null};
                 $scope.$apply();
             };
         }

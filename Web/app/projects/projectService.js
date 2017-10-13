@@ -31,11 +31,23 @@ angular.module('Projects').factory('projectService', ['dataService',
                 var referenceName = 'convocatories/' + convocatory + '/projects/' + project.id + '/departments';
                 dataService.saveObject(referenceName, department, onDepartmentUpdated);
             },
-            addFoundingSource: function (convocatory, project, foudingSource, onfoudingSourceUpdated) {
+            removeDepartment: function (convocatory, project, department) {
+                if (convocatory == null || project.id == null)
+                    return;
+                var referenceName =  'convocatories/' + convocatory + '/projects/' + project.id + '/departments';
+                dataService.deleteObject(referenceName, department);
+            },
+            addFundingSource: function (convocatory, project, fundingSource, onFundingSourceUpdated) {
                 if (project.id == null && convocatory == null)
                     return;
-                var referenceName = 'convocatories/' + convocatory + '/projects/' + project.id + '/foudingSource';
-                dataService.saveObject(referenceName, foudingSource, onfoudingSourceUpdated);
+                var referenceName = 'convocatories/' + convocatory + '/projects/' + project.id + '/fundingSources';
+                dataService.saveObject(referenceName, fundingSource, onFundingSourceUpdated);
+            },
+            removeFundingSource: function (convocatory, project, department) {
+                if (convocatory == null || project.id == null)
+                    return;
+                var referenceName =  'convocatories/' + convocatory + '/projects/' + project.id + '/departments';
+                dataService.deleteObject(referenceName, department);
             }
         };
     }

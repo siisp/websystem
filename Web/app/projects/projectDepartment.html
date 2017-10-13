@@ -13,4 +13,23 @@
         {{'Agregar Nuevo Departamento'}}
     </md-button>
     <label ng-show="departmentSaved">Guardado!</label>
+    <md-divider ng-show="projectEditing.departments!=null && !readOnlyMode"></md-divider>
+    <div ng-show="readOnlyMode">
+        <label ng-show="(projectEditing.departments|toArray).length == 0 ">No hay Departamentos cargados</label>
+    </div>
+    <div ng-show="projectEditing.departments!=null">
+        <div>
+            <table>
+                <tr>
+                    <th>Departamentos</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="department in projectEditing.departments">
+                    <td>{{department.name}}</td>
+                    <td  ng-show=" !readOnlyMode">
+                        <md-button class="md-raised md-primary" ng-click=" deleteDepartment(department)">Eliminar</md-button>
+                    </td>
+            </table>
+        </div>
+    </div>
 </div>
