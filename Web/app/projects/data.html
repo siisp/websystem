@@ -16,24 +16,6 @@
             </md-select>
         </md-input-container>
         <md-input-container>
-            <label>Secretaria/Departamento</label>
-            <md-select ng-model="projectEditing.firstSecretaryshipDepartment" placeholder="Secretaría/Departamento">
-                <md-option><em>Ninguno</em></md-option>
-                <md-option value="{{secretaryshipDepartment.id}}" ng-repeat="secretaryshipDepartment in  parametrics['secretaryshipDepartment']">
-                    {{  secretaryshipDepartment.name }}
-                </md-option>
-            </md-select>
-        </md-input-container>
-        <md-input-container ng-show="interdepartamental">
-            <label>Secretaria/Departamento</label>
-            <md-select ng-model="projectEditing.secondSecretaryshipDepartment" placeholder="Secretaría/Departamento">
-                <md-option><em>Ninguno</em></md-option>
-                <md-option value="{{secretaryshipDepartment.id}}" ng-repeat="secretaryshipDepartment in  parametrics['secretaryshipDepartment']">
-                    {{  secretaryshipDepartment.name }}
-                </md-option>
-            </md-select>
-        </md-input-container>
-        <md-input-container>
             <md-checkbox ng-model="interdepartamental" aria-label="Checkbox 1">
                 Interdepartamental
             </md-checkbox>
@@ -63,13 +45,6 @@
                     {{  investigactionType }}
                 </md-option>
             </md-select>
-        </md-input-container>
-        <md-input-container flex="20">
-            <label>Monto Total de Subsidio</label>
-            <input required="" type="number" name="totalAmountOfSubsidy" ng-disabled="readOnlyMode" ng-model="projectEditing.totalAmountOfSubsidy">
-            <div ng-messages="researcherForm.totalAmountOfSubsidy.$error">
-                <div ng-message="required">Campo requerido.</div>
-            </div>
         </md-input-container>
     </div>
     <div layout="row">

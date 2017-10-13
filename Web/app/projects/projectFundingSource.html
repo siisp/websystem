@@ -1,0 +1,11 @@
+<div>
+    <div layout="row">
+        <md-input-container flex="20">
+            <label>Fuente de Financiamiento</label>
+            <input required="" type="number" name="totalAmountOfSubsidy" ng-disabled="readOnlyMode" ng-model="projectEditing.totalAmountOfSubsidy">
+            <div ng-messages="researcherForm.totalAmountOfSubsidy.$error">
+                <div ng-message="required">Campo requerido.</div>
+            </div>
+        </md-input-container>
+    </div>
+</div>
