@@ -45,11 +45,42 @@ angular.module('Projects')
     ]);
 
 angular.module('Projects')
-    .controller('projects.projectData', ['$scope',
-        function ($scope) {
+    .controller('projects.projectDepartment', ['$scope','$stateParams', 'projectService',
+        function ($scope, $stateParams, projectService) {
             $scope.setup = function()
             {
-            }
+                $scope.departmentSaved  = false;
+            };
+            $scope.addNewDepartment = function () {
+                $scope.departmentSaved  = false;
+                projectService.addDepartment($stateParams.idConvocatory,  $scope.projectEditing, $scope.SecretaryshipDepartment, onDepartmentSaved);
+            };
+            var onDepartmentSaved = function () {
+                $scope.departmentSaved = true;
+                $scope.SecretaryshipDepartment = null;
+                $scope.$apply();
+            };
+        }
+    ]);
+
+angular.module('Projects')
+    .controller('projects.projectFoudingSource', ['$scope','$stateParams', 'projectService',
+        function ($scope, $stateParams, projectService) {
+            $scope.setup = function()
+            {
+                $scope.foudingSourceSaved  = false;
+                $scope.foudingSourceEditing = {};
+                $scope.totalAmountOfSubsidies = ['Recursos', 'Propio', 'Externo', 'Presupuestación', 'Nacional'];
+            };
+            $scope.addNewDepartment = function () {
+                $scope.departmentSaved  = false;
+                projectService.addNewFoundingSource($stateParams.idConvocatory,  $scope.projectEditing, $scope.foudingSourceEditing, onDepartmentSaved);
+            };
+            var onDepartmentSaved = function () {
+                $scope.foudingSourceSaved = true;
+                $scope.foudingSourceEditing = {id: null};
+                $scope.$apply();
+            };
         }
     ]);
 

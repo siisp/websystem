@@ -1,35 +1,39 @@
 <div ng-controller="projects.new" ng-init="setup()">
-    <form name="projectForm">
-        <md-tabs md-dynamic-height md-border-bottom>
-            <md-tab label="Datos">
-                <md-content class="md-padding">
-                    <div ng-include src="'projects/data.html'"></div>
-                </md-content>
-            </md-tab>
-            <md-tab label="Productos">
-                <md-content class="md-padding">
-                    <div ng-include src="'projects/projectsProducts.html'"></div>
-                </md-content>
-            </md-tab>
-            <md-tab label="Departamentos">
-                <md-content class="md-padding">
-                    <div ng-include src="'projects/projectDepartment.html'"></div>
-                </md-content>
-            </md-tab>
-            <md-tab label="Fuente de Financiamiento">
-                <md-content class="md-padding">
-                    <div ng-include src="'projects/projectFundingSource.html'"></div>
-                </md-content>
-            </md-tab>
-            <md-tab label="Palabras clave">
-                <md-content class="md-padding">
-                    <div ng-include src="'projects/projectKeywords.html'"></div>
-                </md-content>
-            </md-tab>
-        </md-tabs>
-        <div>
-            <md-button ng-show=" !readOnlyMode" class="md-raised md-primary" ng-disabled="projectForm.$invalid || dataLoading || projectSaved " ng-click="save()">Guardar</md-button>
-            <label ng-show="projectSaved">Guardado!</label>
-        </div>
-    </form>
+    <div ng-cloak="" class="tabsForm">
+        <form name="projectForm">
+            <md-content>
+                <md-tabs md-dynamic-height md-border-bottom>
+                    <md-tab label="Datos">
+                        <md-content class="md-padding">
+                            <div ng-include src="'projects/data.html'"></div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Transferencia">
+                        <md-content class="md-padding">
+                            <div ng-include src="'projects/transference.html'"></div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Departamentos">
+                        <md-content class="md-padding">
+                            <div ng-include src="'projects/projectDepartment.html'"></div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Fuente de Financiamiento">
+                        <md-content class="md-padding">
+                            <div ng-include src="'projects/projectFundingSource.html'"></div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Palabras clave">
+                        <md-content class="md-padding">
+                            <div ng-include src="'projects/projectKeywords.html'"></div>
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
+            </md-content>
+            <div>
+                <md-button ng-show=" !readOnlyMode" class="md-raised md-primary" ng-disabled="projectForm.$invalid || dataLoading || projectSaved " ng-click="save()">Guardar</md-button>
+                <label ng-show="projectSaved">Guardado!</label>
+            </div>
+        </form>
+    </div>
 </div>

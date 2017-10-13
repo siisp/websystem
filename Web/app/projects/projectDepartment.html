@@ -1,22 +1,16 @@
-<div>
+<div ng-controller="projects.projectDepartment">
     <div layout="row">
         <md-input-container>
             <label>Secretaria/Departamento</label>
-            <md-select ng-model="projectEditing.firstSecretaryshipDepartment" placeholder="Secretaría/Departamento">
-                <md-option><em>Ninguno</em></md-option>
-                <md-option value="{{secretaryshipDepartment.id}}" ng-repeat="secretaryshipDepartment in  parametrics['secretaryshipDepartment']">
-                    {{  secretaryshipDepartment.name }}
-                </md-option>
-            </md-select>
-        </md-input-container>
-        <md-input-container ng-show="interdepartamental">
-            <label>Secretaria/Departamento</label>
-            <md-select ng-model="projectEditing.secondSecretaryshipDepartment" placeholder="Secretaría/Departamento">
-                <md-option><em>Ninguno</em></md-option>
+            <md-select ng-model="SecretaryshipDepartment" placeholder="Secretaría/Departamento">
                 <md-option value="{{secretaryshipDepartment.id}}" ng-repeat="secretaryshipDepartment in  parametrics['secretaryshipDepartment']">
                     {{  secretaryshipDepartment.name }}
                 </md-option>
             </md-select>
         </md-input-container>
     </div>
+    <md-button class="md-raised md-primary" ng-show=" !readOnlyMode" ng-disabled="SecretaryshipDepartment==null" ng-click="addNewDepartment()">
+        {{'Agregar Nuevo Departamento'}}
+    </md-button>
+    <label ng-show="departmentSaved">Guardado!</label>
 </div>

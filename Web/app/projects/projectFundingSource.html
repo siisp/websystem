@@ -1,9 +1,17 @@
-<div>
+<div ng-controller="projects.projectFoudingSource" ng-init="setup()">
     <div layout="row">
-        <md-input-container flex="20">
+        <md-input-container>
             <label>Fuente de Financiamiento</label>
-            <input required="" type="number" name="totalAmountOfSubsidy" ng-disabled="readOnlyMode" ng-model="projectEditing.totalAmountOfSubsidy">
-            <div ng-messages="researcherForm.totalAmountOfSubsidy.$error">
+            <md-select ng-model="foudingSourceEditing.totalAmountOfSubsidy" placeholder="Fuente de Financiamiento">
+                <md-option value="{{totalAmountOfSubsidy}}" ng-repeat="totalAmountOfSubsidy in  totalAmountOfSubsidies">
+                    {{  totalAmountOfSubsidy }}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container flex="20">
+            <label>Monto</label>
+            <input required="" type="number" name="amount" ng-disabled="readOnlyMode" ng-model="foudingSourceEditing.amount">
+            <div ng-messages="researcherForm.amount.$error">
                 <div ng-message="required">Campo requerido.</div>
             </div>
         </md-input-container>

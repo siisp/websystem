@@ -16,7 +16,6 @@ angular.module('Projects').factory('projectService', ['dataService',
             addProduct: function (convocatory, project, product, onProductUpdated) {
                 if (project.id == null && convocatory == null)
                     return;
-                console.log(project.id+"lala");
                 var referenceName = 'convocatories/' + convocatory + '/projects/' + project.id + '/products';
                 dataService.saveObject(referenceName, product, onProductUpdated);
             },
@@ -25,6 +24,18 @@ angular.module('Projects').factory('projectService', ['dataService',
                     return;
                 var referenceName =  'convocatories/' + convocatory + '/projects/' + project.id + '/products';
                 dataService.deleteObject(referenceName, product);
+            },
+            addDepartment: function (convocatory, project, department, onDepartmentUpdated) {
+                if (project.id == null && convocatory == null)
+                    return;
+                var referenceName = 'convocatories/' + convocatory + '/projects/' + project.id + '/departments';
+                dataService.saveObject(referenceName, department, onDepartmentUpdated);
+            },
+            addNewFoundingSource: function (convocatory, project, foudingSource, onfoudingSourceUpdated) {
+                if (project.id == null && convocatory == null)
+                    return;
+                var referenceName = 'convocatories/' + convocatory + '/projects/' + project.id + '/foudingSource';
+                dataService.saveObject(referenceName, foudingSource, onfoudingSourceUpdated);
             }
         };
     }

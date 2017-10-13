@@ -1,0 +1,48 @@
+<div>
+    <div layout="row">
+        <md-input-container flex="20">
+            <label>WorkShop</label>
+            <input required="" type="number" name="workShop" ng-disabled="readOnlyMode" ng-model="projectEditing.workShop">
+            <div ng-messages="researcherForm.workShop.$error">
+                <div ng-message="required">Campo requerido.</div>
+            </div>
+        </md-input-container>
+        <md-input-container flex="20">
+            <label>Conferencia Magistral</label>
+            <input required="" type="number" name="masterLecture" ng-disabled="readOnlyMode" ng-model="projectEditing.masterLecture">
+            <div ng-messages="researcherForm.masterLecture.$error">
+                <div ng-message="required">Campo requerido.</div>
+            </div>
+        </md-input-container>
+        <md-input-container flex="20">
+            <label>Asistencia Técnica</label>
+            <input required="" type="number" name="technicalAssistance" ng-disabled="readOnlyMode" ng-model="projectEditing.technicalAssistance">
+            <div ng-messages="researcherForm.technicalAssistance.$error">
+                <div ng-message="required">Campo requerido.</div>
+            </div>
+        </md-input-container>
+    </div>
+    <div layout="row">
+        <md-input-container flex="20">
+            <label>Desarrollo Científico-tecnológico</label>
+            <input required="" type="number" name="scientificAndTechnologicalDevelopment" ng-disabled="readOnlyMode" ng-model="projectEditing.scientificAndTechnologicalDevelopment">
+            <div ng-messages="researcherForm.scientificAndTechnologicalDevelopment.$error">
+                <div ng-message="required">Campo requerido.</div>
+            </div>
+        </md-input-container>
+        <md-input-container flex="20">
+            <label>Asistencia Socio-territorial</label>
+            <input required="" type="number" name="territorialPartnerAssistance" ng-disabled="readOnlyMode" ng-model="projectEditing.territorialPartnerAssistance">
+            <div ng-messages="researcherForm.territorialPartnerAssistance.$error">
+                <div ng-message="required">Campo requerido.</div>
+            </div>
+        </md-input-container>
+        <md-input-container flex="20">
+            <label>Material de Capacitación</label>
+            <input required="" type="number" name="trainingMaterial" ng-disabled="readOnlyMode" ng-model="projectEditing.trainingMaterial">
+            <div ng-messages="researcherForm.trainingMaterial.$error">
+                <div ng-message="required">Campo requerido.</div>
+            </div>
+        </md-input-container>
+    </div>
+</div>
