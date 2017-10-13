@@ -8,6 +8,14 @@
             </div>
         </md-input-container>
         <md-input-container>
+            <label>Campo de Aplicación</label>
+            <md-select ng-model="projectEditing.fieldOfApplication" placeholder="Campo de Aplicación">
+                <md-option value="{{fieldOfApplication}}" ng-repeat="fieldOfApplication in  fieldOfApplications">
+                    {{  fieldOfApplication }}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
             <label>Secretaria/Departamento</label>
             <md-select ng-model="projectEditing.firstSecretaryshipDepartment" placeholder="Secretaría/Departamento">
                 <md-option><em>Ninguno</em></md-option>

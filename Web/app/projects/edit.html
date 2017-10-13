@@ -11,6 +11,16 @@
                     <div ng-include src="'projects/projectsProducts.html'"></div>
                 </md-content>
             </md-tab>
+            <md-tab label="Departamentos">
+                <md-content class="md-padding">
+                    <div></div>
+                </md-content>
+            </md-tab>
+            <md-tab label="Fuente de Financiamiento">
+                <md-content class="md-padding">
+                    <div></div>
+                </md-content>
+            </md-tab>
         </md-tabs>
         <div>
             <md-button ng-show=" !readOnlyMode" class="md-raised md-primary" ng-disabled="projectForm.$invalid || dataLoading || projectSaved " ng-click="save()">Guardar</md-button>

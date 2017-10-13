@@ -84,6 +84,20 @@ angular.module('Projects')
                     'Investigación no orientada',
                     'Otra Investigación civil',
                     'Defensa'];
+                $scope.fieldOfApplications = [
+                    'Química, Petroquímica y Carboquímica',
+                    'Desarrollo Industrial y Tecnológico',
+                    'Salud Humana',
+                    'Agricultura, Ganadería y Pesca',
+                    'Desarrollo del Transporte',
+                    'Energía, Recursos naturales y Minería',
+                    'Alimentos, Bebidas y Tabaco',
+                    'Textiles, Vestidos y Cuero',
+                    'Desarrollo socioeconómico, Educación y Servicios',
+                    'Mobiliario, Metalurgia, Productos metálicos y Equipo',
+                    'Calulosa, Papel, Impresión y Encuadernación',
+                    'Control y Protección del medio ambiente',
+                    'Ordenamiento Territorial'];
             };
             $scope.save = function () {
                 $scope.projectSaved  = false;
