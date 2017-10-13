@@ -74,6 +74,7 @@ angular.module('Projects')
             {
                 $scope.fundingSourceSaved  = false;
                 $scope.fundingSourceEditing = {};
+                $scope.fundingSourceEditingExisting = false;
                 $scope.totalAmountOfSubsidies = ['Recursos', 'Propio', 'Externo', 'Presupuestación', 'Nacional'];
             };
             $scope.addNewFundingSource = function () {
@@ -82,6 +83,16 @@ angular.module('Projects')
             };
             $scope.deleteFundingSource = function (fundingSource) {
                 projectService.removeFundingSource($stateParams.idConvocatory,$scope.projectEditing, fundingSource);
+            };
+            $scope.edit = function(fundingSource)
+            {
+                $scope.fundingSourceSaved = false;
+                $scope.fundingSourceEditing = angular.copy(fundingSource);
+                $scope.fundingSourceEditingExisting = true;
+            };
+            $scope.cancelEdition = function () {
+                $scope.fundingSourceEditingExisting = false;
+                $scope.fundingSourceEditing = {id: null};
             };
             var onFundingSourceSaved = function () {
                 $scope.fundingSourceSaved = true;

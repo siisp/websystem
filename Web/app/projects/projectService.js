@@ -43,11 +43,11 @@ angular.module('Projects').factory('projectService', ['dataService',
                 var referenceName = 'convocatories/' + convocatory + '/projects/' + project.id + '/fundingSources';
                 dataService.saveObject(referenceName, fundingSource, onFundingSourceUpdated);
             },
-            removeFundingSource: function (convocatory, project, department) {
+            removeFundingSource: function (convocatory, project, fundingSource) {
                 if (convocatory == null || project.id == null)
                     return;
-                var referenceName =  'convocatories/' + convocatory + '/projects/' + project.id + '/departments';
-                dataService.deleteObject(referenceName, department);
+                var referenceName =  'convocatories/' + convocatory + '/projects/' + project.id + '/fundingSources';
+                dataService.deleteObject(referenceName, fundingSource);
             }
         };
     }
