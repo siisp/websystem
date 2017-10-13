@@ -53,11 +53,12 @@ angular.module('Projects')
             };
             $scope.addNewDepartment = function () {
                 $scope.departmentSaved  = false;
-                projectService.addDepartment($stateParams.idConvocatory,  $scope.projectEditing, $scope.SecretaryshipDepartment, onDepartmentSaved);
+
+                projectService.addDepartment($stateParams.idConvocatory,  $scope.projectEditing, $scope.parametrics['secretaryshipDepartment'][$scope.secretaryshipDepartment], onDepartmentSaved);
             };
             var onDepartmentSaved = function () {
                 $scope.departmentSaved = true;
-                $scope.SecretaryshipDepartment = null;
+                $scope.secretaryshipDepartment = null;
                 $scope.$apply();
             };
         }
@@ -72,9 +73,9 @@ angular.module('Projects')
                 $scope.foudingSourceEditing = {};
                 $scope.totalAmountOfSubsidies = ['Recursos', 'Propio', 'Externo', 'Presupuestación', 'Nacional'];
             };
-            $scope.addNewDepartment = function () {
+            $scope.addNewFundingSource = function () {
                 $scope.departmentSaved  = false;
-                projectService.addNewFoundingSource($stateParams.idConvocatory,  $scope.projectEditing, $scope.foudingSourceEditing, onDepartmentSaved);
+                projectService.addFoundingSource($stateParams.idConvocatory,  $scope.projectEditing, $scope.foudingSourceEditing, onDepartmentSaved);
             };
             var onDepartmentSaved = function () {
                 $scope.foudingSourceSaved = true;

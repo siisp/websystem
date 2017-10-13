@@ -2,14 +2,14 @@
     <div layout="row">
         <md-input-container>
             <label>Secretaria/Departamento</label>
-            <md-select ng-model="SecretaryshipDepartment" placeholder="Secretaría/Departamento">
+            <md-select ng-model="secretaryshipDepartment" placeholder="Secretaría/Departamento">
                 <md-option value="{{secretaryshipDepartment.id}}" ng-repeat="secretaryshipDepartment in  parametrics['secretaryshipDepartment']">
                     {{  secretaryshipDepartment.name }}
                 </md-option>
             </md-select>
         </md-input-container>
     </div>
-    <md-button class="md-raised md-primary" ng-show=" !readOnlyMode" ng-disabled="SecretaryshipDepartment==null" ng-click="addNewDepartment()">
+    <md-button class="md-raised md-primary" ng-show=" !readOnlyMode" ng-disabled="secretaryshipDepartment==null" ng-click="addNewDepartment()">
         {{'Agregar Nuevo Departamento'}}
     </md-button>
     <label ng-show="departmentSaved">Guardado!</label>

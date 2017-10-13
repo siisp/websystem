@@ -16,4 +16,8 @@
             </div>
         </md-input-container>
     </div>
+    <md-button class="md-raised md-primary" ng-show=" !readOnlyMode" ng-disabled="foudingSourceEditing.totalAmountOfSubsidy==null || foudingSourceEditing.amount==null" ng-click="addNewFundingSource()">
+        {{'Agregar Nueva Fuente de Financiación'}}
+    </md-button>
+    <label ng-show="departmentSaved">Guardado!</label>
 </div>
