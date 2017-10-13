@@ -26,7 +26,7 @@
                 </md-tabs>
             </md-content>
             <div>
-                <md-button ng-show=" !readOnlyMode" class="md-raised md-primary" ng-disabled="projectForm.$invalid || dataLoading || projectSaved " ng-click="save()">Guardar</md-button>
+                <md-button ng-show=" !readOnlyMode" class="md-raised md-primary" ng-disabled="dataLoading || projectSaved " ng-click="save()">Guardar</md-button>
                 <label ng-show="projectSaved">Guardado!</label>
             </div>
         </form>

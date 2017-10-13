@@ -45,8 +45,3 @@
 </div>
 
 
-<md-button class="md-raised md-primary" ng-show=" !readOnlyMode" ng-disabled="fundingSourceEditing.totalAmountOfSubsidy==null || fundingSourceEditing.amount==null" ng-click="addNewFundingSource()">
-    {{fundingSourceEditingExisting ? 'Actualizar Fuente de Financiación' : 'Agregar Nueva Fuente de Financiación'}}
-</md-button>
-<md-button ng-show="fundingSourceEditingExisting" class="md-raised md-primary" ng-click="cancelEdition()">Cancelar</md-button>
-<label ng-show="formationSaved">Guardado!</label>
