@@ -1,0 +1,50 @@
+<div ng-init="setup()">
+    <div>
+        <div layout="row">
+            <md-button class="md-raised md-primary" ui-sref="convocatories.new">Agregar nuevo</md-button>
+        </div>
+        <div layout="row" ng-show="convocatories === undefined" layout-sm="column" layout-align="left">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </div>
+        <div>
+            <label ng-show="convocatories===null">No hay Convocatorias.</label>
+        </div>
+        <div class="scrollable">
+            <table ng-show="convocatories!=null">
+                <tr>
+                    <th>Nombre de Convocatoria</th>
+                    <th>AÑo</th>
+                    <th>Evaluciones Externas</th>
+                    <th>Fecha de Inicio</th>
+                    <th>Fecha de Cierre</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="convocatory in convocatories">
+                    <td>
+                        {{convocatory.type}}
+                    </td>
+                    <td>
+                        {{convocatory.year}}
+                    </td>
+                    <td ng-if="convocatory.externalEvaluations=='true'">
+                        {{"Si"}}
+                    </td>
+                    <td ng-if="convocatory.externalEvaluations=='false'">
+                        {{"No"}}
+                    </td>
+                    <td ng-if="convocatory.startDate">
+                        {{convocatory.startDate.getDate()+'/'+(convocatory.startDate.getMonth()+1)+'/'+convocatory.startDate.getFullYear()}}
+                    </td>
+                    <td ng-if="convocatory.endDate">
+                        {{convocatory.endDate.getDate()+'/'+(convocatory.endDate.getMonth()+1)+'/'+convocatory.endDate.getFullYear()}}
+                    </td>
+                    <td ng-if="!convocatory.startDate"></td>
+                    <td ng-if="!convocatory.endDate"></td>
+                    <td>
+                        <md-button class="md-raised md-primary" ui-sref="convocatories.edit({id:convocatory.id})">Editar</md-button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

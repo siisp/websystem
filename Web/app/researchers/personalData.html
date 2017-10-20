@@ -32,7 +32,7 @@
                 <div ng-messages="researcherForm.surname.$error">
                     <div ng-message="required">Campo requerido.</div>
                 </div>
-            </md-input-container>
+                </md-input-container>
                 <md-input-container flex="20">
                     <label>Nombre</label>
                     <input required="" name="name" ng-disabled="readOnlyMode" ng-model="researcherEditing.name">
@@ -59,16 +59,9 @@
                         <div ng-show="!isNewDni" >Ya existe.</div>
                     </div>
                 </md-input-container>
-                <md-input-container flex="12">
-                    <datepicker date-format="dd/MM/yyyy" selector="form-control">
-                        <div class="input-group">
-                            <label>Fecha de Nacimiento</label>
-                            <input class="form-control" name="birthday" ng-disabled="readOnlyMode" ng-model="researcherEditing.birthday"/>
-                            <span class="input-group-addon" style="cursor: pointer">
-                                <i class="fa fa-lg fa-calendar"></i>
-                            </span>
-                        </div>
-                    </datepicker>
+                <md-input-container flex="20">
+                    <label>Fecha de Nacimiento</label>
+                    <input type="date" ng-model="researcherEditing.birthday" ng-disabled="readOnlyMode">
                 </md-input-container>
             </div>
             <div layout="row">
@@ -90,8 +83,11 @@
                 </md-input-container>
             </div>
         <div>
-            <md-button ng-show=" !readOnlyMode" class="md-raised md-primary" ng-disabled="researcherForm.$invalid || dataLoading" ng-click="save()">Guardar</md-button>
+            <md-button ng-show=" !readOnlyMode" class="md-raised md-primary" ng-disabled="researcherForm.$invalid || dataLoading || researcherSaved" ng-click="save()">Guardar</md-button>
             <label ng-show="researcherSaved">Guardado!</label>
+        </div>
+        <div>
+            <md-button ng-show="researcherSaved && isAddingANewResearcher" ng-click="addNewResearcher()">Agregar Otro</md-button>
         </div>
     </form>
 </div>

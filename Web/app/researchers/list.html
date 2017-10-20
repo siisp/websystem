@@ -8,54 +8,74 @@
             <label ng-show="researchers===null">No hay investigadores.</label>
             </br>
         </div>
-        <table ng-show="researchers!=null" >
-            <tr>
-                <th>Datos Personales</th>
-                <th>Formación</th>
-                <th>Cargos</th>
-                <th></th>
-            </tr>
-            <tr ng-repeat="researcher in researchers | toArray | orderBy:'surname'">
-                <td>
-                    <md-list>
-                        <md-list-item class="md-3-line" >
-                            <img ng-src="{{researcher.profilePhoto}}" class="md-avatar" alt="{{researcher.name}}">
-                            <div class="md-list-item-text">
-                                <h3>{{researcher.surname}}</h3>
-                                <h4>{{researcher.name}}</h4>
-                                <h5>{{'DNI '+researcher.dni}}</h5>
-                                <h5>{{researcher.email}}</h5>
-                            </div>
-                        </md-list-item>
-                    </md-list>
-                </td>
-                <td>
-                    <label ng-show="(researcher.formations|toArray).length == 0 ">No hay formaciones cargadas</label>
-                    <md-list>
-                        <md-list-item class="md-3-line" ng-repeat="formation in researcher.formations | toArray">
-                        <div class="md-list-item-text">
-                            <h3>{{formation.type}}</h3>
-                            <h3>{{parametrics['degreeArea'][formation.degreeArea].careers[formation.career].name}}</h3>
-                        </div>
-                        <md-divider md-inset ng-if="!$last"></md-divider>
-                        </md-list-item>
-                    </md-list>
-                </td>
-                <td>
-                    <label ng-show="(researcher.positions|toArray).length == 0 ">No hay cargos cargados</label>
-                    <md-list>
-                        <md-list-item class="md-3-line" ng-repeat="position in researcher.positions | toArray">
-                            <div class="md-list-item-text">
-                               <h3>{{positionTypes[position.positionType].name}}</h3>
-                               <h4>{{parametrics['secretaryshipDepartment'][position.secretaryshipDepartment].careers[position.career].subjects[position.subject].name}}</h4>
-                               <h5>{{parametrics['secretaryshipDepartment'][position.secretaryshipDepartment].careers[position.career].name}}</h5>
-                               <h6>{{parametrics['secretaryshipDepartment'][position.secretaryshipDepartment].name}}</h6>
-                            </div>
-                            <md-divider md-inset ng-if="!$last"></md-divider>
-                    </md-list>
-                </td>
-                <td>
-                    <md-button class="md-raised md-primary" ui-sref="researchers.edit({id:researcher.id})">Editar</md-button>
-                    <md-button class="md-raised md-primary" ui-sref="researchers.view({id:researcher.id})">Ver</md-button>
-                </td>
-        </table>
+        <div layout="row">
+            <md-input-container class="md-icon-float md-block" flex="30" ng-show="researchers">
+                <label> Buscar Investigador... </label>
+                <input ng-model="searchText" ng-change="search()" >
+            </md-input-container>
+            <img ng-show="researchers" src="../assets/img/LUPA-128.png" class="inputImage">
+            <md-button class="buttonResearcher md-raised md-primary" ui-sref="researchers.new">Agregar nuevo</md-button>
+        </div>
+        <div class="scrollable">
+            <table ng-show="researchers!=null">
+                <tr>
+                    <th>Datos Personales</th>
+                    <th>Formación</th>
+                    <th>Cargos</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="researcher in filteredResearchers | startFromGrid: currentPage * pageSize | limitTo: pageSize" ng-click='seleccionarUsuario(usuario.id)'>
+                    <td>
+                        <md-list>
+                            <md-list-item class="md-3-line" >
+                                <img ng-show="researcher.profilePhoto!=null" ng-src="{{researcher.profilePhoto}}" class="md-avatar">
+                                <img ng-show="researcher.profilePhoto==null && researcher.gender == 'male'" ng-src="../assets/img/profile-male.png" class="md-avatar">
+                                <img ng-show="researcher.profilePhoto==null && researcher.gender == 'female'" ng-src="../assets/img/profile-female.png" class="md-avatar">
+                                <div class="md-list-item-text">
+                                    <h3>{{researcher.surname}}</h3>
+                                    <h4>{{researcher.name}}</h4>
+                                    <h5>{{'DNI '+researcher.dni}}</h5>
+                                    <h5>{{researcher.email}}</h5>
+                                </div>
+                            </md-list-item>
+                        </md-list>
+                    </td>
+                    <td>
+                        <label ng-show="(researcher.formations|toArray).length == 0 ">No hay formaciones cargadas</label>
+                        <md-list>
+                            <md-list-item class="md-3-line" ng-repeat="formation in researcher.formations | toArray">
+                                <div class="md-list-item-text">
+                                    <h3>{{formation.type}}</h3>
+                                    <h3>{{parametrics['degreeArea'][formation.degreeArea].careers[formation.career].name}}</h3>
+                                </div>
+                                <md-divider md-inset ng-if="!$last"></md-divider>
+                            </md-list-item>
+                        </md-list>
+                    </td>
+                    <td>
+                        <label ng-show="(researcher.positions|toArray).length == 0 ">No hay cargos cargados</label>
+                        <md-list>
+                            <md-list-item class="md-3-line" ng-repeat="position in researcher.positions | toArray">
+                                <div class="md-list-item-text">
+                                    <h3>{{positionTypes[position.positionType].name}}</h3>
+                                    <h4>{{parametrics['secretaryshipDepartment'][position.secretaryshipDepartment].careers[position.career].subjects[position.subject].name}}</h4>
+                                    <h5>{{parametrics['secretaryshipDepartment'][position.secretaryshipDepartment].careers[position.career].name}}</h5>
+                                    <h6>{{parametrics['secretaryshipDepartment'][position.secretaryshipDepartment].name}}</h6>
+                                </div>
+                                <md-divider md-inset ng-if="!$last"></md-divider>
+                        </md-list>
+                    </td>
+                    <td>
+                        <md-button class="md-raised md-primary" ui-sref="researchers.edit({id:researcher.id})">Editar</md-button>
+                        <md-button class="md-raised md-primary" ui-sref="researchers.view({id:researcher.id})">Ver</md-button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class='btn-group' ng-show="researchers">
+            <button type='button' class='btn btn-default' ng-disabled='currentPage == 0' ng-click='currentPage = currentPage - 1'>&laquo;</button>
+            <button type='button' class='btn btn-default' ng-disabled='currentPage == page.no - 1' ng-click='setPage(page.no)' ng-repeat='page in pages'>{{page.no}}</button>
+            <button type='button' class='btn btn-default' ng-disabled='currentPage >= (researchers|toArray).length/pageSize - 1' ng-click='currentPage = currentPage + 1'>&raquo;</button>
+        </div>
+    </div>
+</div>

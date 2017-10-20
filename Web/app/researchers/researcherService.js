@@ -47,6 +47,12 @@ angular.module('Researchers').factory('researcherService', ['dataService',
                     return;
                 var referenceName = 'researchers/' + researcher.id + '/positions';
                 dataService.deleteObject(referenceName, position);
+            },
+            removeParametric: function (researcher, parametric, path) {
+                if (researcher.id == null || parametric.id == null)
+                    return;
+                var referenceName = 'researchers/' + researcher.id +'/'+path;
+                dataService.deleteItemOfAnObject(referenceName);
             }
         };
     }

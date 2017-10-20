@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('SiispApp', ['Core', 'Login', 'Layout', 'Researchers', 'Parametrics'])
+angular.module('SiispApp', ['Core', 'Login', 'Layout', 'Researchers', 'Parametrics', 'Convocatories', 'Projects'])
     .config(function($mdThemingProvider, $stateProvider, $urlRouterProvider) {
         $mdThemingProvider.theme('docs-dark', 'default')
             .primaryPalette('yellow')
@@ -9,7 +9,7 @@ angular.module('SiispApp', ['Core', 'Login', 'Layout', 'Researchers', 'Parametri
         $stateProvider
             .state('home', {
                 url: "/",
-                templateUrl: "layout/index.html"
+                templateUrl: "researchers/index.html"
             });
     })
     .run(['$rootScope', '$state', '$stateParams', '$cookieStore', '$http',

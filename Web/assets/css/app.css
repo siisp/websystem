@@ -122,3 +122,43 @@ th {
     color : rgb(187, 187, 187);
     background-color: rgba(230, 230, 229, 0.96);
 }
+
+/* Pagination */
+
+.table > tbody > tr:hover {
+    background-color: #F2F2F2;
+    cursor: pointer;
+}
+
+
+
+.scrollable {
+    height: 300px;
+    margin: 20px auto;
+    overflow: auto;
+    padding: .5rem;
+    width: auto;
+}
+
+
+
+.buttonResearcher{
+    float:right;
+    position:absolute;
+    right:20px;
+}
+
+.buttonConvocatory{
+    position:absolute;
+    right:40px;}
+
+.inputImage{
+    width: 30px;
+    height: 30px;
+    align: left;
+    padding-top: 20px;
+}
+
+.inputMaterial{
+    color:grey !important;
+}

@@ -1,0 +1,17 @@
+<div ng-controller="projects.index" ng-init="setup()">
+    <h3>Proyectos</h3>
+    <div>
+        <div ng-cloak>
+            <md-content>
+                <div layout="row">
+                    <md-input-container>
+                        <md-select ng-model="convocatorySelected" ng-change="changeConvocatoriesToEdit()" placeholder="Elije una Convocatoria">
+                            <md-option ng-repeat="convocatory in  convocatories | toArray" value="{{convocatory.id}}">{{  convocatory.type }}</md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+                <div ng-include ng-show="convocatorySelected" src="'projects/list.html'" ng-controller="projects.list"></div>
+            </md-content>
+        </div>
+    </div>
+</div>

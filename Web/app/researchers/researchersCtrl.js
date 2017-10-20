@@ -4,6 +4,7 @@ angular.module('Researchers')
     .controller('researchers.new', ['$scope', '$stateParams', 'researcherService','parametricService',
         function ($scope, $stateParams, researcherService, parametricService) {
             $scope.setup = function () {
+                $scope.isAddingANewResearcher = isAddingANewResearcher();
                 if (isAddingANewResearcher()) {
                     $scope.researcherEditing = {
                         id: null,
@@ -19,6 +20,9 @@ angular.module('Researchers')
                 loadParametrics();
             }
             $scope.save = function () {
+                if (typeof $scope.birthday !== 'string') {
+                    $scope.researcherEditing.birthday = $scope.researcherEditing.birthday.toJSON();
+                }
                 $scope.researcherSaved = false;
                 researcherService.save($scope.researcherEditing, onResearcherSaved);
             }
@@ -34,6 +38,12 @@ angular.module('Researchers')
                 $scope.positionEditing.subject = null;
             }
 
+            $scope.addNewResearcher = function () {
+                $scope.researcherSaved=false;
+                $stateParams.id = undefined;
+                $scope.setup();
+            };
+
             var onResearcherSaved = function () {
                 $scope.researcherSaved = true;
                 if(isAddingANewResearcher())
@@ -48,6 +58,9 @@ angular.module('Researchers')
             }
             var setResearchersToEdit = function (researcher) {
                 $scope.researcherEditing = researcher;
+                if (typeof $scope.researcherEditing.birthday === 'string') {
+                    $scope.researcherEditing.birthday = new Date($scope.researcherEditing.birthday);
+                }
             }
 
             var loadParametrics = function () {
@@ -92,14 +105,15 @@ angular.module('Researchers')
                         $scope.isNewDni = false;
                     }
                 }
-            }
+            };
             $scope.setProfilePhoto = function (file) {
                 if (file) {
                     $scope.uploadProfilePhotoIndicator.completed = false;
                     researcherService.setProfilePhoto($scope.researcherEditing, file, $scope.uploadProfilePhotoIndicator,
                         onProfilePhotoUpdated, onUploadingProfilePhotoError);
                 }
-            }
+            };
+
             var onProfilePhotoUpdated = function () {
                     $scope.uploadProfilePhotoIndicator = {percentageCompleted: 0, completed: true};
                     $scope.$apply();
@@ -161,19 +175,52 @@ angular.module('Researchers')
                 $scope.positionSaved = false;
                 $scope.licenses = [{name:'Si', value:true},{name:'No', value:false}];
                 $scope.positionEditingExisting = false;
+                prepareDatePositionsToShow();
             }
             $scope.cancelEdition = function () {
                 $scope.positionEditingExisting = false;
                 $scope.positionEditing = {id: null};
             };
             $scope.addNewPosition = function () {
+                if($scope.positionEditing.highInTheInstitution!= undefined) {
+                    if (typeof $scope.positionEditing.highInTheInstitution !== 'string') {
+                        $scope.positionEditing.highInTheInstitution = $scope.positionEditing.highInTheInstitution.toJSON();
+                    }
+                }
+                if($scope.positionEditing.terminationDate!= undefined) {
+                    if (typeof $scope.positionEditing.terminationDate !== 'string') {
+                        $scope.positionEditing.terminationDate = $scope.positionEditing.terminationDate.toJSON();
+                    }
+                }
                 if($scope.positionEditing.license == 'false')
                 {
                     $scope.positionEditing.licenseDate = null;
                     $scope.positionEditing.resolution = null;
                 }
-
                 researcherService.addPosition($scope.researcherEditing, $scope.positionEditing, onPositionUpdated);
+            };
+
+            $scope.permissionToSave = function (position, flag) {
+                var isDisabled=false;
+                $scope.positionSaved = false;
+                if(flag!='3'){
+                    if(position.secretaryshipDepartment==null
+                        || position.career ==null
+                        || position.subject==null
+                        || position.positionType==null
+                        || position.idDedication ==null
+                        || position.typeOfRecruitment ==null){
+                        isDisabled = true;
+                    }
+                }
+                if(flag=='3'){
+                    if(position.positionType==null
+                        || position.idDedication ==null
+                        || position.typeOfRecruitment ==null){
+                        isDisabled = true;
+                    }
+                }
+                return isDisabled;
             };
 
             $scope.edit = function(position)
@@ -181,6 +228,12 @@ angular.module('Researchers')
                 $scope.positionSaved = false;
                 $scope.positionEditing = angular.copy(position);
                 $scope.positionEditingExisting = true;
+                if (typeof $scope.positionEditing.highInTheInstitution === 'string') {
+                    $scope.positionEditing.highInTheInstitution = new Date($scope.positionEditing.highInTheInstitution);
+                }
+                if (typeof $scope.positionEditing.terminationDate === 'string') {
+                    $scope.positionEditing.terminationDate = new Date($scope.positionEditing.terminationDate);
+                }
             }
             
             $scope.deletePosition = function (position) {
@@ -190,6 +243,7 @@ angular.module('Researchers')
                     $scope.positionSaved = true;
                     $scope.positionEditingExisting = false;
                     $scope.positionEditing = {id: null};
+                    prepareDatePositionsToShow();
                     $scope.$apply();
                 },
                 refreshEducationParametrics = function(parametrics)
@@ -197,18 +251,49 @@ angular.module('Researchers')
                     $scope.positionTypes = parametrics.positionType;
                     $scope.modalities = parametrics.modality;
                     $scope.idDedications = parametrics.idDedication;
+                },
+                prepareDatePositionsToShow = function () {
+                    for(var position in $scope.researcherEditing.positions){
+                        if (typeof $scope.researcherEditing.positions[position].highInTheInstitution === 'string') {
+                            $scope.researcherEditing.positions[position].highInTheInstitution = new Date($scope.researcherEditing.positions[position].highInTheInstitution);
+                        }
+                        if (typeof $scope.researcherEditing.positions[position].terminationDate === 'string') {
+                            $scope.researcherEditing.positions[position].terminationDate = new Date($scope.researcherEditing.positions[position].terminationDate);
+                        }
+                    }
                 }
+            $scope.setup();
         }
     ]);
 
 angular.module('Researchers')
-    .controller('researchers.list', ['$scope', 'researcherService', 'parametricService', function($scope, researcherService, parametricService) {
+    .controller('researchers.list', ['$scope', '$filter', 'researcherService', 'parametricService', function($scope, $filter, researcherService, parametricService) {
         $scope.setup = function () {
             $scope.firstTime = true;
+            $scope.filteredResearchers = [];
+            $scope.pages = [];
             loadResearchers();
             loadParametrics();
             $scope.readOnlyMode = false;
+            $scope.currentPage = 0;
+            $scope.pageSize = 10;
+            $scope.search();
         };
+
+
+        $scope.search= function(){
+                var items = $filter('toArray')($scope.researchers);
+                $scope.filteredResearchers = $filter('filter')(items, $scope.searchText);
+                if(items.length != $scope.filteredResearchers.length)
+                {
+                    configPages($scope.filteredResearchers);
+                }
+        };
+
+        $scope.setPage = function(index) {
+            $scope.currentPage = index - 1;
+        };
+
         var loadResearchers = function () {
             researcherService.getResearchers(refreshResearchers);
         },
@@ -217,20 +302,51 @@ angular.module('Researchers')
                $scope.researchers = null;
            }else{
                $scope.researchers = researchers;
+               $scope.filteredResearchers = $filter('toArray')(researchers);
+               configPages((Object.keys($scope.researchers)));
            }
            if($scope.firstTime)
            {
                $scope.$apply();
                $scope.firstTime = false;
            }
-        }
-        var loadParametrics = function () {
+        },
+        loadParametrics = function () {
             parametricService.getParametrics(refreshParametrics);
-        }
-        var refreshParametrics = function (parametrics) {
+        },
+        refreshParametrics = function (parametrics) {
             $scope.parametrics = parametrics;
             $scope.positionTypes = parametrics.positionType;
-        }
+        },
+        configPages = function(items) {
+            $scope.pages.length = 0;
+            var ini = $scope.currentPage - 4;
+            var fin = $scope.currentPage + 5;
+            if($scope.researchers != null || $scope.researchers != undefined){
+                if (ini < 1) {
+                    ini = 1;
+                    if (Math.ceil(items.length / $scope.pageSize) > 10)
+                        fin = 10;
+                    else
+                        fin = Math.ceil(items.length  / $scope.pageSize);
+                } else {
+                    if (ini >= Math.ceil(items.length  / $scope.pageSize) - 10) {
+                        ini = Math.ceil(items.length / $scope.pageSize) - 10;
+                        fin = Math.ceil(items.length  / $scope.pageSize);
+                    }
+                }
+                if (ini < 1) ini = 1;
+                for (var i = ini; i <= fin; i++) {
+                    $scope.pages.push({
+                        no: i
+                    });
+                }
+
+                if ($scope.currentPage >= $scope.pages.length)
+                    $scope.currentPage = $scope.pages.length - 1;
+            }
+        };
+        $scope.setup();
     }
 ]);
 
@@ -244,6 +360,9 @@ angular.module('Researchers')
             };
             var setResearchersToEdit = function (researcher) {
                 $scope.researcherEditing = researcher;
+                if (typeof $scope.researcherEditing.birthday === 'string') {
+                    $scope.researcherEditing.birthday = new Date($scope.researcherEditing.birthday);
+                }
             };
             var loadParametrics = function () {
                 parametricService.getParametrics(refreshParametrics);
