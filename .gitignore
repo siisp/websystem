@@ -108,6 +108,7 @@ bower_components
 ### Eclipse C++ ###
 .metadata
 bin/
+debug/
 tmp/
 *.tmp
 *.bak
