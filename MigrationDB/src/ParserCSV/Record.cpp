@@ -17,6 +17,10 @@ void Record::AddField(string field){
 	this->fields.push_back(field);
 }
 
+string Record::operator[](int index) {
+	return this->fields[index];
+}
+
 Record::~Record() {
 }
 
