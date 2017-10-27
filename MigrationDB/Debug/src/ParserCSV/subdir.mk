@@ -4,12 +4,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/ParserCSV/PersonalData.cpp \
 ../src/ParserCSV/Record.cpp 
 
 OBJS += \
+./src/ParserCSV/PersonalData.o \
 ./src/ParserCSV/Record.o 
 
 CPP_DEPS += \
+./src/ParserCSV/PersonalData.d \
 ./src/ParserCSV/Record.d 
 
 

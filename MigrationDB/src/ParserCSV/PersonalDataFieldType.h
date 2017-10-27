@@ -1,0 +1,6 @@
+#ifndef PERSONALDATAFIELDTYPE_H_
+#define PERSONALDATAFIELDTYPE_H_
+
+enum PersonalDataFieldType {RANGO_EDAD=3, GENERO=4, Apellido=5, Nombre=6, DNI=7, CUIT_CUIL=8,CORREO_ELECTRONICO=9};
+
+#endif
