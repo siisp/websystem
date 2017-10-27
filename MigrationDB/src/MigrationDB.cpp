@@ -17,6 +17,8 @@ int main() {
 	for(int x=0; x<record->GetFieldCount(); x++){
 		cout<<record->GetField(x)<<endl;
 	}
+	cout<<(*record)[0];
+
 	delete record;
 
 	return 0;

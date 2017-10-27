@@ -12,6 +12,7 @@ public:
 	string GetField(int index) const;
 	int GetFieldCount() const;
 	void AddField(string field);
+	string operator[](int index);
 	virtual ~Record();
 };
 
