@@ -5,16 +5,22 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../src/DomainModel/IdGenerator.cpp \
+../src/DomainModel/Parametric.cpp \
+../src/DomainModel/ParametricRepository.cpp \
 ../src/DomainModel/Researcher.cpp \
 ../src/DomainModel/ResearcherFormation.cpp 
 
 OBJS += \
 ./src/DomainModel/IdGenerator.o \
+./src/DomainModel/Parametric.o \
+./src/DomainModel/ParametricRepository.o \
 ./src/DomainModel/Researcher.o \
 ./src/DomainModel/ResearcherFormation.o 
 
 CPP_DEPS += \
 ./src/DomainModel/IdGenerator.d \
+./src/DomainModel/Parametric.d \
+./src/DomainModel/ParametricRepository.d \
 ./src/DomainModel/Researcher.d \
 ./src/DomainModel/ResearcherFormation.d 
 

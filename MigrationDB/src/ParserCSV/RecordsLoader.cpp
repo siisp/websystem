@@ -1,10 +1,12 @@
 #include "RecordsLoader.h"
 #include "Record.h"
+#include <iostream>
 #include <string>
 #include <list>
 #include <fstream>
 using std::string;
 const int MaxRecordLenght=256;
+const char separator=',';
 
 RecordsLoader::RecordsLoader() {
 }
@@ -24,18 +26,19 @@ std::list<Record*> *RecordsLoader::GetRecords(string filePath)const{
 }
 
 Record* RecordsLoader::GetRecord(string record)const{
-	Record* newRecord = new Record;
+	Record* newRecord = new Record();
 	int separatorPosition=0, copyStartPosition=0;
-	while(record[record.find(',',copyStartPosition)]!=-1){
-		separatorPosition=record.find(',',copyStartPosition);
-		newRecord->AddField(record.substr(copyStartPosition,(separatorPosition-copyStartPosition)+1));
+	while(record.find(separator,copyStartPosition)!=-1){
+		separatorPosition=record.find(separator,copyStartPosition);
+		int cantCaracteres = (separatorPosition-copyStartPosition);
+		std::cout<<cantCaracteres<<std::endl;
+		newRecord->AddField(record.substr(copyStartPosition,(separatorPosition-copyStartPosition)));
 		copyStartPosition=separatorPosition+1;
 	}
 	separatorPosition=record.find('\0',copyStartPosition);
-	newRecord->AddField(record.substr(copyStartPosition,(separatorPosition-copyStartPosition)+1));
+	newRecord->AddField(record.substr(copyStartPosition,(separatorPosition-copyStartPosition)));
 	return newRecord;
 }
 
 RecordsLoader::~RecordsLoader() {
 }
-

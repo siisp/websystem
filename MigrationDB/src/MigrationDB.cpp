@@ -1,25 +1,18 @@
 #include <iostream>
+#include "ParserCSV/RecordsLoader.h"
 #include "ParserCSV/Record.h"
+#include <list>
 using namespace std;
-
-string ConverToString(int algo){
-	char v[2];
-	v[1]='\0';
-	v[0]=48+algo;
-	return v;
-}
+const string path="/home/lasoladm/projects/migrationDB/websystem/MigrationDB/prueba.txt";
 
 int main() {
-	Record* record = new Record();
-	for(int i=0; i<5; i++){
-		record->AddField("Hola " + ConverToString(i));
+	RecordsLoader* loader = new RecordsLoader();
+	std::list<Record*> *records = loader->GetRecords(path);
+	for(std::list<Record*>::iterator iterador=records->begin(); iterador!=records->end() ; ++iterador){
+		Record* registro = *iterador;
+		for (int x=0;x<registro->GetFieldCount();x++){
+			cout<<"Campo numero: "<<x<<" "<<registro->GetField(x)<<endl;
+		}
 	}
-	for(int x=0; x<record->GetFieldCount(); x++){
-		cout<<record->GetField(x)<<endl;
-	}
-	cout<<(*record)[0];
-
-	delete record;
-
 	return 0;
 }
