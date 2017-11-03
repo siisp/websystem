@@ -4,13 +4,19 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/DomainModel/Researcher.cpp 
+../src/DomainModel/IdGenerator.cpp \
+../src/DomainModel/Researcher.cpp \
+../src/DomainModel/ResearcherFormation.cpp 
 
 OBJS += \
-./src/DomainModel/Researcher.o 
+./src/DomainModel/IdGenerator.o \
+./src/DomainModel/Researcher.o \
+./src/DomainModel/ResearcherFormation.o 
 
 CPP_DEPS += \
-./src/DomainModel/Researcher.d 
+./src/DomainModel/IdGenerator.d \
+./src/DomainModel/Researcher.d \
+./src/DomainModel/ResearcherFormation.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

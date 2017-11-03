@@ -31,7 +31,6 @@ public:
 	string GetEmail()const;
 	void SetGender(string gender);
 	string GetGender()const;
-	void SetId(string id);
 	string GetId()const;
 
 	virtual ~Researcher();

@@ -1,9 +1,13 @@
 #include "Researcher.h"
 #include <string>
+#include "IdGenerator.h"
 
 using std::string;
 
 Researcher::Researcher() {
+	IdGenerator *generator= new IdGenerator();
+	this->id=generator->GetNewId();
+	delete generator;
 }
 
 void Researcher::SetName(string name){
@@ -47,9 +51,6 @@ void Researcher::SetGender(string gender){
 }
 string Researcher::GetGender()const{
 	return this->gender;
-}
-void Researcher::SetId(string id){
-	this->id=id;
 }
 string Researcher::GetId()const{
 	return this->id;
