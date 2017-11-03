@@ -4,12 +4,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/DomainModel/Parametric.cpp \
 ../src/DomainModel/Researcher.cpp 
 
 OBJS += \
+./src/DomainModel/Parametric.o \
 ./src/DomainModel/Researcher.o 
 
 CPP_DEPS += \
+./src/DomainModel/Parametric.d \
 ./src/DomainModel/Researcher.d 
 
 
