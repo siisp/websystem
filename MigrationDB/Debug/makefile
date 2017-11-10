@@ -10,7 +10,6 @@ RM := rm -rf
 -include sources.mk
 -include src/ParserCSV/subdir.mk
 -include src/DomainModel/subdir.mk
--include src/.metadata/.plugins/org.eclipse.cdt.make.core/subdir.mk
 -include src/subdir.mk
 -include subdir.mk
 -include objects.mk
