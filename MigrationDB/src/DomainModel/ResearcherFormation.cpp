@@ -4,9 +4,6 @@
 using std::string;
 
 ResearcherFormation::ResearcherFormation() {
-	IdGenerator *generator= new IdGenerator();
-	this->id=generator->GetNewId();
-	delete generator;
 }
 
 void ResearcherFormation::SetAcademicDegree(string academicDegree){
@@ -32,9 +29,6 @@ void ResearcherFormation::SetFormationComplete(bool formationCompleted){
 }
 bool ResearcherFormation::GetFormationComplete()const{
 	return this->formationCompleted;
-}
-string ResearcherFormation::GetId()const{
-	return this->id;
 }
 void ResearcherFormation::SetType(string type){
 	this->type = type;

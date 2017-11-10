@@ -52,10 +52,6 @@ void Researcher::SetGender(string gender){
 string Researcher::GetGender()const{
 	return this->gender;
 }
-string Researcher::GetId()const{
-	return this->id;
-}
-
 
 Researcher::~Researcher() {
 }

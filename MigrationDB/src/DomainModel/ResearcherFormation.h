@@ -1,15 +1,15 @@
 #ifndef RESEARCHERFORMATION_H_
 #define RESEARCHERFORMATION_H_
 #include <string>
+#include "Entity.h"
 using std::string;
 
-class ResearcherFormation {
+class ResearcherFormation: public Entity {
 private:
 	string academicDegree;
 	string carrer;
 	string degreeArea;
 	bool formationCompleted;
-	string id;
 	string type;
 	string university;
 public:
@@ -22,7 +22,6 @@ public:
 	string GetDegreeArea()const;
 	void SetFormationComplete(bool formationCompleted);
 	bool GetFormationComplete()const;
-	string GetId()const;
 	void SetType(string type);
 	string GetType()const;
 	void SetUniversity(string university);
