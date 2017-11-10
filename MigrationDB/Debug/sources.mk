@@ -26,5 +26,4 @@ SUBDIRS := \
 src/ParserCSV \
 src \
 src/DomainModel \
-src/.metadata/.plugins/org.eclipse.cdt.make.core \
 

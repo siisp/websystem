@@ -13,6 +13,5 @@ string PersonalData::GetFieldValue(PersonalDataFieldType field){
 }
 
 PersonalData::~PersonalData() {
-	delete this->record;
 }
 
