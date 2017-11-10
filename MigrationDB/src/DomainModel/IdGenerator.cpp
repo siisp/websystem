@@ -21,7 +21,7 @@ IdGenerator::IdGenerator() {
 string IdGenerator::GetNewId(){
 	string newId="-";
 	for(int i=1;i<idLength;i++){
-		newId[i]=validChars[rand() % validCharsLength];
+		newId+=validChars[rand() % validCharsLength];
 	}
 	return newId;
 }

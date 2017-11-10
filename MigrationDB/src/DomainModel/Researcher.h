@@ -2,10 +2,11 @@
 #define RESEARCHER_H_
 
 #include <string>
+#include "Entity.h"
 
 using std::string;
 
-class Researcher {
+class Researcher: public Entity {
 private:
 	string name;
 	string surname;
@@ -14,7 +15,6 @@ private:
 	int dni;
 	string email;
 	string gender;
-	string id;
 public:
 	Researcher();
 	void SetName(string name);
@@ -31,7 +31,6 @@ public:
 	string GetEmail()const;
 	void SetGender(string gender);
 	string GetGender()const;
-	string GetId()const;
 
 	virtual ~Researcher();
 };
