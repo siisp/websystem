@@ -3,7 +3,7 @@
 #include "ParserCSV/Record.h"
 #include <list>
 using namespace std;
-const string path="/home/lasoladm/projects/migrationDB/websystem/MigrationDB/prueba.txt";
+const string path="/home/lasoladm/projects/migrationDB/websystem/MigrationDB/docentesInvestigadores.csv";
 
 int main() {
 	RecordsLoader* loader = new RecordsLoader();
@@ -14,5 +14,6 @@ int main() {
 			cout<<"Campo numero: "<<x<<" "<<registro->GetField(x)<<endl;
 		}
 	}
+	std::cout<<"La cantidad de registros que cargo es: "<<records->size()<<std::endl;
 	return 0;
 }
