@@ -19,7 +19,6 @@ public:
 	PositionData* getPositionData() const;
 	void setPositionData(PositionData* positionData);
 	virtual ~ResearcherData();
-}
-;
+};
 
 #endif

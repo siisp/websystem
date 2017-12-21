@@ -3,7 +3,7 @@
 #include "PersonalData.h"
 #include "PositionData.h"
 
-ResearcherData::ResearcherData() {
+ResearcherData::ResearcherData(){
 }
 FormationData* ResearcherData::getFormationData() const{
 	return this->formationData;
