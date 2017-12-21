@@ -25,6 +25,7 @@ C_UPPER_DEPS :=
 SUBDIRS := \
 src/ParserCSV \
 src \
+src/Mapper \
 src/DomainModel \
 src/.metadata/.plugins/org.eclipse.cdt.make.core \
 
