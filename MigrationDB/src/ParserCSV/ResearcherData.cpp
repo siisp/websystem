@@ -5,22 +5,22 @@
 
 ResearcherData::ResearcherData() {
 }
-FormationData ResearcherData::getFormationData() const{
+FormationData* ResearcherData::getFormationData() const{
 	return this->formationData;
 }
-void ResearcherData::setFormationData(FormationData formationData){
+void ResearcherData::setFormationData(FormationData* formationData){
 	this->formationData = formationData;
 }
-PersonalData ResearcherData::getPersonalData() const{
+PersonalData* ResearcherData::getPersonalData() const{
 	return this->personalData;
 }
-void ResearcherData::setPersonalData(PersonalData personalData){
+void ResearcherData::setPersonalData(PersonalData* personalData){
 	this->personalData = personalData;
 }
-PositionData ResearcherData::getPositionData() const{
+PositionData* ResearcherData::getPositionData() const{
 	return this->positionData;
 }
-void ResearcherData::setPositionData(PositionData positionData){
+void ResearcherData::setPositionData(PositionData* positionData){
 	this->positionData = positionData;
 }
 ResearcherData::~ResearcherData() {
