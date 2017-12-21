@@ -6,18 +6,21 @@
 CPP_SRCS += \
 ../src/ParserCSV/FormationData.cpp \
 ../src/ParserCSV/PersonalData.cpp \
+../src/ParserCSV/PositionData.cpp \
 ../src/ParserCSV/Record.cpp \
 ../src/ParserCSV/RecordsLoader.cpp 
 
 OBJS += \
 ./src/ParserCSV/FormationData.o \
 ./src/ParserCSV/PersonalData.o \
+./src/ParserCSV/PositionData.o \
 ./src/ParserCSV/Record.o \
 ./src/ParserCSV/RecordsLoader.o 
 
 CPP_DEPS += \
 ./src/ParserCSV/FormationData.d \
 ./src/ParserCSV/PersonalData.d \
+./src/ParserCSV/PositionData.d \
 ./src/ParserCSV/Record.d \
 ./src/ParserCSV/RecordsLoader.d 
 
