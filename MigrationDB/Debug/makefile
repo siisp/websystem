@@ -9,8 +9,8 @@ RM := rm -rf
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include src/ParserCSV/subdir.mk
+-include src/Mapper/subdir.mk
 -include src/DomainModel/subdir.mk
--include src/.metadata/.plugins/org.eclipse.cdt.make.core/subdir.mk
 -include src/subdir.mk
 -include subdir.mk
 -include objects.mk
