@@ -10,7 +10,7 @@ ResearcherParser::ResearcherParser() {
 Researcher* ResearcherParser::Parse(const ResearcherData* researcherData){
 	Researcher* newResearcher = new Researcher();
 	for(int i=0;i<this->dataMappers.size();i++){
-		//this->dataMappers[i]->Map(researcherData,newResearcher);
+		this->dataMappers[i]->Map(researcherData,newResearcher);
 	}
 	return newResearcher;
 }

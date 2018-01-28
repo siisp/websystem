@@ -1,7 +1,7 @@
 #include "PersonalDataMapper.h"
-#include "Researcher.h"
-#include "ResearcherData.h"
-#include "PersonalDataFieldType.h"
+#include "../DomainModel/Researcher.h"
+#include "../ParserCSV/ResearcherData.h"
+#include "../ParserCSV/PersonalDataFieldType.h"
 #include <stdlib.h>
 
 PersonalDataMapper::PersonalDataMapper() {

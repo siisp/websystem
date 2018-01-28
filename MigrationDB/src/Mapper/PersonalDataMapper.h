@@ -2,8 +2,8 @@
 #define PERSONALDATAMAPPER_H_
 
 #include "DataMapper.h"
-#include "Researcher.h"
-#include "ResearcherData.h"
+#include "../DomainModel/Researcher.h"
+#include "../ParserCSV/ResearcherData.h"
 
 class PersonalDataMapper : public DataMapper {
 public:
