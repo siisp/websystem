@@ -31,7 +31,6 @@ Record* RecordsLoader::GetRecord(string record)const{
 		int separatorPosition=0, copyStartPosition=0;
 		while(record.find(separator,copyStartPosition)!=-1){
 			separatorPosition=record.find(separator,copyStartPosition);
-			int cantCaracteres = (separatorPosition-copyStartPosition);
 			newRecord->AddField(record.substr(copyStartPosition,(separatorPosition-copyStartPosition)));
 			copyStartPosition=separatorPosition+1;
 		}
