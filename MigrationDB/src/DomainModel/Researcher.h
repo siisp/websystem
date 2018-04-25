@@ -12,7 +12,7 @@ private:
 	string surname;
 	string birthday;
 	string cuilCuit;
-	int dni;
+	string dni;
 	string email;
 	string gender;
 public:
@@ -25,13 +25,13 @@ public:
 	string GetBirthday()const;
 	void SetCuilCuit(string cuilCuit);
 	string GetCuilCuit()const;
-	void SetDni(int dni);
-	int GetDni()const;
+	void SetDni(string dni);
+	string GetDni()const;
 	void SetEmail(string email);
 	string GetEmail()const;
 	void SetGender(string gender);
 	string GetGender()const;
-
+	string ToJson();
 	virtual ~Researcher();
 };
 

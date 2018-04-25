@@ -31,6 +31,7 @@ public:
 	void setSecretaryshipDepartment(string secretaryshipDepartment);
 	string getSubject() const;
 	void setSubject(string subject);
+	string ToJson();
 	virtual ~ResearcherPosition();
 };
 

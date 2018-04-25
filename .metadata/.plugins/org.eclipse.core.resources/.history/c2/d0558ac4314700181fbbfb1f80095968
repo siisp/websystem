@@ -1,0 +1,71 @@
+#include <iostream>
+#include "ParserCSV/RecordsLoader.h"
+#include <list>
+#include "ParserCSV/Record.h"
+#include "ParserCSV/ResearcherData.h"
+#include "ParserCSV/FormationData.h"
+#include "ParserCSV/PersonalData.h"
+#include "ParserCSV/PositionData.h"
+#include "DomainModel/Researcher.h"
+#include "Mapper/ResearcherParser.h"
+#define researcherFilePath "docentes.csv"
+using namespace std;
+using std::list;
+
+list<ResearcherData*>* GetResearchers() {
+	list<ResearcherData*>* investigadores = new list<ResearcherData*>();
+	RecordsLoader* loaderInvestigadores = new RecordsLoader();
+	list<Record*>* records = loaderInvestigadores->GetRecords(researcherFilePath);
+	list<Record*>::iterator iterador = records->begin();
+	while (iterador != records->end()) {
+		ResearcherData* data = new ResearcherData();
+		data->setFormationData(new FormationData(*iterador));
+		data->setPersonalData(new PersonalData(*iterador));
+		data->setPositionData(new PositionData(*iterador));
+		investigadores->push_back(data);
+		iterador++;
+	}
+	return investigadores;
+}
+
+bool NosInteresaVerlo(int numero){
+	if (numero == 4 or numero == 9)return true;
+	return false;
+}
+
+void ShowResearcher(Researcher* investigador,int numero){
+	cout<<"Numero:"<<numero<<endl;
+	cout<<"Nombre: "<<investigador->GetName()<<endl;
+	cout<<"Apellido: "<<investigador->GetSurname()<<endl;
+	cout<<"DNI: "<<investigador->GetDni()<<endl;
+	cout<<"Genero: "<<investigador->GetGender()<<endl;
+	cout<<"Email: "<<investigador->GetEmail()<<endl;
+	cout<<"CUIL/CUIT: "<<investigador->GetCuilCuit()<<endl;
+	cout<<endl;
+}
+
+list<Researcher*>* GetResearchers(list<ResearcherData*>* investigadoresDTO){
+	list<Researcher*>* investigadores = new list<Researcher*>();
+	list<ResearcherData*>::iterator iterador = investigadoresDTO->begin();
+	ResearcherParser* parserInvestigadores = new ResearcherParser();
+	int contador = 1;
+	Researcher* algunResearcher;
+	while(iterador != investigadoresDTO->end()){
+		algunResearcher = (parserInvestigadores->Parse(*iterador));
+		investigadores->push_back(algunResearcher);
+		if(NosInteresaVerlo(contador))ShowResearcher(algunResearcher,contador);
+		contador++;
+		iterador++;
+	}
+	return investigadores;
+}
+
+int main() {
+	list<ResearcherData*>* investigadores = GetResearchers();
+	cout<<"Tiene "<<investigadores->size()<<endl;
+	list<Researcher*>* researchers = GetResearchers(investigadores);
+	ShowResearcher(*researchers->begin());
+	delete investigadores;
+	delete researchers;
+	return 0;
+}

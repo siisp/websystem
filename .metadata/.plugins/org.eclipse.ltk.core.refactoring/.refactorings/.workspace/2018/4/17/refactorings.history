@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;MigrationDB/docentes.csv&apos;" deleteContents="false" description="Delete resource &apos;MigrationDB/docentes.csv&apos;" element1="/MigrationDB/docentes.csv" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1524510018580"/>&#x0A;<refactoring comment="Delete resource &apos;MigrationDB/Debug/docentes.csv&apos;" deleteContents="false" description="Delete resource &apos;MigrationDB/Debug/docentes.csv&apos;" element1="/MigrationDB/Debug/docentes.csv" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1524510251924"/>
+</session>

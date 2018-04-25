@@ -62,6 +62,11 @@ void ResearcherPosition::setSubject(string subject) {
 	this->subject = subject;
 }
 
+string ResearcherPosition::ToJson(){
+	string json="{ \"career\" : \""+ getCareer() + "\", \"id\" :\" "+ GetId() + "\", \"idDedication\" : \"" + getIdDedication() + "\", \"license\" : \"false\", \"modality\" : \"" + getModality() + "\", \"positionType\" :\" " + getPositionType() +"\", \"secretaryshipDepartment\" :\" "+ getSecretaryshipDepartment() + "\", \"subject\" : \"" + getSubject() + " \"}";
+	return json;
+}
+
 ResearcherPosition::~ResearcherPosition() {
 }
 

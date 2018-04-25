@@ -7,7 +7,7 @@
 class ResearcherFormationMapper {
 public:
 	ResearcherFormationMapper();
-	void Map(ResearcherData *researcherData, ResearcherFormation *formation);
+	void Map(const ResearcherData *researcherData, ResearcherFormation *formation);
 	virtual ~ResearcherFormationMapper();
 };
 

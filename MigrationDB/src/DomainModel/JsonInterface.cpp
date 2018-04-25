@@ -19,9 +19,9 @@ std::list<Parametric*> *JsonInterface::GetParametrics(const char* jsonString)con
 	document.Parse(jsonString);
 	for (Value::ConstMemberIterator itr = document.MemberBegin(); itr != document.MemberEnd(); ++itr){
 		Parametric* newParametric = new Parametric();
-		newParametric->SetId = itr->value.GetString();
+		newParametric->SetId(itr->value.GetString());
 		++itr;
-		newParametric->SetName = itr->value.GetString();
+		newParametric->SetName(itr->value.GetString());
 		parametrics->push_back(newParametric);
 	}
 	return parametrics;

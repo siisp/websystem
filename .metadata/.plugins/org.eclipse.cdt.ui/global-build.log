@@ -1,0 +1,15 @@
+18:25:32 **** Incremental Build of configuration Debug for project MigrationDB ****
+make all 
+Building file: ../src/DomainModel/Researcher.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/DomainModel/Researcher.d" -MT"src/DomainModel/Researcher.d" -o "src/DomainModel/Researcher.o" "../src/DomainModel/Researcher.cpp"
+Finished building: ../src/DomainModel/Researcher.cpp
+ 
+Building target: MigrationDB
+Invoking: GCC C++ Linker
+g++  -o "MigrationDB"  ./src/ParserCSV/FormationData.o ./src/ParserCSV/PersonalData.o ./src/ParserCSV/PositionData.o ./src/ParserCSV/Record.o ./src/ParserCSV/RecordsLoader.o ./src/ParserCSV/ResearcherData.o  ./src/Mapper/DataMapper.o ./src/Mapper/PersonalDataMapper.o ./src/Mapper/ResearcherFormationMapper.o ./src/Mapper/ResearcherParser.o  ./src/DomainModel/Entity.o ./src/DomainModel/IdGenerator.o ./src/DomainModel/JsonInterface.o ./src/DomainModel/Parametric.o ./src/DomainModel/ParametricRepository.o ./src/DomainModel/Researcher.o ./src/DomainModel/ResearcherFormation.o ./src/DomainModel/ResearcherPosition.o  ./src/MigrationDB.o   
+Finished building target: MigrationDB
+ 
+18:25:34 **** Incremental Build of configuration Debug for project MigrationDB ****
+make all 
+make: No se hace nada para 'all'.

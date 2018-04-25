@@ -10,7 +10,8 @@ src/Mapper/ResearcherParser.d: ../src/Mapper/ResearcherParser.cpp \
  ../src/Mapper/../ParserCSV/PositionDataFieldType.h \
  ../src/Mapper/../DomainModel/Researcher.h \
  ../src/Mapper/../DomainModel/Entity.h \
- ../src/Mapper/../DomainModel/IdGenerator.h
+ ../src/Mapper/../DomainModel/IdGenerator.h \
+ ../src/Mapper/PersonalDataMapper.h
 
 ../src/Mapper/ResearcherParser.h:
 
@@ -37,3 +38,5 @@ src/Mapper/ResearcherParser.d: ../src/Mapper/ResearcherParser.cpp \
 ../src/Mapper/../DomainModel/Entity.h:
 
 ../src/Mapper/../DomainModel/IdGenerator.h:
+
+../src/Mapper/PersonalDataMapper.h:

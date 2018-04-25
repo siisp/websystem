@@ -6,9 +6,7 @@
 
 class DataMapper {
 public:
-	DataMapper();
-	void Map(const ResearcherData* researcherData,Researcher* researcher);
-	virtual ~DataMapper();
+	virtual void Map(const ResearcherData* researcherData,Researcher* researcher) = 0;
 };
 
 #endif

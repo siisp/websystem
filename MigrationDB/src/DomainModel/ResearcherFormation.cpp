@@ -43,6 +43,11 @@ string ResearcherFormation::GetUniversity()const{
 	return this->university;
 }
 
+string ResearcherFormation::ToJson(){
+	string json=  "{ \"academicDegree\" :\" "+ GetAcademicDegree() +"\", \"career\" : \"" + GetCarrer() + "\", \"formationCompleted\" : \"true\", \"id\" : \""+GetId()+"\", \"type\" : \""+GetType()+ "\"}";
+	return json;
+}
+
 ResearcherFormation::~ResearcherFormation() {
 }
 

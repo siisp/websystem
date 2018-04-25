@@ -1,0 +1,38 @@
+#include <iostream>
+#include "ParserCSV/RecordsLoader.h"
+#include <list>
+#include "ParserCSV/Record.h"
+#include "ParserCSV/ResearcherData.h"
+#include "ParserCSV/FormationData.h"
+#include "ParserCSV/PersonalData.h"
+#include "ParserCSV/PositionData.h"
+#define researcherFilePath "docentes.csv"
+using namespace std;
+using std::list;
+
+list<ResearcherData*>* GetResearchers() {
+	list<ResearcherData*>* investigadores = new list<ResearcherData*>();
+	RecordsLoader* loaderInvestigadores = new RecordsLoader();
+	list<Record*>* records = loaderInvestigadores->GetRecords(researcherFilePath);
+	list<Record*>::iterator iterador = records->begin();
+	Record* ultimoRecord;
+	while (iterador != records->end()) {
+		ResearcherData* data = new ResearcherData();
+		data->setFormationData(new FormationData(*iterador));
+		data->setPersonalData(new PersonalData(*iterador));
+		data->setPositionData(new PositionData(*iterador));
+		investigadores->push_back(data);
+		ultimoRecord = *iterador;
+		iterador++;
+	}
+	cout<<"El ultimo: "<<ultimoRecord.ToString();
+	return investigadores;
+}
+
+int main() {
+	list<ResearcherData*>* investigadores = GetResearchers();
+	cout<<"Tiene "<<investigadores->size();
+
+	//list<Researcher*>* investigadoresFinales = new list<Researcher*>();
+	return 0;
+}

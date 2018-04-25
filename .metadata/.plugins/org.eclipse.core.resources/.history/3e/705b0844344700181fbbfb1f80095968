@@ -1,0 +1,31 @@
+#include "PersonalDataMapper.h"
+#include "../DomainModel/Researcher.h"
+#include "../ParserCSV/ResearcherData.h"
+#include "../ParserCSV/PersonalDataFieldType.h"
+#include <stdlib.h>
+
+PersonalDataMapper::PersonalDataMapper() {
+}
+
+string Replace(string source,char toFind,char toReplace){
+	if(source.find(toFind)==string::npos)return source;
+	return source.replace(source.find(toFind),1,1,toReplace);
+}
+
+string cleanDNI(string DNI){
+	return DNI.replace('.','');
+}
+
+void PersonalDataMapper::Map(const ResearcherData* researcherData,Researcher* researcher){
+	researcher->SetName(researcherData->getPersonalData()->GetFieldValue(Nombre));
+	researcher->SetCuilCuit(researcherData->getPersonalData()->GetFieldValue(CUIT_CUIL));
+	researcher->SetDni(researcherData->getPersonalData()->GetFieldValue(DNI));
+	researcher->SetEmail(researcherData->getPersonalData()->GetFieldValue(CORREO_ELECTRONICO));
+	researcher->SetGender(researcherData->getPersonalData()->GetFieldValue(GENERO));
+	researcher->SetSurname(researcherData->getPersonalData()->GetFieldValue(Apellido));
+}
+
+
+PersonalDataMapper::~PersonalDataMapper() {
+}
+

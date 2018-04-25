@@ -9,8 +9,16 @@ int Record::GetFieldCount()const{
 	return this->fields.size();
 }
 
+string Record::ToString(){
+	string registro;
+	for(int i=0;i<this->fields.size();++i){
+		registro+=this->GetField(i)+",";
+	}
+	return registro;
+}
+
 string Record::GetField(int index)const{
-	return this->fields[index];
+	return (index>this->fields.size())?"":this->fields[index];
 }
 
 void Record::AddField(string field){

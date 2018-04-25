@@ -26,7 +26,7 @@ public:
 	string GetType()const;
 	void SetUniversity(string university);
 	string GetUniversity()const;
-
+	string ToJson();
 	virtual ~ResearcherFormation();
 };
 

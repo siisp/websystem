@@ -11,6 +11,7 @@ protected:
 public:
 	Entity();
 	string GetId()const;
+	virtual string ToJson()=0;
 	virtual ~Entity();
 };
 

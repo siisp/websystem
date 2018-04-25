@@ -6,6 +6,7 @@
 CPP_SRCS += \
 ../src/DomainModel/Entity.cpp \
 ../src/DomainModel/IdGenerator.cpp \
+../src/DomainModel/JsonInterface.cpp \
 ../src/DomainModel/Parametric.cpp \
 ../src/DomainModel/ParametricRepository.cpp \
 ../src/DomainModel/Researcher.cpp \
@@ -15,6 +16,7 @@ CPP_SRCS += \
 OBJS += \
 ./src/DomainModel/Entity.o \
 ./src/DomainModel/IdGenerator.o \
+./src/DomainModel/JsonInterface.o \
 ./src/DomainModel/Parametric.o \
 ./src/DomainModel/ParametricRepository.o \
 ./src/DomainModel/Researcher.o \
@@ -24,6 +26,7 @@ OBJS += \
 CPP_DEPS += \
 ./src/DomainModel/Entity.d \
 ./src/DomainModel/IdGenerator.d \
+./src/DomainModel/JsonInterface.d \
 ./src/DomainModel/Parametric.d \
 ./src/DomainModel/ParametricRepository.d \
 ./src/DomainModel/Researcher.d \

@@ -1,0 +1,6 @@
+18:25:34 **** Incremental Build of configuration Debug for project MigrationDB ****
+make all 
+make: No se hace nada para 'all'.
+
+18:25:35 Build Finished (took 359ms)
+

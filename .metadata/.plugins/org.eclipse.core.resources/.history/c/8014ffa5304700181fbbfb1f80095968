@@ -1,0 +1,56 @@
+#include <iostream>
+#include "ParserCSV/RecordsLoader.h"
+#include <list>
+#include "ParserCSV/Record.h"
+#include "ParserCSV/ResearcherData.h"
+#include "ParserCSV/FormationData.h"
+#include "ParserCSV/PersonalData.h"
+#include "ParserCSV/PositionData.h"
+#include "DomainModel/Researcher.h"
+#include "Mapper/ResearcherParser.h"
+#define researcherFilePath "docentes.csv"
+using namespace std;
+using std::list;
+
+list<ResearcherData*>* GetResearchers() {
+	list<ResearcherData*>* investigadores = new list<ResearcherData*>();
+	RecordsLoader* loaderInvestigadores = new RecordsLoader();
+	list<Record*>* records = loaderInvestigadores->GetRecords(researcherFilePath);
+	list<Record*>::iterator iterador = records->begin();
+	while (iterador != records->end()) {
+		ResearcherData* data = new ResearcherData();
+		data->setFormationData(new FormationData(*iterador));
+		data->setPersonalData(new PersonalData(*iterador));
+		data->setPositionData(new PositionData(*iterador));
+		investigadores->push_back(data);
+		iterador++;
+	}
+	return investigadores;
+}
+
+list<Researcher*>* GetResearchers(list<ResearcherData*>* investigadoresDTO){
+	list<Researcher*>* investigadores = new list<Researcher*>();
+	list<ResearcherData*>::iterator iterador = investigadoresDTO->begin();
+	ResearcherParser* parserInvestigadores = new ResearcherParser();
+	while(iterador != investigadoresDTO->end()){
+		investigadores->push_back(parserInvestigadores->Parse(*iterador));
+		iterador++;
+	}
+
+	return investigadores;
+}
+
+void ShowResearcher(Researcher* investigador){
+	cout<<"Nombre: "<<investigador->GetName()<<endl;
+	cout<<"Apellido: "<<investigador->GetSurname()<<endl;
+	cout<<"DNI: "<<investigador->GetDni()<<endl;
+	cout<<"Genero: "<<investigador->GetGender()<<endl;
+	cout<<"Email: "<<investigador->GetEmail()<<endl;
+	cout<<"CUILD/CUIT: "<<investigador->GetCuilCuit()<<endl;
+}
+
+int main() {
+	list<ResearcherData*>* investigadores = GetResearchers();
+	cout<<"Tiene "<<investigadores->size();
+	return 0;
+}

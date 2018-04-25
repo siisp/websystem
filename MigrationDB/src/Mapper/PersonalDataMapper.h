@@ -8,7 +8,7 @@
 class PersonalDataMapper : public DataMapper {
 public:
 	PersonalDataMapper();
-	void Map(ResearcherData*, Researcher*);
+	void Map(const ResearcherData* researcherData,Researcher* researcher);
 	virtual ~PersonalDataMapper();
 };
 
