@@ -17,9 +17,14 @@ string cleanDNI(string DNI){
 }
 
 void PersonalDataMapper::Map(const ResearcherData* researcherData,Researcher* researcher){
+	string dni = researcherData->getPersonalData()->GetFieldValue(DNI);
+	if(dni=="")
+	{
+		dni = "0";
+	}
 	researcher->SetName(researcherData->getPersonalData()->GetFieldValue(Nombre));
 	researcher->SetCuilCuit(researcherData->getPersonalData()->GetFieldValue(CUIT_CUIL));
-	researcher->SetDni(researcherData->getPersonalData()->GetFieldValue(DNI));
+	researcher->SetDni(dni);
 	researcher->SetEmail(researcherData->getPersonalData()->GetFieldValue(CORREO_ELECTRONICO));
 	researcher->SetGender(researcherData->getPersonalData()->GetFieldValue(GENERO));
 	researcher->SetSurname(researcherData->getPersonalData()->GetFieldValue(Apellido));

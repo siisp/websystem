@@ -55,7 +55,7 @@ string Researcher::GetGender()const{
 }
 
 string Researcher::ToJson(){
-	string json= "\"" + GetId() + "\": {  \"birthday\" : \"" + GetBirthday() + "\" , \"cuilCuit\" : \"" +  GetCuilCuit() + "\", \"dni\" : "+ GetDni() + ", \"email\" : \"" +GetEmail()+ "\", \"gender\" : \""+GetGender( )+ "\", \"id\" : \""+GetId()+ "\", \"name\" : \""+GetName()+"\", \"surname\" : \""+GetSurname()+"\"}";
+	string json= "\"" + GetId() + "\": {  \"birthday\" : \"" + GetBirthday() + "\" , \"cuilCuit\" : \"" +  GetCuilCuit() + "\", \"dni\" : \""+ GetDni() + "\", \"email\" : \"" +GetEmail()+ "\", \"gender\" : \""+GetGender( )+ "\", \"id\" : \""+GetId()+ "\", \"name\" : \""+GetName()+"\", \"surname\" : \""+GetSurname()+"\"}";
 	return json;
 }
 

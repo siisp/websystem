@@ -16,6 +16,7 @@ std::list<Record*> *RecordsLoader::GetRecords(string filePath)const{
 	std::fstream file;
 	file.open(filePath.c_str(), std::fstream::in);
 	char data[MaxRecordLenght];
+	file.getline(data,MaxRecordLenght);
 	while (file.good()) {
 		file.getline(data,MaxRecordLenght);
 		Record* record=GetRecord(data);
