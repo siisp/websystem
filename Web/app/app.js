@@ -12,12 +12,12 @@ angular.module('SiispApp', ['Core', 'Login', 'Layout', 'Researchers', 'Parametri
                 templateUrl: "researchers/index.html"
             });
     })
-    .run(['$rootScope', '$state', '$stateParams', '$cookieStore', '$http',
-        function($rootScope, $state, $stateParams, $cookieStore, $http) {
+    .run(['$rootScope', '$state', '$stateParams', '$http',
+        function($rootScope, $state, $stateParams, $http) {
             $rootScope.$state = $state;
             $rootScope.$stateParams = $stateParams;
 
-            $rootScope.globals = $cookieStore.get('globals') || {};
+            $rootScope.globals = {};
             if ($rootScope.globals.currentUser) {
                 $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
             }

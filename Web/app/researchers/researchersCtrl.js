@@ -15,6 +15,7 @@ angular.module('Researchers')
                 } else {
                     researcherService.getResearcher($stateParams.id, setResearchersToEdit);
                 }
+                $scope.age= '';
                 $scope.researcherSaved = false;
                 $scope.cuilRegExpr = '^\\d{2}-\\d{8}-\\d{1}$';
                 loadParametrics();
@@ -44,6 +45,15 @@ angular.module('Researchers')
                 $scope.setup();
             };
 
+            $scope.refreshAge = function(){
+                var today = new Date(Date.now());
+                $scope.age ='';
+                if($scope.researcherEditing.birthday){
+                    var age = today.getFullYear() - $scope.researcherEditing.birthday.getFullYear();
+                    $scope.age = "(" + age+" años)";
+                }
+            }
+
             var onResearcherSaved = function () {
                 $scope.researcherSaved = true;
                 if(isAddingANewResearcher())
@@ -61,6 +71,8 @@ angular.module('Researchers')
                 if (typeof $scope.researcherEditing.birthday === 'string') {
                     $scope.researcherEditing.birthday = new Date($scope.researcherEditing.birthday);
                 }
+                console.log('cargando...');
+                $scope.refreshAge();
             }
 
             var loadParametrics = function () {
