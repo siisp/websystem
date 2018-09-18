@@ -5,6 +5,7 @@ angular.module('Researchers')
         function ($scope, $stateParams, researcherService, parametricService) {
             $scope.setup = function () {
                 $scope.isAddingANewResearcher = isAddingANewResearcher();
+                $scope.age = '';
                 if (isAddingANewResearcher()) {
                     $scope.researcherEditing = {
                         id: null,
@@ -15,7 +16,6 @@ angular.module('Researchers')
                 } else {
                     researcherService.getResearcher($stateParams.id, setResearchersToEdit);
                 }
-                $scope.age= '';
                 $scope.researcherSaved = false;
                 $scope.cuilRegExpr = '^\\d{2}-\\d{8}-\\d{1}$';
                 loadParametrics();
@@ -50,7 +50,7 @@ angular.module('Researchers')
                 $scope.age ='';
                 if($scope.researcherEditing.birthday){
                     var age = today.getFullYear() - $scope.researcherEditing.birthday.getFullYear();
-                    $scope.age = "(" + age+" años)";
+                    $scope.age = age+" años";
                 }
             }
 
@@ -247,7 +247,7 @@ angular.module('Researchers')
                     $scope.positionEditing.terminationDate = new Date($scope.positionEditing.terminationDate);
                 }
             }
-            
+
             $scope.deletePosition = function (position) {
                 researcherService.removePosition($scope.researcherEditing, position);
             }
