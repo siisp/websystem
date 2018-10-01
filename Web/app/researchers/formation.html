@@ -1,20 +1,20 @@
 <div ng-init="setup()">
+  <h3>Formacion</h3>
     <div layout="row"  ng-show=" !readOnlyMode">
         <md-input-container>
-            <label>Universidad</label>
-            <md-select ng-model="formationEditing.university" placeholder="Universidad">
-                <md-option  value="{{university.id}}" ng-repeat="university in parametrics['university']" >
-                    {{university.name}}
+            <label>Disciplina</label>
+            <md-select ng-model="formationEditing.disciplina" placeholder="Disciplina">
+                <md-option  value="{{disciplina.id}}" ng-repeat="disciplina in parametrics['disciplina']" >
+                    {{disciplina.name}}
                 </md-option>
             </md-select>
         </md-input-container>
-        <md-input-container>
-            <label>Tipo de Formación</label>
-            <md-select ng-model="formationEditing.type" placeholder="Tipo de Formación">
-                <md-option  value="{{formationType}}" ng-repeat="formationType in formationTypes" >
-                    {{formationType}}
-                </md-option>
-            </md-select>
+        <md-input-container flex="20">
+        <label>Titulo</label>
+        <input required="" titulo="titulo" ng-disabled="readOnlyMode" ng-model="formationEditing.titulo">
+        <div ng-messages="formationForm.titulo.$error">
+            <div ng-message="required">Campo requerido.</div>
+        </div>
         </md-input-container>
         <md-input-container>
             <label>Grado de Titulación</label>
