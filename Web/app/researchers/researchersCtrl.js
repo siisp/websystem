@@ -28,6 +28,10 @@ angular.module('Researchers')
                 researcherService.save($scope.researcherEditing, onResearcherSaved);
             }
 
+            $scope.saveAcademicData = function () {
+              researcherService.save($scope.researcherEditing, onResearcherSaved);
+            }
+
             $scope.secretaryshipDepartmentChanged = function()
             {
                 $scope.positionEditing.career = null;
