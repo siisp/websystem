@@ -52,69 +52,92 @@
             </div>
         </md-input-container>
     </div>
-    <!--<div layout="row" ng-show=" !readOnlyMode">
-        <md-input-container ng-show="formationEditing.formationCompleted=='false'">
-            <md-select  ng-model="formationEditing.scholarshipType" placeholder="Tipo de Beca">
-                <md-option ng-repeat="scholarshipType in parametrics['scholarshipType']" value="{{ scholarshipType.id }}">
-                    {{ scholarshipType.name }}
+    <div layout="row"  ng-show=" !readOnlyMode">
+      <md-input-container flex="6">
+        <label>Actividad Docente</label>
+        <input required="" actDocente="actDocente" ng-disabled="readOnlyMode" ng-model="researcherEditing.actDocente">
+          <div ng-messages="researcherForm.actDocente.$error">
+            <div ng-message="required">Campo requerido.</div>
+          </div>
+      </md-input-container>
+      <md-input-container flex="6">
+        <label>Cantidad</label>
+        <input required="" cantidadActDoc="cantidadActDoc" ng-disabled="readOnlyMode" ng-model="researcherEditing.cantidadActDoc">
+          <div ng-messages="researcherForm.cantidadActDoc.$error">
+            <div ng-message="required">Campo requerido.</div>
+          </div>
+      </md-input-container>
+    </div>
+    <div layout="row"  ng-show=" !readOnlyMode">
+        <md-input-container flex="16">
+            <md-select ng-model="researcherEditing.deptoDependencia" placeholder="Depto-Dependencia">
+                <md-option ng-repeat="deptoDependencia in parametrics['deptoDependencia']"  value="{{deptoDependencia.id}}">
+                    {{ deptoDependencia.name }}
                 </md-option>
             </md-select>
         </md-input-container>
-        <md-input-container ng-show="formationEditing.formationCompleted=='false'">
-            <md-select  ng-model="formationEditing.scholarshipName" placeholder="Beca">
-                <md-option value="{{scholarshipName.id}}" ng-repeat="scholarshipName in parametrics['scholarshipName']">
-                    {{ scholarshipName.name }}
+        <md-input-container flex="16">
+            <md-select ng-model="researcherEditing.dedicacion" placeholder="Dedicación">
+                <md-option ng-repeat="dedicacion in parametrics['dedicacion']"  value="{{dedicacion.id}}">
+                    {{ dedicacion.name }}
                 </md-option>
             </md-select>
         </md-input-container>
-        <md-input-container ng-show="parametrics['scholarshipName'][formationEditing.scholarshipName].name=='Otra'">
-            <label>Especificar Otra</label>
-            <input name="otra" ng-model="formationEditing.otherScholarship">
-        </md-input-container>
-    </div>-->
+    </div>
+    <h3>Otros</h3>
+    <div layout="row"  ng-show=" !readOnlyMode">
+      <md-input-container flex="6">
+        <label>Sueldo</label>
+        <input required="" sueldo="sueldo" ng-disabled="readOnlyMode" ng-model="researcherEditing.sueldo">
+          <div ng-messages="researcherForm.sueldo.$error">
+            <div ng-message="required">Campo requerido.</div>
+          </div>
+      </md-input-container>
+      <md-input-container flex="6">
+        <label>Porcentaje</label>
+        <input required="" porcentaje="porcentaje" ng-disabled="readOnlyMode" ng-model="researcherEditing.porcentaje">
+          <div ng-messages="researcherForm.porcentaje.$error">
+            <div ng-message="required">Campo requerido.</div>
+          </div>
+      </md-input-container>
+    </div>
+    <div layout="row"  ng-show=" !readOnlyMode">
+      <md-input-container flex="6">
+        <label>Observaciones</label>
+        <input required="" observaciones="observaciones" ng-disabled="readOnlyMode" ng-model="researcherEditing.observaciones">
+          <div ng-messages="researcherForm.observaciones.$error">
+            <div ng-message="required">Campo requerido.</div>
+          </div>
+      </md-input-container>
+    </div>
+
+    <div layout="row"  ng-show=" !readOnlyMode">
+      <md-input-container flex="6">
+        <label>Objetivo</label>
+        <input required="" objetivo="objetivo" ng-disabled="readOnlyMode" ng-model="researcherEditing.objectivo">
+          <div ng-messages="researcherForm.objetivo.$error">
+            <div ng-message="required">Campo requerido.</div>
+          </div>
+      </md-input-container>
+      <md-input-container flex="16">
+          <md-select ng-model="researcherEditing.disciplina" placeholder="Disciplina">
+              <md-option ng-repeat="disciplina in parametrics['disciplina']"  value="{{disciplina.id}}">
+                  {{ disciplina.name }}
+              </md-option>
+          </md-select>
+      </md-input-container>
+      <md-input-container flex="16">
+          <md-select ng-model="researcherEditing.tipoDeInvestigacion" placeholder="Tipo de Investigacion">
+              <md-option ng-repeat="tipoDeInvestigacion in parametrics['tipoDeInvestigacion']"  value="{{tipoDeInvestigacion.id}}">
+                  {{ tipoDeInvestigacion.name }}
+              </md-option>
+          </md-select>
+      </md-input-container>
+    </div>
+
+
     <md-button class="md-raised md-primary" ng-show=" !readOnlyMode" ng-click="saveAcademicData()">
         Guardar
     </md-button>
-    <md-button ng-show="formationEditingExisting" class="md-raised md-primary" ng-click="cancelEdition()">Cancelar</md-button>
-    <label ng-show="formationSaved">Guardado!</label>
-    <md-divider ng-show="researcherEditing.formations!=null && !readOnlyMode"></md-divider>
-    <div ng-show="readOnlyMode">
-    <label ng-show="(researcherEditing.formations|toArray).length == 0 ">No hay formaciones cargadas</label>
-    </div>
-    <div ng-show="researcherEditing.formations!=null">
-        <div>
-            <h4>
-                <span>Formación de {{researcherEditing.name + " " + researcherEditing.surname}}</span>
-            </h4>
-        </div>
-        <div>
-            <table>
-                <tr>
-                    <th>Tipo de Formación</th>
-                    <th>Grado de Titulación</th>
-                    <th>Gran Area de Conocimiento</th>
-                    <th>Carrera</th>
-                    <th>Estado</th>
-                    <th>Categoria</th>
-                    <th></th>
-                </tr>
-                <tr ng-repeat="formation in researcherEditing.formations">
-                    <td>{{formation.type}}</td>
-                    <td>{{parametrics['academicDegree'][formation.academicDegree].name}}</td>
-                    <td>{{parametrics['degreeArea'][formation.degreeArea].name}}</td>
-                    <td>{{parametrics['degreeArea'][formation.degreeArea].careers[formation.career].name}}</td>
-                    <td>
-                        {{formation.formationCompleted == 'true' ? 'Terminada' : 'En curso'}}
-                        <div ng-show="formation.formationCompleted == 'false'">
-                            {{parametrics['scholarshipType'][formation.scholarshipType].name}} - {{ parametrics['scholarshipName'][formation.scholarshipName].name == 'Otra' ? formation.otherScholarship : parametrics['scholarshipName'][formation.scholarshipName].name}}
-                        </div>
-                    </td>
-                    <td>{{formation.categorizationUniversity}}</td>
-                    <td  ng-show=" !readOnlyMode">
-                        <md-button  class="md-raised md-primary" ng-click="edit(formation)"">Editar</md-button>
-                        <md-button class="md-raised md-primary" ng-click=" deleteFormation(formation)">Eliminar</md-button>
-                    </td>
-            </table>
-        </div>
-    </div>
+    <label ng-show="academicDataSaved">Guardado!</label>
 </div>

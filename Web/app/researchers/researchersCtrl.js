@@ -28,8 +28,10 @@ angular.module('Researchers')
                 researcherService.save($scope.researcherEditing, onResearcherSaved);
             }
 
+
             $scope.saveAcademicData = function () {
-              researcherService.save($scope.researcherEditing, onResearcherSaved);
+              $scope.academicDataSaved=false;
+              researcherService.save($scope.researcherEditing, onAcademicDataSaved);
             }
 
             $scope.secretaryshipDepartmentChanged = function()
@@ -59,6 +61,7 @@ angular.module('Researchers')
             }
 
             var onResearcherSaved = function () {
+              console.log("Guarda bien");
                 $scope.researcherSaved = true;
                 if(isAddingANewResearcher())
                 {
@@ -70,12 +73,17 @@ angular.module('Researchers')
                     $scope.$apply();
                 }
             }
+            var onAcademicDataSaved = function () {
+                $scope.academicDataSaved = true;
+                $scope.$apply();
+
+            }
+
             var setResearchersToEdit = function (researcher) {
                 $scope.researcherEditing = researcher;
                 if (typeof $scope.researcherEditing.birthday === 'string') {
                     $scope.researcherEditing.birthday = new Date($scope.researcherEditing.birthday);
                 }
-                console.log('cargando...');
                 $scope.refreshAge();
             }
 
