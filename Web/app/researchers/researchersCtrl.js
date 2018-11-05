@@ -30,6 +30,9 @@ angular.module('Researchers')
 
 
             $scope.saveAcademicData = function () {
+                if (typeof $scope.birthday !== 'string') {
+                    $scope.researcherEditing.birthday = $scope.researcherEditing.birthday.toJSON();
+                }
               $scope.academicDataSaved=false;
               researcherService.save($scope.researcherEditing, onAcademicDataSaved);
             }

@@ -3,19 +3,13 @@
     <div layout="row"  ng-show=" !readOnlyMode">
       <md-input-container flex="16">
         <label>Titulo</label>
-        <input required="" titulo="titulo" ng-disabled="readOnlyMode" ng-model="researcherEditing.titulo">
-          <div ng-messages="researcherForm.titulo.$error">
-            <div ng-message="required">Campo requerido.</div>
-          </div>
+        <input  titulo="titulo" ng-disabled="readOnlyMode" ng-model="researcherEditing.titulo">
         </md-input-container>
     </div>
     <div layout="row"  ng-show=" !readOnlyMode">
       <md-input-container flex="16">
         <label>Area de Formación</label>
-        <input required="" areaDeFormacion="areaDeFormacion" ng-disabled="readOnlyMode" ng-model="researcherEditing.areaDeFormacion">
-          <div ng-messages="researcherForm.areaDeFormacion.$error">
-            <div ng-message="required">Campo requerido.</div>
-          </div>
+        <input  areaDeFormacion="areaDeFormacion" ng-disabled="readOnlyMode" ng-model="researcherEditing.areaDeFormacion">
       </md-input-container>
     </div>
     <div layout="row"  ng-show=" !readOnlyMode">
@@ -46,27 +40,18 @@
         </md-input-container>
         <md-input-container flex="6">
           <label>Cantidad</label>
-          <input required="" cantidad="cantidad" ng-disabled="readOnlyMode" ng-model="researcherEditing.cantidad">
-            <div ng-messages="researcherForm.cantidad.$error">
-              <div ng-message="required">Campo requerido.</div>
-            </div>
+          <input  cantidad="cantidad" ng-disabled="readOnlyMode" ng-model="researcherEditing.cantidad">
         </md-input-container>
     </div>
     <div layout="row"  ng-show=" !readOnlyMode">
       <md-input-container flex="6">
         <label>Actividad Docente</label>
-        <input required="" actDocente="actDocente" ng-disabled="readOnlyMode" ng-model="researcherEditing.actDocente">
-          <div ng-messages="researcherForm.actDocente.$error">
-            <div ng-message="required">Campo requerido.</div>
-          </div>
+        <input  actDocente="actDocente" ng-disabled="readOnlyMode" ng-model="researcherEditing.actDocente">
       </md-input-container>
       <md-input-container flex="6">
         <label>Cantidad</label>
-        <input required="" cantidadActDoc="cantidadActDoc" ng-disabled="readOnlyMode" ng-model="researcherEditing.cantidadActDoc">
-          <div ng-messages="researcherForm.cantidadActDoc.$error">
-            <div ng-message="required">Campo requerido.</div>
-          </div>
-      </md-input-container>
+        <input  cantidadActDoc="cantidadActDoc" ng-disabled="readOnlyMode" ng-model="researcherEditing.cantidadActDoc">
+       </md-input-container>
     </div>
     <div layout="row"  ng-show=" !readOnlyMode">
         <md-input-container flex="16">
@@ -88,36 +73,24 @@
     <div layout="row"  ng-show=" !readOnlyMode">
       <md-input-container flex="6">
         <label>Sueldo</label>
-        <input required="" sueldo="sueldo" ng-disabled="readOnlyMode" ng-model="researcherEditing.sueldo">
-          <div ng-messages="researcherForm.sueldo.$error">
-            <div ng-message="required">Campo requerido.</div>
-          </div>
+        <input  sueldo="sueldo" ng-disabled="readOnlyMode" ng-model="researcherEditing.sueldo">
       </md-input-container>
       <md-input-container flex="6">
         <label>Porcentaje</label>
-        <input required="" porcentaje="porcentaje" ng-disabled="readOnlyMode" ng-model="researcherEditing.porcentaje">
-          <div ng-messages="researcherForm.porcentaje.$error">
-            <div ng-message="required">Campo requerido.</div>
-          </div>
+        <input  porcentaje="porcentaje" ng-disabled="readOnlyMode" ng-model="researcherEditing.porcentaje">
       </md-input-container>
     </div>
     <div layout="row"  ng-show=" !readOnlyMode">
       <md-input-container flex="6">
         <label>Observaciones</label>
-        <input required="" observaciones="observaciones" ng-disabled="readOnlyMode" ng-model="researcherEditing.observaciones">
-          <div ng-messages="researcherForm.observaciones.$error">
-            <div ng-message="required">Campo requerido.</div>
-          </div>
+        <input  observaciones="observaciones" ng-disabled="readOnlyMode" ng-model="researcherEditing.observaciones">
       </md-input-container>
     </div>
 
     <div layout="row"  ng-show=" !readOnlyMode">
       <md-input-container flex="6">
         <label>Objetivo</label>
-        <input required="" objetivo="objetivo" ng-disabled="readOnlyMode" ng-model="researcherEditing.objectivo">
-          <div ng-messages="researcherForm.objetivo.$error">
-            <div ng-message="required">Campo requerido.</div>
-          </div>
+        <input  objetivo="objetivo" ng-disabled="readOnlyMode" ng-model="researcherEditing.objectivo">
       </md-input-container>
       <md-input-container flex="16">
           <md-select ng-model="researcherEditing.disciplina" placeholder="Disciplina">

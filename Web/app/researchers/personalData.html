@@ -79,7 +79,7 @@
                 </md-input-container>
             </div>
         <div>
-            <md-button ng-show=" !readOnlyMode" class="md-raised md-primary" ng-disabled=" dataLoading || researcherSaved" ng-click="save()">Guardar</md-button>
+            <md-button ng-show=" !readOnlyMode" class="md-raised md-primary" ng-disabled=" dataLoading" ng-click="save()">Guardar</md-button>
             <label ng-show="researcherSaved">Guardado!</label>
         </div>
         <div>
@@ -87,4 +87,3 @@
         </div>
     </form>
 </div>
-//ng-disabled="researcherForm.$invalid || dataLoading || researcherSaved"
