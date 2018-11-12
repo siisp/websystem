@@ -30,17 +30,9 @@ angular.module('Researchers').factory('researcherService', ['dataService',
                 var referenceName = 'researchers/' + researcher.id + '/formations';
                 dataService.saveObject(referenceName, formation, onFormationUpdated);
             },
-            addPosition: function (researcher, position, onPositionUpdated) {
-                if (researcher.id == null)
-                    return;
-                var referenceName = 'researchers/' + researcher.id + '/positions';
-                dataService.saveObject(referenceName, position, onPositionUpdated);
-            },
-            removeFormation: function (researcher, formation) {
-                if (researcher.id == null || formation.id == null)
-                    return;
-                var referenceName = 'researchers/' + researcher.id + '/formations';
-                dataService.deleteObject(referenceName, formation);
+            deleteResearcher: function (researcherId) {
+              var referenceName = 'researchers/'+researcherId;
+              dataService.deleteResearcher(referenceName);
             },
             removePosition: function (researcher, position) {
                 if (researcher.id == null || position.id == null)

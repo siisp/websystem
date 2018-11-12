@@ -27,8 +27,6 @@ angular.module('Researchers')
                 $scope.researcherSaved = false;
                 researcherService.save($scope.researcherEditing, onResearcherSaved);
             }
-
-
             $scope.saveAcademicData = function () {
                 if (typeof $scope.birthday !== 'string') {
                     $scope.researcherEditing.birthday = $scope.researcherEditing.birthday.toJSON();
@@ -81,7 +79,6 @@ angular.module('Researchers')
                 $scope.$apply();
 
             }
-
             var setResearchersToEdit = function (researcher) {
                 $scope.researcherEditing = researcher;
                 if (typeof $scope.researcherEditing.birthday === 'string') {
@@ -320,7 +317,9 @@ angular.module('Researchers')
         $scope.setPage = function(index) {
             $scope.currentPage = index - 1;
         };
-
+        $scope.deleteResearcher = function (researcherId) {
+          researcherService.deleteResearcher(researcherId);
+        };
         var loadResearchers = function () {
             researcherService.getResearchers(refreshResearchers);
         },

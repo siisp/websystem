@@ -38,6 +38,9 @@ angular.module('Core').factory('dataService', [
             deleteObject:function(referenceName, object){
                 firebase.database().ref(referenceName+'/' + object.id ).remove();
             },
+            deleteResearcher:function(referenceName){
+              firebase.database().ref(referenceName).remove();
+            },
             deleteItemOfAnObject:function(referenceName){
                 firebase.database().ref(referenceName).remove();
             },
