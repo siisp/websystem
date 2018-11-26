@@ -1,21 +1,21 @@
 <div ng-init="setup()">
   <h3>Formacion</h3>
-    <div layout="row"  ng-show=" !readOnlyMode">
+    <div layout="row">
       <md-input-container flex="16">
         <label>Titulo</label>
         <input  titulo="titulo" ng-disabled="readOnlyMode" ng-model="researcherEditing.titulo">
         </md-input-container>
     </div>
-    <div layout="row"  ng-show=" !readOnlyMode">
+    <div layout="row">
       <md-input-container flex="16">
         <label>Area de Formación</label>
         <input  areaDeFormacion="areaDeFormacion" ng-disabled="readOnlyMode" ng-model="researcherEditing.areaDeFormacion">
       </md-input-container>
     </div>
-    <div layout="row"  ng-show=" !readOnlyMode">
+    <div layout="row">
         <md-input-container flex="12">
             <label>Nivel</label>
-            <md-select ng-model="researcherEditing.nivel">
+            <md-select ng-disabled="readOnlyMode" ng-model="researcherEditing.nivel">
                 <md-option ng-repeat="nivel in parametrics['nivel']"  value="{{nivel.id}}">
                     {{ nivel.name }}
                 </md-option>
@@ -23,16 +23,18 @@
         </md-input-container>
     </div>
     <h3>Investigacion y Docencia</h3>
-    <div layout="row"  ng-show=" !readOnlyMode">
+    <div layout="row">
         <md-input-container flex="16">
-            <md-select ng-model="researcherEditing.tipoDeContratacion" placeholder="Tipo de Contratación">
+          <label>Tipo de contratación</label>
+            <md-select ng-disabled="readOnlyMode" ng-model="researcherEditing.tipoDeContratacion" placeholder="Tipo de Contratación">
                 <md-option ng-repeat="tipoDeContratacion in parametrics['tipoDeContratacion']"  value="{{tipoDeContratacion.id}}">
                     {{ tipoDeContratacion.name }}
                 </md-option>
             </md-select>
         </md-input-container>
         <md-input-container flex="16">
-            <md-select ng-model="researcherEditing.cargo" placeholder="Cargo">
+          <label>Cargo</label>
+            <md-select ng-disabled="readOnlyMode" ng-model="researcherEditing.cargo" placeholder="Cargo">
                 <md-option ng-repeat="cargo in parametrics['cargo']"  value="{{cargo.id}}">
                     {{ cargo.name }}
                 </md-option>
@@ -43,7 +45,7 @@
           <input  cantidad="cantidad" ng-disabled="readOnlyMode" ng-model="researcherEditing.cantidad">
         </md-input-container>
     </div>
-    <div layout="row"  ng-show=" !readOnlyMode">
+    <div layout="row">
       <md-input-container flex="6">
         <label>Actividad Docente</label>
         <input  actDocente="actDocente" ng-disabled="readOnlyMode" ng-model="researcherEditing.actDocente">
@@ -53,16 +55,18 @@
         <input  cantidadActDoc="cantidadActDoc" ng-disabled="readOnlyMode" ng-model="researcherEditing.cantidadActDoc">
        </md-input-container>
     </div>
-    <div layout="row"  ng-show=" !readOnlyMode">
+    <div layout="row">
         <md-input-container flex="16">
-            <md-select ng-model="researcherEditing.deptoDependencia" placeholder="Depto-Dependencia">
+          <label>Depto-Dependencia</label>
+            <md-select ng-disabled="readOnlyMode" ng-model="researcherEditing.deptoDependencia" placeholder="Depto-Dependencia">
                 <md-option ng-repeat="deptoDependencia in parametrics['deptoDependencia']"  value="{{deptoDependencia.id}}">
                     {{ deptoDependencia.name }}
                 </md-option>
             </md-select>
         </md-input-container>
         <md-input-container flex="16">
-            <md-select ng-model="researcherEditing.dedicacion" placeholder="Dedicación">
+          <label>Dedicación</label>
+            <md-select ng-disabled="readOnlyMode" ng-model="researcherEditing.dedicacion" placeholder="Dedicación">
                 <md-option ng-repeat="dedicacion in parametrics['dedicacion']"  value="{{dedicacion.id}}">
                     {{ dedicacion.name }}
                 </md-option>
@@ -70,7 +74,7 @@
         </md-input-container>
     </div>
     <h3>Otros</h3>
-    <div layout="row"  ng-show=" !readOnlyMode">
+    <div layout="row">
       <md-input-container flex="6">
         <label>Sueldo</label>
         <input  sueldo="sueldo" ng-disabled="readOnlyMode" ng-model="researcherEditing.sueldo">
@@ -80,27 +84,29 @@
         <input  porcentaje="porcentaje" ng-disabled="readOnlyMode" ng-model="researcherEditing.porcentaje">
       </md-input-container>
     </div>
-    <div layout="row"  ng-show=" !readOnlyMode">
+    <div layout="row">
       <md-input-container flex="6">
         <label>Observaciones</label>
         <input  observaciones="observaciones" ng-disabled="readOnlyMode" ng-model="researcherEditing.observaciones">
       </md-input-container>
     </div>
 
-    <div layout="row"  ng-show=" !readOnlyMode">
-      <md-input-container flex="6">
+    <div layout="row">
+      <md-input-container flex="200">
         <label>Objetivo</label>
         <input  objetivo="objetivo" ng-disabled="readOnlyMode" ng-model="researcherEditing.objectivo">
       </md-input-container>
       <md-input-container flex="16">
-          <md-select ng-model="researcherEditing.disciplina" placeholder="Disciplina">
+        <label>Disciplina</label>
+          <md-select ng-disabled="readOnlyMode" ng-model="researcherEditing.disciplina" placeholder="Disciplina">
               <md-option ng-repeat="disciplina in parametrics['disciplina']"  value="{{disciplina.id}}">
                   {{ disciplina.name }}
               </md-option>
           </md-select>
       </md-input-container>
       <md-input-container flex="16">
-          <md-select ng-model="researcherEditing.tipoDeInvestigacion" placeholder="Tipo de Investigacion">
+        <label>Tipo de investigación</label>
+          <md-select ng-disabled="readOnlyMode" ng-model="researcherEditing.tipoDeInvestigacion" placeholder="Tipo de Investigacion">
               <md-option ng-repeat="tipoDeInvestigacion in parametrics['tipoDeInvestigacion']"  value="{{tipoDeInvestigacion.id}}">
                   {{ tipoDeInvestigacion.name }}
               </md-option>
